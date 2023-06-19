@@ -11,11 +11,12 @@ public class PatrolFindState : PatrolState
 
     public override void Setup()
     {
-        FireTime = 0f;
+        
     }
 
     public override void Enter()
     {
+        FireTime = 0f;
         anim.SetFloat("MoveSpeed", 0f);
     }
 

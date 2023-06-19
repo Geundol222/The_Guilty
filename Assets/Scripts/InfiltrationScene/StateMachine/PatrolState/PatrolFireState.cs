@@ -14,7 +14,6 @@ public class PatrolFireState : PatrolState
 
     public override void Enter()
     {
-        Debug.Log("น฿ป็");
         weaponHolder.Fire();
     }
 
@@ -28,6 +27,10 @@ public class PatrolFireState : PatrolState
         if (!fov.IsFind)
         {
             stateMachine.ChangeState(State.Idle);
+        }
+        else
+        {
+            stateMachine.ChangeState(State.Find);
         }
     }
 
