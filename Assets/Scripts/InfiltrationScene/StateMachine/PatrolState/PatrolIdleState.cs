@@ -28,7 +28,7 @@ public class PatrolIdleState : PatrolState
     public override void Transition()
     {
         patrolTime += Time.deltaTime;
-        if (!fov.IsFinded())
+        if (!fov.IsFind)
         {
             if (patrolTime > 2f)
             {
@@ -38,7 +38,6 @@ public class PatrolIdleState : PatrolState
         }
         else
         {
-            Debug.Log("플레이어 발견");
             agent.isStopped = true;
             stateMachine.ChangeState(State.Find);
         }

@@ -24,7 +24,7 @@ public class PatrolPatrolState : PatrolState
 
     public override void Transition()
     {
-        if (!fov.IsFinded())
+        if (!fov.IsFind)
         {
             if (Vector3.Distance(patrolPoints[patrolIndex].position, transform.position) < 0.1f)
             {
@@ -34,9 +34,8 @@ public class PatrolPatrolState : PatrolState
         }
         else
         {
-            Debug.Log("플레이어 발견");
             agent.isStopped = true;
-            stateMachine.ChangeState(State.Fire);
+            stateMachine.ChangeState(State.Find);
         }
     }
 

@@ -9,14 +9,11 @@ namespace EnemyStates
 
     public abstract class PatrolState : StateBase<State, PatrolMan>
     {
-        protected Transform muzzlePoint { get { return owner.muzzlePoint; } }
-        protected LayerMask playerMask { get { return owner.playerMask; } }
-        protected GameObject player { get { return owner.player; } }
-        protected ParticleSystem muzzleEffect { get { return owner.muzzleEffect; } }
-        protected int damage { get { return owner.damage; } }
+        protected EnemyWeaponHolder weaponHolder { get { return owner.weaponHolder; } }
         protected FieldOfView fov { get { return owner.fov; } }
         protected NavMeshAgent agent { get { return owner.agent; } }
         protected Transform transform { get { return owner.transform; } }
+        protected Transform player {  get { return owner.player; } }
         protected Vector3 returnPoint { get { return owner.returnPoint; } }
         protected int patrolIndex { get { return owner.patrolIndex; } set { owner.patrolIndex = value; } }
         protected Transform[] patrolPoints { get { return owner.patrolPoints; } set { owner.patrolPoints = value; } }
@@ -27,14 +24,11 @@ namespace EnemyStates
 
     public abstract class RifleState : StateBase<State, RifleMan>
     {
-        protected Transform muzzlePoint { get { return owner.muzzlePoint; } }
-        protected LayerMask playerMask { get { return owner.playerMask; } }
-        protected GameObject player { get { return owner.player; } }
-        protected ParticleSystem muzzleEffect { get { return owner.muzzleEffect; } }
-        protected int damage { get { return owner.damage; } }
+        protected EnemyWeaponHolder weaponHolder { get { return owner.weaponHolder; } }
         protected FieldOfView fov { get { return owner.fov; } }
         protected NavMeshAgent agent { get { return owner.agent; } }
         protected Transform transform { get { return owner.transform; } }
+        protected Transform player { get { return owner.player; } }
         protected Animator anim { get { return owner.anim; } set { owner.anim = value; } }
 
         protected RifleState(RifleMan owner, StateMachine<State, RifleMan> stateMachine) : base(owner, stateMachine) { }

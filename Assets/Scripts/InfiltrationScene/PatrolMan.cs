@@ -21,6 +21,7 @@ public class PatrolMan : Enemy
 
         patrolStateMachine.AddState(State.Idle, new PatrolIdleState(this, patrolStateMachine));
         patrolStateMachine.AddState(State.Patrol, new PatrolPatrolState(this, patrolStateMachine));
+        patrolStateMachine.AddState(State.Find, new PatrolFindState(this, patrolStateMachine));
         patrolStateMachine.AddState(State.Fire, new PatrolFireState(this, patrolStateMachine));
     }
 

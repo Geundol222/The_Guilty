@@ -14,17 +14,21 @@ public class PatrolFireState : PatrolState
 
     public override void Enter()
     {
-        
+        Debug.Log("น฿ป็");
+        weaponHolder.Fire();
     }
 
     public override void Update()
     {
-        
+
     }
 
     public override void Transition()
     {
-        
+        if (!fov.IsFind)
+        {
+            stateMachine.ChangeState(State.Idle);
+        }
     }
 
     public override void Exit()

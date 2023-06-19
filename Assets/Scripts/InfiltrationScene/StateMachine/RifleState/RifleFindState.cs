@@ -26,13 +26,13 @@ public class RifleFindState : RifleState
 
     public override void Transition()
     {
-        if (!fov.IsFinded())
+        if (!fov.IsFind)
         {
             agent.isStopped = false;
             stateMachine.ChangeState(State.Patrol);
         }
 
-        if (fov.IsFinded() && FireTime < 0f)
+        if (fov.IsFind && FireTime < 0f)
         {
             stateMachine.ChangeState(State.Fire);
         }
