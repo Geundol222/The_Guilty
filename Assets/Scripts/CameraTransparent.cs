@@ -38,7 +38,7 @@ public class CameraTransparent : MonoBehaviour
                 foreach (Material material in materials)
                 {
                     Color color = material.color;
-                    color.a = 0.3f;
+                    color.a = 0.2f;
                     material.color = color;
                 }
             }
@@ -48,13 +48,17 @@ public class CameraTransparent : MonoBehaviour
             for (int i = 0; i < obstacleWall.Count; i++)
             {
                 obstacleRenderer = obstacleWall[i].GetComponentInChildren<Renderer>();
-                Material[] materials = obstacleRenderer.materials;
-                foreach (Material material in materials)
+                if (obstacleRenderer != null)
                 {
-                    Color color = material.color;
-                    color.a = 1f;
-                    material.color = color;
-                }
+                    Material[] materials = obstacleRenderer.materials;
+                    foreach (Material material in materials)
+                    {
+                        Color color = material.color;
+                        color.a = 1f;
+                        material.color = color;
+                    }
+                    obstacleWall.Remove(obstacleWall[i]);
+                }                
             }
         }
     }

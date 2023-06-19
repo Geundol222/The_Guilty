@@ -25,7 +25,7 @@ public class RifleIdleState : RifleState
 
     public override void Transition()
     {
-        if (fov.IsFinded())
+        if (fov.IsFind)
         {
             Debug.Log("플레이어 발견");
             agent.isStopped = true;

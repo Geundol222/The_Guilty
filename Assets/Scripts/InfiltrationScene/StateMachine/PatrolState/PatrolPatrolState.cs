@@ -24,7 +24,7 @@ public class PatrolPatrolState : PatrolState
 
     public override void Transition()
     {
-        if (!fov.IsFinded())
+        if (!fov.IsFind)
         {
             if (Vector3.Distance(patrolPoints[patrolIndex].position, transform.position) < 0.1f)
             {

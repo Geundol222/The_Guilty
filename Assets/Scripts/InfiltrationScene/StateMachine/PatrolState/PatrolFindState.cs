@@ -30,13 +30,13 @@ public class PatrolFindState : PatrolState
 
     public override void Transition()
     {
-        if (!fov.IsFinded())
+        if (!fov.IsFind)
         {
             agent.isStopped = false;
             stateMachine.ChangeState(State.Patrol);
         }
 
-        if (fov.IsFinded() && FireTime > 2f)
+        if (fov.IsFind && FireTime > 2f)
         {
             stateMachine.ChangeState(State.Fire);
         }

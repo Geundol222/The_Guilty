@@ -25,7 +25,7 @@ public class PatrolFireState : PatrolState
 
     public override void Transition()
     {
-        if (!fov.IsFinded())
+        if (!fov.IsFind)
         {
             stateMachine.ChangeState(State.Idle);
         }

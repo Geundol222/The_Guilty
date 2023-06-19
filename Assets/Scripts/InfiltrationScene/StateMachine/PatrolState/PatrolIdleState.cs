@@ -28,7 +28,7 @@ public class PatrolIdleState : PatrolState
     public override void Transition()
     {
         patrolTime += Time.deltaTime;
-        if (!fov.IsFinded())
+        if (!fov.IsFind)
         {
             if (patrolTime > 2f)
             {
