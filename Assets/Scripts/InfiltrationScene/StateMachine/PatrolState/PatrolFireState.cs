@@ -31,18 +31,4 @@ public class PatrolFireState : PatrolState
     {
 
     }
-
-    public void Fire()
-    {
-        muzzleEffect.Play();
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(muzzlePoint.forward, player.transform.position, out hit, Vector3.Distance(muzzlePoint.position, player.transform.position), playerMask))
-        {
-            IHittable hittable = hit.transform.gameObject.GetComponent<IHittable>();
-            ParticleSystem hitEffect = GameManager.Resource.Instantiate<ParticleSystem>("Particles/HitEffect", hit.point, Quaternion.LookRotation(hit.normal), true);
-            hittable?.TakeDamage(damage);
-        }
-    }
 }
