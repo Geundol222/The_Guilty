@@ -11,7 +11,7 @@ public class PatrolFindState : PatrolState
 
     public override void Setup()
     {
-        FireTime = 1.5f;
+        FireTime = 0f;
     }
 
     public override void Enter()
@@ -21,9 +21,9 @@ public class PatrolFindState : PatrolState
 
     public override void Update()
     {
-        FireTime -= Time.deltaTime;
+        FireTime += Time.deltaTime;
 
-        Vector3 dir = (player.transform.position - transform.position).normalized;
+        Vector3 dir = (player.position - transform.position).normalized;
         Quaternion lookDir = Quaternion.LookRotation(dir);
         transform.rotation = Quaternion.Lerp(transform.rotation, lookDir, 0.1f);
     }
@@ -36,7 +36,7 @@ public class PatrolFindState : PatrolState
             stateMachine.ChangeState(State.Patrol);
         }
 
-        if (fov.IsFinded() && FireTime < 0f)
+        if (fov.IsFinded() && FireTime > 2f)
         {
             stateMachine.ChangeState(State.Fire);
         }

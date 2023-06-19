@@ -38,7 +38,6 @@ public class PatrolIdleState : PatrolState
         }
         else
         {
-            Debug.Log("플레이어 발견");
             agent.isStopped = true;
             stateMachine.ChangeState(State.Find);
         }

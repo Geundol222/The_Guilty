@@ -34,9 +34,8 @@ public class PatrolPatrolState : PatrolState
         }
         else
         {
-            Debug.Log("플레이어 발견");
             agent.isStopped = true;
-            stateMachine.ChangeState(State.Fire);
+            stateMachine.ChangeState(State.Find);
         }
     }
 
