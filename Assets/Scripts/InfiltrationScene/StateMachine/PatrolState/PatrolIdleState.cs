@@ -16,8 +16,10 @@ public class PatrolIdleState : PatrolState
 
     public override void Enter()
     {
+        agent.isStopped = true;
         patrolTime = 0f;
         anim.SetFloat("MoveSpeed", 0f);
+
     }
 
     public override void Update()

@@ -10,7 +10,6 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] LayerMask targetMask;
     [SerializeField] LayerMask obstacleMask;
 
-    List<GameObject> findList;
     float cosResult;
     bool isFind;
     Vector3 targetDir;
@@ -19,7 +18,6 @@ public class FieldOfView : MonoBehaviour
 
     private void Awake()
     {
-        findList = new List<GameObject>();
         cosResult = Mathf.Cos(angle * 0.5f * Mathf.Deg2Rad);
     }
 
@@ -30,33 +28,22 @@ public class FieldOfView : MonoBehaviour
 
     public void FindTarget()
     {
+        isFind = false;
+
         Collider[] colliders = Physics.OverlapSphere(transform.position, range, targetMask);
         foreach (Collider collider in colliders)
         {
             targetDir = (collider.transform.position - transform.position).normalized;
-            if (Vector3.Dot(transform.position, targetDir) > cosResult)
-            {
-                findList.Add(collider.gameObject);                
-            }
-            else if (Vector3.Dot(transform.forward, targetDir) < cosResult)
-            {
-                if (findList.Count > 0)
-                    findList.Remove(collider.gameObject);
-                continue;
-            }
+            if (Vector3.Dot(transform.forward, targetDir) > cosResult)
+                isFind = true;
 
             float distToTarget = Vector3.Distance(transform.position, collider.gameObject.transform.position);
             if (Physics.Raycast(transform.position, targetDir, distToTarget, obstacleMask))
             {
                 isFind = false;
                 continue;
-            }
+            }                
 
-            if (findList.Count > 0)
-                isFind = true;
-            else
-                isFind = false;
-                
             Debug.DrawRay(transform.position, targetDir * distToTarget, Color.red);
         }
     }
