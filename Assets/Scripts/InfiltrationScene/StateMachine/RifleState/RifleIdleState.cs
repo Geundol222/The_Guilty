@@ -15,7 +15,7 @@ public class RifleIdleState : RifleState
 
     public override void Enter()
     {
-
+        anim.SetBool("IsFind", false);
     }
 
     public override void Update()
@@ -27,8 +27,6 @@ public class RifleIdleState : RifleState
     {
         if (fov.IsFind)
         {
-            Debug.Log("플레이어 발견");
-            agent.isStopped = true;
             stateMachine.ChangeState(State.Find);
         }
     }

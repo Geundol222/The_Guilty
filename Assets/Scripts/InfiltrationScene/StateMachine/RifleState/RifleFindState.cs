@@ -11,28 +11,28 @@ public class RifleFindState : RifleState
 
     public override void Setup()
     {
-        FireTime = 1.5f;
+        
     }
 
     public override void Enter()
     {
-        anim.SetFloat("MoveSpeed", 0f);
+        anim.SetBool("IsFind", true);
+        FireTime = 0;
     }
 
     public override void Update()
     {
-        FireTime -= Time.deltaTime;
+        FireTime += Time.deltaTime;
     }
 
     public override void Transition()
     {
         if (!fov.IsFind)
         {
-            agent.isStopped = false;
-            stateMachine.ChangeState(State.Patrol);
+            stateMachine.ChangeState(State.Idle);
         }
 
-        if (fov.IsFind && FireTime < 0f)
+        if (fov.IsFind && FireTime > 3f)
         {
             stateMachine.ChangeState(State.Fire);
         }

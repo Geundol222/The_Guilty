@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PatrolFindState : PatrolState
 {
+    FindPlayerUI findUI;
     float FireTime;
 
     public PatrolFindState(PatrolMan owner, StateMachine<State, PatrolMan> stateMachine) : base(owner, stateMachine) { }
@@ -17,24 +18,23 @@ public class PatrolFindState : PatrolState
     public override void Enter()
     {
         FireTime = 0f;
+        findUI = GameManager.UI.ShowInGameUI<FindPlayerUI>("UI/FindPlayerUI");
+        findUI.ShowFindUI(transform);
         anim.SetFloat("MoveSpeed", 0f);
+        owner.StartCoroutine(owner.LookRoutine(player.transform));
     }
 
     public override void Update()
     {
         FireTime += Time.deltaTime;
-
-        Vector3 dir = (player.position - transform.position).normalized;
-        Quaternion lookDir = Quaternion.LookRotation(dir);
-        transform.rotation = Quaternion.Lerp(transform.rotation, lookDir, 0.1f);
     }
 
     public override void Transition()
     {
         if (!fov.IsFind)
         {
-            agent.isStopped = false;
-            stateMachine.ChangeState(State.Patrol);
+            findUI.CloseFindUI();
+            stateMachine.ChangeState(State.Idle);
         }
 
         if (fov.IsFind && FireTime > 2f)

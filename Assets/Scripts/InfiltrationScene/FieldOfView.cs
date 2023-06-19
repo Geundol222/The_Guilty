@@ -39,7 +39,10 @@ public class FieldOfView : MonoBehaviour
 
             float distToTarget = Vector3.Distance(transform.position, collider.gameObject.transform.position);
             if (Physics.Raycast(transform.position, targetDir, distToTarget, obstacleMask))
+            {
+                isFind = false;
                 continue;
+            }                
 
             Debug.DrawRay(transform.position, targetDir * distToTarget, Color.red);
         }

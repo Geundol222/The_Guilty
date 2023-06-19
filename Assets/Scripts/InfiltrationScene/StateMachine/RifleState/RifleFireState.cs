@@ -14,7 +14,8 @@ public class RifleFireState : RifleState
 
     public override void Enter()
     {
-        
+        anim.SetTrigger("Fire");
+        weaponHolder.Fire();
     }
 
     public override void Update()
@@ -23,7 +24,14 @@ public class RifleFireState : RifleState
 
     public override void Transition()
     {
-        
+        if (!fov.IsFind)
+        {
+            stateMachine.ChangeState(State.Idle);
+        }
+        else
+        {
+            stateMachine.ChangeState(State.Find);
+        }
     }
 
     public override void Exit()
