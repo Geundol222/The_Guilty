@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RifleFireState : RifleState
+public class PatrolReturnState : PatrolState
 {
-    public RifleFireState(RifleMan owner, StateMachine<State, RifleMan> stateMachine) : base(owner, stateMachine) { }
+    public PatrolReturnState(PatrolMan owner, StateMachine<State, PatrolMan> stateMachine) : base(owner, stateMachine) { }
 
     public override void Setup()
     {
@@ -14,31 +14,32 @@ public class RifleFireState : RifleState
 
     public override void Enter()
     {
-        weaponHolder.Fire();
+
     }
 
     public override void Update()
     {
+        agent.destination = returnPoint;
     }
 
     public override void Transition()
     {
-        if (!fov.IsFind)
+        if (!fov.IsFind && Vector3.Distance(transform.position, returnPoint) < 0.1f)
         {
             stateMachine.ChangeState(State.Idle);
         }
-        else
+
+        if (fov.IsFind)
         {
             stateMachine.ChangeState(State.Find);
         }
+
+        if (isListen)
+            stateMachine.ChangeState(State.SoundCheck);
     }
 
     public override void Exit()
     {
 
-    }
-
-    public void Fire()
-    {
     }
 }
