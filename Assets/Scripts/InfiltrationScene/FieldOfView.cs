@@ -37,11 +37,12 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] float edgeDstThreshold;
     [SerializeField] MeshFilter viewMeshFilter;
     [SerializeField] float meshResolution;
-    [SerializeField] float range;
+    public float range;
     [SerializeField, Range(0, 360)] float angle;
     [SerializeField] LayerMask targetMask;
     [SerializeField] LayerMask obstacleMask;
 
+    List<GameObject> findList;
     float cosResult;
     bool isFind;
     Vector3 targetDir;
@@ -50,6 +51,7 @@ public class FieldOfView : MonoBehaviour
 
     private void Awake()
     {
+        findList = new List<GameObject>();
         cosResult = Mathf.Cos(angle * 0.5f * Mathf.Deg2Rad);
     }
 
@@ -63,6 +65,7 @@ public class FieldOfView : MonoBehaviour
     private void Update()
     {
         FindTarget();
+        CheckFindList();
     }
 
     private void LateUpdate()
@@ -72,24 +75,46 @@ public class FieldOfView : MonoBehaviour
 
     public void FindTarget()
     {
-        isFind = false;
-
         Collider[] colliders = Physics.OverlapSphere(transform.position, range, targetMask);
         foreach (Collider collider in colliders)
         {
             targetDir = (collider.transform.position - transform.position).normalized;
             if (Vector3.Dot(transform.forward, targetDir) > cosResult)
-                isFind = true;
+                AddList(collider.gameObject);
+            else if (Vector3.Dot(transform.forward, targetDir) < cosResult && findList != null)
+                findList.Remove(collider.gameObject);
 
             float distToTarget = Vector3.Distance(transform.position, collider.gameObject.transform.position);
-            if (Physics.Raycast(transform.position, targetDir, distToTarget, obstacleMask))
+            if (Physics.Raycast(transform.position, targetDir, distToTarget, obstacleMask) && findList != null)
             {
-                isFind = false;
+                findList.Remove(collider.gameObject);
                 continue;
-            }                
+            }
+
+            if (Vector3.Distance(transform.position, collider.gameObject.transform.position) > range && findList != null)
+                findList.Remove(collider.gameObject);
 
             Debug.DrawRay(transform.position, targetDir * distToTarget, Color.red);
         }
+    }
+
+    private void AddList(GameObject obj)
+    {
+        if (findList.Count <= 0)
+            findList.Add (obj);
+        else
+        {
+            if (findList.Contains(obj))
+                return;            
+        }
+    }
+
+    private void CheckFindList()
+    {
+        if (findList.Count > 0)
+            isFind = true;
+        else
+            isFind = false;
     }
 
     private void OnDrawGizmosSelected()

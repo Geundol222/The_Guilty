@@ -14,7 +14,6 @@ public class RifleFireState : RifleState
 
     public override void Enter()
     {
-        anim.SetTrigger("Fire");
         weaponHolder.Fire();
     }
 

@@ -12,6 +12,10 @@ public class RifleMan : Enemy
         base.Awake();
 
         rifleStateMachine = new StateMachine<State, RifleMan>(this);
+
+        rifleStateMachine.AddState(State.Idle, new RifleIdleState(this, rifleStateMachine));
+        rifleStateMachine.AddState(State.Find, new RifleFindState(this, rifleStateMachine));
+        rifleStateMachine.AddState(State.Fire, new RifleFireState(this, rifleStateMachine));
     }
 
     private void Start()

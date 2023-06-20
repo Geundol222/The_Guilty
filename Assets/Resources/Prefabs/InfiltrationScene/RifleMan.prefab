@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1285884332}
-  m_LocalRotation: {x: 0.27563733, y: 0, z: 0, w: 0.96126175}
-  m_LocalPosition: {x: -0.035999976, y: 0.08100007, z: 0.13199994}
+  m_LocalRotation: {x: 0.46174863, y: 0, z: 0, w: 0.8870109}
+  m_LocalPosition: {x: 0.003, y: 0.068, z: 0.122}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3800550701406677569}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 32, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 55, y: 0, z: 0}
 --- !u!33 &1285884335
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2137,14 +2137,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7759381926400020913}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.036, y: 0.081, z: 0.132}
+  m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: 0.004, y: 0.081, z: 0.144}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3800550701406677569}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
 --- !u!114 &4301303689866879081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2160,9 +2160,9 @@ MonoBehaviour:
   edgeResolveIterations: 0
   edgeDstThreshold: 0
   viewMeshFilter: {fileID: 1285884335}
-  meshResolution: 0.1
+  meshResolution: 1
   range: 60
-  angle: 30
+  angle: 45
   targetMask:
     serializedVersion: 2
     m_Bits: 8
@@ -2721,6 +2721,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9187278010079406007}
+  - component: {fileID: 1887952580}
   m_Layer: 6
   m_Name: RifleMan
   m_TagString: Untagged
@@ -2744,6 +2745,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1887952580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9187278010079406003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8afaf1500b7098b439ca29c07402ba74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  weaponHolder: {fileID: 0}
+  agent: {fileID: 0}
+  anim: {fileID: 0}
+  fov: {fileID: 0}
 --- !u!1001 &875917259745954162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2814,6 +2832,14 @@ PrefabInstance:
     - target: {fileID: 4300533007854612, guid: a8d81e266e7c40c4aaca4868d38af08d, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198234346748616026, guid: a8d81e266e7c40c4aaca4868d38af08d, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198515452120210940, guid: a8d81e266e7c40c4aaca4868d38af08d, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8d81e266e7c40c4aaca4868d38af08d, type: 3}

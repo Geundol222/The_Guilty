@@ -3452,8 +3452,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d1d8d99e7672af4eb0a7d206c8a5753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  edgeResolveIterations: 100
-  edgeDstThreshold: 100
+  edgeResolveIterations: 0
+  edgeDstThreshold: 0
   viewMeshFilter: {fileID: 1118006145}
   meshResolution: 0.1
   range: 30
