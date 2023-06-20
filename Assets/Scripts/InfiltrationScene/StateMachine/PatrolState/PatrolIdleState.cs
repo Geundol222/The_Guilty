@@ -43,6 +43,9 @@ public class PatrolIdleState : PatrolState
             agent.isStopped = true;
             stateMachine.ChangeState(State.Find);
         }
+
+        if (isListen)
+            stateMachine.ChangeState(State.SoundCheck);
     }
 
     public override void Exit()

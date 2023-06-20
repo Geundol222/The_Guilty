@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class PatrolMan : Enemy
+public class PatrolMan : Enemy, IListenable
 {
     [SerializeField] public Transform[] patrolPoints;
 
     [HideInInspector] public Vector3 returnPoint;
     [HideInInspector] public int patrolIndex;
+    [HideInInspector] public Transform soundTarget;
+    [HideInInspector] public bool isListen;
 
     StateMachine<State, PatrolMan> patrolStateMachine;
 
@@ -23,6 +25,8 @@ public class PatrolMan : Enemy
         patrolStateMachine.AddState(State.Patrol, new PatrolPatrolState(this, patrolStateMachine));
         patrolStateMachine.AddState(State.Find, new PatrolFindState(this, patrolStateMachine));
         patrolStateMachine.AddState(State.Fire, new PatrolFireState(this, patrolStateMachine));
+        patrolStateMachine.AddState(State.SoundCheck, new PatrolSoundCheckState(this, patrolStateMachine));
+        patrolStateMachine.AddState(State.Return, new PatrolReturnState(this, patrolStateMachine));
     }
 
     private void Start()
@@ -34,5 +38,23 @@ public class PatrolMan : Enemy
     private void Update()
     {
         patrolStateMachine.Update();
+    }
+
+    public void Listen(Transform trans)
+    {
+        soundTarget = trans;
+        isListen = true;
+        StartCoroutine(ListenRoutine(soundTarget));
+    }
+
+    IEnumerator ListenRoutine(Transform trans)
+    {
+        while (true)
+        {
+            Vector3 originDir = (trans.position - transform.position).normalized;
+            Quaternion rot = Quaternion.LookRotation(originDir);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, 0.1f);
+            yield return null;
+        }
     }
 }
