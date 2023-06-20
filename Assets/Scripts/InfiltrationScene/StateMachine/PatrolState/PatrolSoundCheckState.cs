@@ -18,7 +18,6 @@ public class PatrolSoundCheckState : PatrolState
     {
         waitTime = 0;
         agent.speed = 15f;
-        agent.destination = soundTarget.position;
     }
 
     public override void Update()
@@ -31,7 +30,7 @@ public class PatrolSoundCheckState : PatrolState
         if (waitTime > 3f)
         {
             isListen = false;
-            stateMachine.ChangeState(State.Return);
+            stateMachine.ChangeState(State.Patrol);
         }
             
     }

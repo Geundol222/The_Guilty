@@ -17,7 +17,6 @@ namespace EnemyStates
         protected Vector3 returnPoint { get { return owner.returnPoint; } }
         protected int patrolIndex { get { return owner.patrolIndex; } set { owner.patrolIndex = value; } }
         protected Transform[] patrolPoints { get { return owner.patrolPoints; } set { owner.patrolPoints = value; } }
-        protected Transform soundTarget { get { return owner.soundTarget; } }
         protected bool isListen { get { return owner.isListen; } set { owner.isListen = value; } }
         protected Animator anim { get { return owner.anim; } set { owner.anim = value; } }
 
