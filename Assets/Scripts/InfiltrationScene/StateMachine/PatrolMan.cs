@@ -38,6 +38,7 @@ public class PatrolMan : Enemy, IListenable
     private void Update()
     {
         patrolStateMachine.Update();
+        StartCoroutine(FindUIRoutine(isFind));
     }
 
     public void Listen(Vector3 point)

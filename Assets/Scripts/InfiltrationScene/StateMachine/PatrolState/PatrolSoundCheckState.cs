@@ -36,12 +36,14 @@ public class PatrolSoundCheckState : PatrolState
     {
         if (fov.IsFind)
         {
+            isFind = true;
             isListen = false;
             stateMachine.ChangeState(State.Find);
         }
 
         if (waitTime < 0)
         {
+            isFind = false;
             isListen = false;
             stateMachine.ChangeState(State.Return);
         }

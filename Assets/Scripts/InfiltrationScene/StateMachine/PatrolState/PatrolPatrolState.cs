@@ -26,6 +26,7 @@ public class PatrolPatrolState : PatrolState
     {
         if (!fov.IsFind)
         {
+            isFind = false;
             if (Vector3.Distance(patrolPoints[patrolIndex].position, transform.position) < 0.1f)
             {
                 patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
@@ -34,6 +35,7 @@ public class PatrolPatrolState : PatrolState
         }
         else
         {
+            isFind = true;
             agent.isStopped = true;
             stateMachine.ChangeState(State.Find);
         }
