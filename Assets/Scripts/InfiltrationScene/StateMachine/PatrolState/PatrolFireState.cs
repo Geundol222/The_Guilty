@@ -34,6 +34,7 @@ public class PatrolFireState : PatrolState
     {
         if (!fov.IsFind)
         {
+            isFind = false;
             stateMachine.ChangeState(State.Idle);
         }
     }

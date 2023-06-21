@@ -31,6 +31,7 @@ public class PatrolIdleState : PatrolState
     {
         if (!fov.IsFind)
         {
+            isFind = false;
             if (patrolTime > 2f)
             {
                 agent.isStopped = false;
@@ -39,6 +40,7 @@ public class PatrolIdleState : PatrolState
         }
         else
         {
+            isFind = true;
             agent.isStopped = true;
             stateMachine.ChangeState(State.Find);
         }

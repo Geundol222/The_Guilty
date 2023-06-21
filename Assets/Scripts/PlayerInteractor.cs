@@ -1,49 +1,111 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class PlayerInteractor : MonoBehaviour
 {
+    [SerializeField] Transform headChecker;
+    [SerializeField] Transform legChecker;
     [SerializeField] float range;
     [SerializeField] LayerMask obstacleMask;
 
+    private HideInteractUI hideUI;
+    private NavMeshAgent agent;
+    private Collider col;
     private Animator anim;
-    private Vector3 targetDir;
+    private bool isLong;
+    private bool isHidable;
     private bool isInteract = false;
 
     private void Awake()
     {
+        agent = GetComponent<NavMeshAgent>();
+        col = GetComponent<Collider>();
         anim = GetComponent<Animator>();
     }
 
-    public void Interact()
+    private void Update()
     {
-        Collider[] colldiers = Physics.OverlapSphere(transform.position, range, obstacleMask);
-        foreach(Collider collider in colldiers)
+        InteractRay();
+
+        StartCoroutine(InteractRoutine(isHidable));
+    }
+
+    public void InteractRay()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(legChecker.position, legChecker.forward, out hit, 8f, obstacleMask))
         {
-            HideInteractUI hideUI = GameManager.UI.ShowInGameUI<HideInteractUI>("UI/InGameUI/HideInteractUI");
-            hideUI.SetTarget(transform);
-            hideUI.SetOffSet(new Vector2(70, 50));
+            isHidable = true;
+
+            if (Physics.Raycast(headChecker.position, headChecker.forward, out hit, 8f, obstacleMask))
+                isLong = true;
+            else
+                isLong = false;
+        }
+        else
+            isHidable = false;
+
+        Debug.DrawRay(headChecker.position, headChecker.forward * 8f, Color.red);
+        Debug.DrawRay(legChecker.position, legChecker.forward * 8f, Color.red);
+    }
+
+    IEnumerator InteractRoutine(bool isHide)
+    {
+        if (isHide)
+        {
+            if (hideUI == null || !hideUI.gameObject.activeSelf)
+            {
+                hideUI = GameManager.UI.ShowInGameUI<HideInteractUI>("UI/InGameUI/HideInteractUI");
+                hideUI.SetTarget(transform);
+                hideUI.SetOffSet(new Vector2(70, 50));
+            }
+            else
+                yield break;
+        }
+        else
+        {
+            if (hideUI != null && hideUI.gameObject.activeSelf)
+                GameManager.UI.CloseInGameUI(hideUI);
+            else
+                yield break;
         }
     }
 
     private void OnInteract(InputValue value)
     {
-        isInteract = !isInteract;
+        if (isHidable)
+            isInteract = !isInteract;
+        else
+            return;
 
-        Interact();
+        Hide();
     }
 
-    public void Hide(GameObject obj)
+    public void Hide()
     {
-        Quaternion lookDir = Quaternion.LookRotation(transform.forward, targetDir);
-        transform.rotation = lookDir;
-    }
+        if (isInteract)
+        {
+            col.enabled = false;
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, range);
+            if (isLong)
+            {
+                Debug.Log("¼­¼­ ¼û±â");
+                // TODO : ¼­¼­ ¼û´Â ¾Ö´Ï¸ÞÀÌ¼Ç
+            }
+            else
+            {
+                Debug.Log("¾É¾Æ¼­ ¼û±â");
+                // TODO : ¾É¾Æ¼­ ¼û´Â ¾Ö´Ï¸ÞÀÌ¼Ç
+            }
+        }
+        else
+        {
+            col.enabled = true;
+        }
     }
 }

@@ -29,11 +29,13 @@ public class PatrolReturnState : PatrolState
     {
         if (!fov.IsFind && Vector3.Distance(transform.position, returnPoint) < 1f)
         {
+            isFind = false;
             stateMachine.ChangeState(State.Idle);
         }
 
         if (fov.IsFind)
         {
+            isFind = true;
             stateMachine.ChangeState(State.Find);
         }
 

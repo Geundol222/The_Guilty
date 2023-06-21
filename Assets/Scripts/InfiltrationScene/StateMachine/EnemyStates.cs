@@ -19,6 +19,7 @@ namespace EnemyStates
         protected int patrolIndex { get { return owner.patrolIndex; } set { owner.patrolIndex = value; } }
         protected Transform[] patrolPoints { get { return owner.patrolPoints; } set { owner.patrolPoints = value; } }
         protected bool isListen { get { return owner.isListen; } set { owner.isListen = value; } }
+        protected bool isFind { get { return owner.isFind; } set { owner.isFind = value; } }
         protected Animator anim { get { return owner.anim; } set { owner.anim = value; } }
 
         protected PatrolState(PatrolMan owner, StateMachine<State, PatrolMan> stateMachine) : base(owner, stateMachine) { }
@@ -32,6 +33,7 @@ namespace EnemyStates
         protected Transform transform { get { return owner.transform; } }
         protected Transform player { get { return owner.player; } }
         protected Animator anim { get { return owner.anim; } set { owner.anim = value; } }
+        protected bool isFind { get { return owner.isFind; } set { owner.isFind = value; } }
 
         protected RifleState(RifleMan owner, StateMachine<State, RifleMan> stateMachine) : base(owner, stateMachine) { }
     }

@@ -11,10 +11,12 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public Animator anim;
     [HideInInspector] public FieldOfView fov;
+    [HideInInspector] public bool isFind;
+
+    FindPlayerUI findUI;
 
     protected virtual void Awake()
     {
-        
         weaponHolder = GetComponentInChildren<EnemyWeaponHolder>();
         fov = GetComponentInChildren<FieldOfView>();
         agent = GetComponent<NavMeshAgent>();
@@ -32,6 +34,27 @@ public class Enemy : MonoBehaviour
                 transform.rotation = Quaternion.Lerp(transform.rotation, lookRot, 0.1f);
                 yield return null;
             }
+            else
+                yield break;
+        }
+    }
+
+    public IEnumerator FindUIRoutine(bool find)
+    {
+        if (find)
+        {
+            if (findUI == null || !findUI.gameObject.activeSelf)
+            {
+                findUI = GameManager.UI.ShowInGameUI<FindPlayerUI>("UI/InGameUI/FindPlayerUI");
+                findUI.ShowFindUI(transform);
+            }
+            else
+                yield break;
+        }
+        else
+        {
+            if (findUI != null && findUI.gameObject.activeSelf)
+                findUI.CloseFindUI();
             else
                 yield break;
         }
