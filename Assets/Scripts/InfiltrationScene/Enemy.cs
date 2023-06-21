@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour
 {
     public Transform player;
 
-    [HideInInspector] public FindPlayerUI findUI;
     [HideInInspector] public EnemyWeaponHolder weaponHolder;
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public Animator anim;
@@ -15,7 +14,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Awake()
     {
-        findUI = GameManager.UI.ShowInGameUI<FindPlayerUI>("UI/InGameUI/FindPlayerUI");
+        
         weaponHolder = GetComponentInChildren<EnemyWeaponHolder>();
         fov = GetComponentInChildren<FieldOfView>();
         agent = GetComponent<NavMeshAgent>();
