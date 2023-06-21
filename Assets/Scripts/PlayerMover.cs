@@ -123,8 +123,6 @@ public class PlayerMover : MonoBehaviour
     private void OnCrouch(InputValue value)
     {
         isCrouching = !isCrouching;
-
-        Crouch();
     }
 
     private void OnDrawGizmosSelected()

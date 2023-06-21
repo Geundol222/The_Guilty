@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PatrolFireState : PatrolState
 {
+    float FireTime;
+
     public PatrolFireState(PatrolMan owner, StateMachine<State, PatrolMan> stateMachine) : base(owner, stateMachine) { }
 
     public override void Setup()
@@ -14,12 +16,18 @@ public class PatrolFireState : PatrolState
 
     public override void Enter()
     {
-        weaponHolder.Fire();
+        FireTime = 2f;
     }
 
     public override void Update()
     {
+        FireTime -= Time.deltaTime;
 
+        if (FireTime < 0)
+        {
+            FireTime = 2f;
+            weaponHolder.Fire();
+        }
     }
 
     public override void Transition()
@@ -27,10 +35,6 @@ public class PatrolFireState : PatrolState
         if (!fov.IsFind)
         {
             stateMachine.ChangeState(State.Idle);
-        }
-        else
-        {
-            stateMachine.ChangeState(State.Find);
         }
     }
 
