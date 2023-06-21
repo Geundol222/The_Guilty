@@ -14,17 +14,20 @@ public class PatrolReturnState : PatrolState
 
     public override void Enter()
     {
-
+        agent.speed = 6f;
+        agent.isStopped = false;
+        agent.destination = returnPoint;
+        anim.SetFloat("MoveSpeed", 1f);
     }
 
     public override void Update()
     {
-        agent.destination = returnPoint;
+
     }
 
     public override void Transition()
     {
-        if (!fov.IsFind && Vector3.Distance(transform.position, returnPoint) < 0.1f)
+        if (!fov.IsFind && Vector3.Distance(transform.position, returnPoint) < 1f)
         {
             stateMachine.ChangeState(State.Idle);
         }

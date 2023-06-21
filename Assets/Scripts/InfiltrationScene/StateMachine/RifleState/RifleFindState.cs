@@ -18,7 +18,7 @@ public class RifleFindState : RifleState
     public override void Enter()
     {
         FireTime = 0;
-        findUI = GameManager.UI.ShowInGameUI<FindPlayerUI>("UI/FindPlayerUI");
+        findUI = GameManager.UI.ShowInGameUI<FindPlayerUI>("UI/InGameUI/FindPlayerUI");
         findUI.ShowFindUI(transform);
         anim.SetBool("IsFind", true);        
         owner.StartCoroutine(owner.LookRoutine(player.transform));

@@ -24,12 +24,11 @@ public class PatrolIdleState : PatrolState
 
     public override void Update()
     {
-        
+        patrolTime += Time.deltaTime;
     }
 
     public override void Transition()
     {
-        patrolTime += Time.deltaTime;
         if (!fov.IsFind)
         {
             if (patrolTime > 2f)

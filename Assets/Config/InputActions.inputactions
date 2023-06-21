@@ -3,31 +3,40 @@
     "maps": [
         {
             "name": "Player",
-            "id": "e5a44ae9-4024-4443-8fc8-176ef96c2b14",
+            "id": "7011ba7d-be3c-4dd8-b728-be1613336c68",
             "actions": [
                 {
                     "name": "Move",
                     "type": "Button",
-                    "id": "fb736e0b-dca2-43ee-b923-7da9b918b751",
+                    "id": "0eea7c94-0bd3-46dd-8831-66921592326c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
-                    "name": "MousePosition",
-                    "type": "Value",
-                    "id": "61ae4bb9-8922-4557-b8af-7273e8f98fe9",
-                    "expectedControlType": "Vector2",
+                    "name": "Crouch",
+                    "type": "Button",
+                    "id": "26fa219a-d046-4d76-8bf1-b2f7eb8fffe4",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "4af1dfbc-4e41-4b29-9a21-4fb73b6c41f5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "899f39a1-0929-4d2c-9afd-6a1de356b1c6",
+                    "id": "4a1324a6-0ff8-4933-8f5c-ac6099182405",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
@@ -38,12 +47,23 @@
                 },
                 {
                     "name": "",
-                    "id": "eacc824c-cf21-415b-b3c2-f6b0361c2be7",
-                    "path": "<Pointer>/position",
+                    "id": "50aeff50-78ea-481e-9243-e22683adc7f3",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MousePosition",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3279bcfc-aad8-4f51-9e78-556916fae736",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

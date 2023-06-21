@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Awake()
     {
+        
         weaponHolder = GetComponentInChildren<EnemyWeaponHolder>();
         fov = GetComponentInChildren<FieldOfView>();
         agent = GetComponent<NavMeshAgent>();
