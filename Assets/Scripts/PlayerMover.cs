@@ -13,18 +13,21 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] LayerMask enemyMask;
     [SerializeField] float walkStepRange;
     [SerializeField] float runStepRange;
-
+    
+    private FootStepRender wave;
+    private bool isWalk;
     private Animator anim;
     private Camera mainCam;
     private NavMeshAgent agent;
-    private RaycastHit hit;
-    private bool isWalk;
+    private RaycastHit hit;    
     private bool isDiscovered = false;
+    private bool isCrouching = false;
     private float originWalkStepRange;
     private float originRunStepRange;
 
     private void Awake()
     {
+        wave = GetComponentInChildren<FootStepRender>();
         anim = GetComponent<Animator>();
         mainCam = Camera.main;
         agent = GetComponent<NavMeshAgent>();
@@ -35,6 +38,7 @@ public class PlayerMover : MonoBehaviour
     private void Update()
     {
         Move();
+        Crouch();
     }
 
     private void Move()
@@ -42,18 +46,8 @@ public class PlayerMover : MonoBehaviour
         if (Vector3.Distance(transform.position, hit.point) < 1f)
         {
             anim.SetFloat("MoveSpeed", 0f);
+            wave.anim.SetFloat("MoveSpeed", 0f);
         }
-
-        // lastStepTime -= Time.deltaTime;
-        // if (lastStepTime < 0 && !isDiscovered)
-        // {
-        //     lastStepTime = 0.5f;
-        //     GenerateStepSound();
-        // }
-        // else if (lastStepTime < 0 && isDiscovered)
-        // {
-        //     lastStepTime = 0.5f;
-        // }
     }
 
     private void OnMove(InputValue value)
@@ -62,27 +56,21 @@ public class PlayerMover : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask))
         {
+            wave.RenderMode(isWalk);
+
             if (groundMask.IsContain(hit.collider.gameObject.layer))
             {
-                anim.SetFloat("MoveSpeed", 1f);
-                agent.destination = hit.point;
+                if (isWalk)
+                    anim.SetFloat("MoveSpeed", 1f);
+                else
+                    anim.SetFloat("MoveSpeed", 3f);
             }
+
+            agent.destination = hit.point;
         }
         Move();
 
         StartCoroutine(StepSoundRoutine());
-    }
-
-    private void GenerateStepSound()
-    {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, isWalk ? walkStepRange : runStepRange, enemyMask);
-        
-        foreach (Collider collider in colliders)
-        {
-            isDiscovered = true;
-            IListenable listenable = collider.GetComponent<IListenable>();
-            listenable?.Listen(transform.position);
-        }
     }
 
     IEnumerator StepSoundRoutine()
@@ -114,6 +102,29 @@ public class PlayerMover : MonoBehaviour
 
             yield return null;
         }        
+    }
+
+    private void Crouch()
+    {
+        if (isCrouching)
+        {
+            isWalk = true;
+            anim.SetBool("IsCrouch", true);
+            agent.speed = 5f;
+        }
+        else
+        {
+            isWalk = false;
+            anim.SetBool("IsCrouch", false);
+            agent.speed = 15f;
+        }
+    }
+
+    private void OnCrouch(InputValue value)
+    {
+        isCrouching = !isCrouching;
+
+        Crouch();
     }
 
     private void OnDrawGizmosSelected()

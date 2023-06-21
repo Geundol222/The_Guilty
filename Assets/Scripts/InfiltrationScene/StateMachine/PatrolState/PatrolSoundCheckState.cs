@@ -29,7 +29,7 @@ public class PatrolSoundCheckState : PatrolState
         {
             anim.SetFloat("MoveSpeed", 0f);
             waitTime -= Time.deltaTime;
-        }            
+        }
     }
 
     public override void Transition()
