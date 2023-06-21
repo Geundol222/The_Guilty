@@ -16,21 +16,34 @@ public class PatrolSoundCheckState : PatrolState
 
     public override void Enter()
     {
-        waitTime = 0;
-        agent.speed = 15f;
+        agent.isStopped = false;
+        anim.SetFloat("MoveSpeed", 1f);
+        waitTime = 3f;
+        agent.speed = 10f;
+        agent.destination = soundPoint;
     }
 
     public override void Update()
     {
-        waitTime += Time.deltaTime;
+        if (Vector3.Distance(transform.position, soundPoint) < 0.5f)
+        {
+            anim.SetFloat("MoveSpeed", 0f);
+            waitTime -= Time.deltaTime;
+        }            
     }
 
     public override void Transition()
     {
-        if (waitTime > 3f)
+        if (fov.IsFind)
         {
             isListen = false;
-            stateMachine.ChangeState(State.Patrol);
+            stateMachine.ChangeState(State.Find);
+        }
+
+        if (waitTime < 0)
+        {
+            isListen = false;
+            stateMachine.ChangeState(State.Return);
         }
             
     }

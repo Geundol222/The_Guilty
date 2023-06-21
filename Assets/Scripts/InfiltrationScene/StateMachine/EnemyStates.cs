@@ -14,6 +14,7 @@ namespace EnemyStates
         protected NavMeshAgent agent { get { return owner.agent; } }
         protected Transform transform { get { return owner.transform; } }
         protected Transform player {  get { return owner.player; } }
+        protected Vector3 soundPoint { get { return owner.soundPoint; } }
         protected Vector3 returnPoint { get { return owner.returnPoint; } }
         protected int patrolIndex { get { return owner.patrolIndex; } set { owner.patrolIndex = value; } }
         protected Transform[] patrolPoints { get { return owner.patrolPoints; } set { owner.patrolPoints = value; } }

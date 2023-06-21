@@ -8,6 +8,7 @@ public class PatrolMan : Enemy, IListenable
 {
     [SerializeField] public Transform[] patrolPoints;
 
+    [HideInInspector] public Vector3 soundPoint;
     [HideInInspector] public Vector3 returnPoint;
     [HideInInspector] public int patrolIndex;
     [HideInInspector] public bool isListen;
@@ -39,17 +40,9 @@ public class PatrolMan : Enemy, IListenable
         patrolStateMachine.Update();
     }
 
-    public void Listen(Transform trans)
+    public void Listen(Vector3 point)
     {
+        soundPoint = point;
         isListen = true;
-        StartCoroutine(ListenRoutine(trans));
-    }
-
-    IEnumerator ListenRoutine(Transform trans)
-    {
-        Vector3 originDir = (trans.position - transform.position).normalized;
-        Quaternion rot = Quaternion.LookRotation(originDir);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 0.1f);
-        yield return new WaitForSeconds(1f);
     }
 }

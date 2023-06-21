@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IListenable
 {
-    public void Listen(Transform trans);
+    public void Listen(Vector3 point);
 }

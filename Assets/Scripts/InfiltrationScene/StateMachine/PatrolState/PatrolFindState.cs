@@ -17,6 +17,7 @@ public class PatrolFindState : PatrolState
 
     public override void Enter()
     {
+        agent.isStopped = true;
         FireTime = 0f;
         findUI = GameManager.UI.ShowInGameUI<FindPlayerUI>("UI/FindPlayerUI");
         findUI.ShowFindUI(transform);
