@@ -68,6 +68,13 @@ public class FieldOfView : MonoBehaviour
     {
         FindTarget();
         CheckFindList();
+
+        if (isFind)
+        {
+            Vector3 targetDir = (player.transform.position - transform.position).normalized;
+            Quaternion lookDir = Quaternion.LookRotation(targetDir);
+            transform.rotation = Quaternion.Lerp(transform.rotation, lookDir, 0.1f);
+        }
     }
 
     private void LateUpdate()

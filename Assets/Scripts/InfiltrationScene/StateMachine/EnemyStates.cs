@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations.Rigging;
 
 namespace EnemyStates
 {
@@ -32,6 +33,8 @@ namespace EnemyStates
         protected NavMeshAgent agent { get { return owner.agent; } }
         protected Transform transform { get { return owner.transform; } }
         protected Transform player { get { return owner.player; } }
+        protected MultiAimConstraint aimRig { get { return owner.aimRig; } }
+        protected Vector3 originLookDir { get { return owner.originLookDir; } }
         protected Animator anim { get { return owner.anim; } set { owner.anim = value; } }
         protected bool isFind { get { return owner.isFind; } set { owner.isFind = value; } }
 

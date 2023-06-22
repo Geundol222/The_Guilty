@@ -15,12 +15,14 @@ public class RifleIdleState : RifleState
 
     public override void Enter()
     {
+        aimRig.weight = 0;
         anim.SetBool("IsFind", false);
     }
 
     public override void Update()
     {
-        
+        Quaternion lookDir = Quaternion.LookRotation(originLookDir);
+        transform.rotation = Quaternion.Lerp(transform.rotation, lookDir, 0.1f);
     }
 
     public override void Transition()
