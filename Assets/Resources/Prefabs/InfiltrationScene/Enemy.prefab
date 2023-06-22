@@ -3452,7 +3452,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9119149524900589527}
   m_LocalRotation: {x: 0.19067465, y: 0.014807047, z: -0.11084472, w: 0.97526276}
-  m_LocalPosition: {x: 0.010639191, y: 1.5009766, z: 0.1453991}
+  m_LocalPosition: {x: 0.017, y: 1.522, z: 0.169}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3485,7 +3485,7 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 257
-  headTransform: {fileID: 0}
+  headTransform: {fileID: 1227598168303050479}
 --- !u!1001 &6725612057940846055
 PrefabInstance:
   m_ObjectHideFlags: 0
