@@ -12,13 +12,19 @@ public class PlayerInteractor : MonoBehaviour
     [SerializeField] float range;
     [SerializeField] LayerMask obstacleMask;
 
+    private Vector3 originPosition;
+    private RaycastHit headHit;
+    private RaycastHit legHit;
     private HideInteractUI hideUI;
     private NavMeshAgent agent;
     private Collider col;
     private Animator anim;
     private bool isLong;
     private bool isHidable;
+    private bool isHide;
     private bool isInteract = false;
+
+    public bool IsHide { get { return isHide; } }
 
     private void Awake()
     {
@@ -31,32 +37,32 @@ public class PlayerInteractor : MonoBehaviour
     {
         InteractRay();
 
-        StartCoroutine(InteractRoutine(isHidable));
+        InteracUIRender(isHidable);
     }
 
     public void InteractRay()
     {
-        RaycastHit hit;
-
-        if (Physics.Raycast(legChecker.position, legChecker.forward, out hit, 8f, obstacleMask))
+        if (Physics.Raycast(legChecker.position, legChecker.forward, out legHit, 6f, obstacleMask))
         {
             isHidable = true;
 
-            if (Physics.Raycast(headChecker.position, headChecker.forward, out hit, 8f, obstacleMask))
+            if (Physics.Raycast(headChecker.position, headChecker.forward, out headHit, 6f, obstacleMask))
                 isLong = true;
             else
                 isLong = false;
         }
+        else if (isHide)
+            isHidable = true;
         else
             isHidable = false;
 
-        Debug.DrawRay(headChecker.position, headChecker.forward * 8f, Color.red);
-        Debug.DrawRay(legChecker.position, legChecker.forward * 8f, Color.red);
+        Debug.DrawRay(headChecker.position, headChecker.forward * 6f, Color.red);
+        Debug.DrawRay(legChecker.position, legChecker.forward * 6f, Color.red);
     }
 
-    IEnumerator InteractRoutine(bool isHide)
+    private void InteracUIRender(bool isHidable)
     {
-        if (isHide)
+        if (isHidable)
         {
             if (hideUI == null || !hideUI.gameObject.activeSelf)
             {
@@ -64,15 +70,23 @@ public class PlayerInteractor : MonoBehaviour
                 hideUI.SetTarget(transform);
                 hideUI.SetOffSet(new Vector2(70, 50));
             }
+            else if (hideUI != null && hideUI.gameObject.activeSelf)
+            {
+                if (!isInteract)
+                    hideUI.Hide();
+                else
+                    hideUI.Escape();
+            }
             else
-                yield break;
+                return;
+
         }
         else
         {
             if (hideUI != null && hideUI.gameObject.activeSelf)
                 GameManager.UI.CloseInGameUI(hideUI);
             else
-                yield break;
+                return;
         }
     }
 
@@ -90,22 +104,72 @@ public class PlayerInteractor : MonoBehaviour
     {
         if (isInteract)
         {
+            originPosition = transform.position;
+            isHide = true;
             col.enabled = false;
 
             if (isLong)
             {
-                Debug.Log("¼­¼­ ¼û±â");
-                // TODO : ¼­¼­ ¼û´Â ¾Ö´Ï¸ÞÀÌ¼Ç
+                agent.destination = headHit.point;
+                anim.SetBool("IsStandHide", true);
+                StartCoroutine(DistanceCalculateRoutine(headHit));
+
             }
             else
             {
-                Debug.Log("¾É¾Æ¼­ ¼û±â");
-                // TODO : ¾É¾Æ¼­ ¼û´Â ¾Ö´Ï¸ÞÀÌ¼Ç
+                agent.destination = legHit.point;
+                anim.SetBool("IsCrouchHide", true);
+                StartCoroutine(DistanceCalculateRoutine(legHit));
             }
         }
         else
         {
+            StopAllCoroutines();
+
+            isHide = false;
             col.enabled = true;
+            agent.enabled = true;
+
+            StartCoroutine(EscapeRoutine());
+        }
+    }
+
+    IEnumerator EscapeRoutine()
+    {
+        if (isLong)
+            anim.SetBool("IsStandHide", false);
+        else
+            anim.SetBool("IsCrouchHide", false);
+
+        while (true)
+        {
+            agent.destination = originPosition;
+
+            if (Vector3.Distance(transform.position, originPosition) < 0.3f)
+                yield break;
+
+            yield return null;
+        }
+        
+    }
+
+    IEnumerator DistanceCalculateRoutine(RaycastHit hit)
+    {
+        Vector3 lookDir = hit.collider.transform.forward.normalized;
+        Quaternion lookRot = Quaternion.LookRotation(lookDir);
+        transform.rotation = lookRot;
+
+        while (true)
+        {
+            Vector3 playerPosition = new Vector3(transform.position.x, 0, transform.position.z);
+            Vector3 HitPosition = new Vector3(hit.point.x, 0, hit.point.z);
+
+            if (Vector3.Distance(playerPosition, HitPosition) < 1f)
+            {
+                agent.enabled = false;
+            }
+
+            yield return null;
         }
     }
 }

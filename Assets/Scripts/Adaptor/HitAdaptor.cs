@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HitAdaptor : MonoBehaviour
+public class HitAdaptor : MonoBehaviour, IHittable
 {
     public UnityEvent<int> OnHitted;
 

@@ -13,7 +13,8 @@ public class PlayerMover : MonoBehaviour
     [SerializeField] LayerMask enemyMask;
     [SerializeField] float walkStepRange;
     [SerializeField] float runStepRange;
-    
+
+    private PlayerInteractor interactor;
     private FootStepRender wave;
     private bool isWalk;
     private Animator anim;
@@ -27,6 +28,7 @@ public class PlayerMover : MonoBehaviour
 
     private void Awake()
     {
+        interactor = GetComponent<PlayerInteractor>();
         wave = GetComponentInChildren<FootStepRender>();
         anim = GetComponent<Animator>();
         mainCam = Camera.main;
@@ -43,7 +45,7 @@ public class PlayerMover : MonoBehaviour
 
     private void Move()
     {
-        if (Vector3.Distance(transform.position, hit.point) < 1f)
+        if (Vector3.Distance(transform.position, hit.point) < 0.5f)
         {
             anim.SetFloat("MoveSpeed", 0f);
             wave.anim.SetFloat("MoveSpeed", 0f);
@@ -54,15 +56,15 @@ public class PlayerMover : MonoBehaviour
     {
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask) && !interactor.IsHide)
         {
             wave.RenderMode(isWalk);
 
             if (groundMask.IsContain(hit.collider.gameObject.layer))
             {
-                if (isWalk)
+                if (isWalk && !interactor.IsHide)
                     anim.SetFloat("MoveSpeed", 1f);
-                else
+                else if (!isWalk && !interactor.IsHide)
                     anim.SetFloat("MoveSpeed", 3f);
             }
 

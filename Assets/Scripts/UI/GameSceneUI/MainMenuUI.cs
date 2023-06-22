@@ -14,11 +14,11 @@ public class MainMenuUI : GameSceneUI
 
     public void ClickExit()
     {
-        GameManager.UI.ShowPopUpUI<GameExitConfirm>("UI/ExitConfirm");
+        GameManager.UI.ShowPopUpUI<GameExitConfirm>("UI/PopUpUI/ExitConfirm");
     }
 
     public void ClickSetting()
     {
-        GameManager.UI.ShowPopUpUI<SettingPopUpUI>("UI/SettingUI");
+        GameManager.UI.ShowPopUpUI<SettingPopUpUI>("UI/PopUpUI/SettingUI");
     }
 }

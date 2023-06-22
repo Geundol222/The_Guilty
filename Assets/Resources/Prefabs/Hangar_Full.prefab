@@ -1799,7 +1799,6 @@ GameObject:
   - component: {fileID: 2275039223181175832}
   - component: {fileID: 2275039223176879224}
   - component: {fileID: 2275039223175741720}
-  - component: {fileID: 5717773986384940055}
   m_Layer: 8
   m_Name: PopcornCar
   m_TagString: Untagged
@@ -1908,21 +1907,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5717773986384940055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176356
 GameObject:
   m_ObjectHideFlags: 0
@@ -5072,7 +5056,6 @@ GameObject:
   - component: {fileID: 2275039223181175834}
   - component: {fileID: 2275039223176879226}
   - component: {fileID: 2275039223175741722}
-  - component: {fileID: 2787645216249767076}
   m_Layer: 0
   m_Name: PopcornCar
   m_TagString: Untagged
@@ -5181,21 +5164,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2787645216249767076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176414
 GameObject:
   m_ObjectHideFlags: 0
@@ -6028,7 +5996,6 @@ GameObject:
   - component: {fileID: 2275039223182143242}
   - component: {fileID: 2275039223181176138}
   - component: {fileID: 2275039223176879268}
-  - component: {fileID: 5935447138176762264}
   m_Layer: 8
   m_Name: Barracks2
   m_TagString: Untagged
@@ -6120,21 +6087,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 3c71554aa4b132342a5923e5b2cf60ca, type: 3}
---- !u!114 &5935447138176762264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176466
 GameObject:
   m_ObjectHideFlags: 0
@@ -7760,7 +7712,6 @@ GameObject:
   - component: {fileID: 2275039223182143338}
   - component: {fileID: 2275039223181175978}
   - component: {fileID: 2275039223176879108}
-  - component: {fileID: 4990293042094758098}
   m_Layer: 8
   m_Name: TiledBrick
   m_TagString: Untagged
@@ -7849,21 +7800,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 2976be886573d2341ba3801e5c9029c8, type: 3}
---- !u!114 &4990293042094758098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176502
 GameObject:
   m_ObjectHideFlags: 0
@@ -8367,7 +8303,6 @@ GameObject:
   - component: {fileID: 2275039223182143352}
   - component: {fileID: 2275039223181175992}
   - component: {fileID: 2275039223176879130}
-  - component: {fileID: 5947382097257226773}
   m_Layer: 0
   m_Name: TiledBrick7
   m_TagString: Untagged
@@ -8456,21 +8391,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 1b3c4b63307418f459c979594e9cdb43, type: 3}
---- !u!114 &5947382097257226773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176514
 GameObject:
   m_ObjectHideFlags: 0
@@ -8680,7 +8600,6 @@ GameObject:
   - component: {fileID: 2275039223182143358}
   - component: {fileID: 2275039223181175998}
   - component: {fileID: 2275039223176879128}
-  - component: {fileID: 2398616329906914857}
   m_Layer: 8
   m_Name: TiledBrick7
   m_TagString: Untagged
@@ -8769,21 +8688,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 1b3c4b63307418f459c979594e9cdb43, type: 3}
---- !u!114 &2398616329906914857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176520
 GameObject:
   m_ObjectHideFlags: 0
@@ -10088,7 +9992,6 @@ GameObject:
   - component: {fileID: 2275039223182143130}
   - component: {fileID: 2275039223181176026}
   - component: {fileID: 2275039223176879156}
-  - component: {fileID: 1751161260185493178}
   m_Layer: 8
   m_Name: TiledBrick14
   m_TagString: Untagged
@@ -10177,21 +10080,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 4bfa9f4c2b2e98d41b107dd1f43ab5a8, type: 3}
---- !u!114 &1751161260185493178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176548
 GameObject:
   m_ObjectHideFlags: 0
@@ -10204,7 +10092,6 @@ GameObject:
   - component: {fileID: 2275039223182143132}
   - component: {fileID: 2275039223181176028}
   - component: {fileID: 2275039223176879166}
-  - component: {fileID: 13467001996775649}
   m_Layer: 0
   m_Name: TiledBrick10
   m_TagString: Untagged
@@ -10293,21 +10180,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 4c6ab391ca55f964d80cb9f2bdcd7ca3, type: 3}
---- !u!114 &13467001996775649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176550
 GameObject:
   m_ObjectHideFlags: 0
@@ -10418,7 +10290,6 @@ GameObject:
   - component: {fileID: 2275039223182143328}
   - component: {fileID: 2275039223181175968}
   - component: {fileID: 2275039223176879106}
-  - component: {fileID: 2245302360716432147}
   m_Layer: 8
   m_Name: TiledBrick8
   m_TagString: Untagged
@@ -10507,21 +10378,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: e22ef565c6c3e9f428988eb25562eb73, type: 3}
---- !u!114 &2245302360716432147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176554
 GameObject:
   m_ObjectHideFlags: 0
@@ -10534,7 +10390,6 @@ GameObject:
   - component: {fileID: 2275039223182143330}
   - component: {fileID: 2275039223181175970}
   - component: {fileID: 2275039223176879164}
-  - component: {fileID: 3874318183760281461}
   m_Layer: 8
   m_Name: TiledBrick9
   m_TagString: Untagged
@@ -10623,21 +10478,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: b8db1d7ddb405d44aba03051c5c374e9, type: 3}
---- !u!114 &3874318183760281461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176556
 GameObject:
   m_ObjectHideFlags: 0
@@ -10748,7 +10588,6 @@ GameObject:
   - component: {fileID: 2275039223182143334}
   - component: {fileID: 2275039223181175974}
   - component: {fileID: 2275039223176879104}
-  - component: {fileID: 8053815283391516596}
   m_Layer: 8
   m_Name: TiledBrick11
   m_TagString: Untagged
@@ -10837,21 +10676,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 1615226e221b6a545985ec9c1f403343, type: 3}
---- !u!114 &8053815283391516596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176560
 GameObject:
   m_ObjectHideFlags: 0
@@ -10864,7 +10688,6 @@ GameObject:
   - component: {fileID: 2275039223182143336}
   - component: {fileID: 2275039223181175976}
   - component: {fileID: 2275039223176879114}
-  - component: {fileID: 2319659940597139110}
   m_Layer: 8
   m_Name: TiledBrick2
   m_TagString: Untagged
@@ -10953,21 +10776,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: a6bc430bf4e34bd4aa1441d43fefb20d, type: 3}
---- !u!114 &2319659940597139110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176562
 GameObject:
   m_ObjectHideFlags: 0
@@ -10980,7 +10788,6 @@ GameObject:
   - component: {fileID: 2275039223182143276}
   - component: {fileID: 2275039223181176172}
   - component: {fileID: 2275039223176879310}
-  - component: {fileID: 4573931367917237276}
   m_Layer: 8
   m_Name: Barracks
   m_TagString: Untagged
@@ -11073,21 +10880,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: a037ddb2ce204b249a720efdf6512435, type: 3}
---- !u!114 &4573931367917237276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176564
 GameObject:
   m_ObjectHideFlags: 0
@@ -11492,7 +11284,6 @@ GameObject:
   - component: {fileID: 2275039223182143348}
   - component: {fileID: 2275039223181175988}
   - component: {fileID: 2275039223176879126}
-  - component: {fileID: 6903311728552988020}
   m_Layer: 8
   m_Name: TiledBrick5
   m_TagString: Untagged
@@ -11581,21 +11372,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 9154c20a006d4744bbb36e39c73a9edd, type: 3}
---- !u!114 &6903311728552988020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176574
 GameObject:
   m_ObjectHideFlags: 0
@@ -11608,7 +11384,6 @@ GameObject:
   - component: {fileID: 2275039223182143350}
   - component: {fileID: 2275039223181175990}
   - component: {fileID: 2275039223176879120}
-  - component: {fileID: 7621946814830608740}
   m_Layer: 8
   m_Name: TiledBrick3
   m_TagString: Untagged
@@ -11697,21 +11472,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: c6ddf453121c427488dbbea625b457fd, type: 3}
---- !u!114 &7621946814830608740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176576
 GameObject:
   m_ObjectHideFlags: 0
@@ -12021,7 +11781,6 @@ GameObject:
   - component: {fileID: 2275039223182143418}
   - component: {fileID: 2275039223181176314}
   - component: {fileID: 2275039223176879444}
-  - component: {fileID: 3471664619797389543}
   m_Layer: 8
   m_Name: Shelter
   m_TagString: Untagged
@@ -12112,21 +11871,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 2b6c7090b9fc0a34aaf43d7c52f9c989, type: 3}
---- !u!114 &3471664619797389543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176584
 GameObject:
   m_ObjectHideFlags: 0
@@ -12139,7 +11883,6 @@ GameObject:
   - component: {fileID: 2275039223182143420}
   - component: {fileID: 2275039223181176316}
   - component: {fileID: 2275039223176879454}
-  - component: {fileID: 6265277332796145925}
   m_Layer: 8
   m_Name: Container
   m_TagString: Untagged
@@ -12230,21 +11973,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: e234f8398adc82a48929b7a0963d4758, type: 3}
---- !u!114 &6265277332796145925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176586
 GameObject:
   m_ObjectHideFlags: 0
@@ -12356,7 +12084,6 @@ GameObject:
   - component: {fileID: 2275039223182143362}
   - component: {fileID: 2275039223181176258}
   - component: {fileID: 2275039223176879452}
-  - component: {fileID: 8040850563818577145}
   m_Layer: 8
   m_Name: Container
   m_TagString: Untagged
@@ -12447,21 +12174,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: e234f8398adc82a48929b7a0963d4758, type: 3}
---- !u!114 &8040850563818577145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176596
 GameObject:
   m_ObjectHideFlags: 0
@@ -13650,7 +13362,6 @@ GameObject:
   - component: {fileID: 2275039223182143392}
   - component: {fileID: 2275039223181176288}
   - component: {fileID: 2275039223176879426}
-  - component: {fileID: 1060583231257303728}
   m_Layer: 8
   m_Name: TiledBrick12
   m_TagString: Untagged
@@ -13739,21 +13450,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6aa357370833cdc4ca5e7b9a37e71105, type: 3}
---- !u!114 &1060583231257303728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176622
 GameObject:
   m_ObjectHideFlags: 0
@@ -13766,7 +13462,6 @@ GameObject:
   - component: {fileID: 2275039223182143394}
   - component: {fileID: 2275039223181176290}
   - component: {fileID: 2275039223176879484}
-  - component: {fileID: 8352655783979476001}
   m_Layer: 8
   m_Name: TiledBrick12
   m_TagString: Untagged
@@ -13855,21 +13550,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6aa357370833cdc4ca5e7b9a37e71105, type: 3}
---- !u!114 &8352655783979476001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176624
 GameObject:
   m_ObjectHideFlags: 0
@@ -13882,7 +13562,6 @@ GameObject:
   - component: {fileID: 2275039223182143396}
   - component: {fileID: 2275039223181176292}
   - component: {fileID: 2275039223176879430}
-  - component: {fileID: 7889332350686910405}
   m_Layer: 8
   m_Name: TiledBrick6
   m_TagString: Untagged
@@ -13971,21 +13650,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: f0cabd8b5abd4484c8604bc36ed17d13, type: 3}
---- !u!114 &7889332350686910405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176626
 GameObject:
   m_ObjectHideFlags: 0
@@ -13998,7 +13662,6 @@ GameObject:
   - component: {fileID: 2275039223182143398}
   - component: {fileID: 2275039223181176294}
   - component: {fileID: 2275039223176879424}
-  - component: {fileID: 640833179769246750}
   m_Layer: 8
   m_Name: TiledBrick12
   m_TagString: Untagged
@@ -14087,21 +13750,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6aa357370833cdc4ca5e7b9a37e71105, type: 3}
---- !u!114 &640833179769246750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176626}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176628
 GameObject:
   m_ObjectHideFlags: 0
@@ -14114,7 +13762,6 @@ GameObject:
   - component: {fileID: 2275039223182143400}
   - component: {fileID: 2275039223181176296}
   - component: {fileID: 2275039223176879434}
-  - component: {fileID: 1837168191583883777}
   m_Layer: 8
   m_Name: TiledBrick13
   m_TagString: Untagged
@@ -14203,21 +13850,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 53062b7b914efa247ab11928a013dee1, type: 3}
---- !u!114 &1837168191583883777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176628}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176630
 GameObject:
   m_ObjectHideFlags: 0
@@ -14230,7 +13862,6 @@ GameObject:
   - component: {fileID: 2275039223182143402}
   - component: {fileID: 2275039223181176298}
   - component: {fileID: 2275039223176879428}
-  - component: {fileID: 4798609286151936171}
   m_Layer: 8
   m_Name: TiledBrick15
   m_TagString: Untagged
@@ -14319,21 +13950,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: d860ecff569d6e5498780ba856816934, type: 3}
---- !u!114 &4798609286151936171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176632
 GameObject:
   m_ObjectHideFlags: 0
@@ -14642,7 +14258,6 @@ GameObject:
   - component: {fileID: 2275039223182143410}
   - component: {fileID: 2275039223181176306}
   - component: {fileID: 2275039223176879436}
-  - component: {fileID: 2601311582361212221}
   m_Layer: 8
   m_Name: TiledBrick4
   m_TagString: Untagged
@@ -14731,21 +14346,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: f41f21f8c89c5ee4c94330abd05b6a8a, type: 3}
---- !u!114 &2601311582361212221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183176638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183176640
 GameObject:
   m_ObjectHideFlags: 0
@@ -18504,7 +18104,6 @@ GameObject:
   - component: {fileID: 2275039223182141472}
   - component: {fileID: 2275039223181176416}
   - component: {fileID: 2275039223176879554}
-  - component: {fileID: 8540117523372168470}
   m_Layer: 8
   m_Name: TiledBrick4
   m_TagString: Untagged
@@ -18593,21 +18192,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: f41f21f8c89c5ee4c94330abd05b6a8a, type: 3}
---- !u!114 &8540117523372168470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183178796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183178798
 GameObject:
   m_ObjectHideFlags: 0
@@ -27033,8 +26617,7 @@ GameObject:
   - component: {fileID: 2275039223182141678}
   - component: {fileID: 2275039223181176366}
   - component: {fileID: 2275039223176879496}
-  - component: {fileID: 7347644967288703479}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TiledBrick4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27122,21 +26705,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: f41f21f8c89c5ee4c94330abd05b6a8a, type: 3}
---- !u!114 &7347644967288703479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275039223183179002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0279ce77eaabb4da527b7f667fc4cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2275039223183179004
 GameObject:
   m_ObjectHideFlags: 0

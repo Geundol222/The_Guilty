@@ -39,7 +39,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public IEnumerator FindUIRoutine(bool find)
+    public void FindUIRender(bool find)
     {
         if (find)
         {
@@ -49,14 +49,14 @@ public class Enemy : MonoBehaviour
                 findUI.ShowFindUI(transform);
             }
             else
-                yield break;
+                return;
         }
         else
         {
             if (findUI != null && findUI.gameObject.activeSelf)
                 findUI.CloseFindUI();
             else
-                yield break;
+                return;
         }
     }
 }
