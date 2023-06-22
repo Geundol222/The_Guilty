@@ -33,6 +33,8 @@ public class FieldOfView : MonoBehaviour
 {
     Mesh viewMesh;
 
+    public PlayerInteractor player;
+
     [SerializeField] int edgeResolveIterations;
     [SerializeField] float edgeDstThreshold;
     [SerializeField] MeshFilter viewMeshFilter;
@@ -100,7 +102,7 @@ public class FieldOfView : MonoBehaviour
 
     private void AddList(GameObject obj)
     {
-        if (findList.Count <= 0)
+        if (findList.Count <= 0 && !player.IsHide)
             findList.Add (obj);
         else
         {
@@ -111,7 +113,7 @@ public class FieldOfView : MonoBehaviour
 
     private void CheckFindList()
     {
-        if (findList.Count > 0)
+        if (findList.Count > 0 && !player.IsHide)
             isFind = true;
         else
             isFind = false;
