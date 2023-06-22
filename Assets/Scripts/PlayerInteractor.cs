@@ -104,21 +104,22 @@ public class PlayerInteractor : MonoBehaviour
     {
         if (isInteract)
         {
+            anim.SetFloat("MoveSpeed", 0f);
             originPosition = transform.position;
             isHide = true;
             col.enabled = false;
 
             if (isLong)
             {
-                agent.destination = headHit.point;
                 anim.SetBool("IsStandHide", true);
+                agent.destination = headHit.point;                
                 StartCoroutine(DistanceCalculateRoutine(headHit));
 
             }
             else
             {
-                agent.destination = legHit.point;
                 anim.SetBool("IsCrouchHide", true);
+                agent.destination = legHit.point;                
                 StartCoroutine(DistanceCalculateRoutine(legHit));
             }
         }
