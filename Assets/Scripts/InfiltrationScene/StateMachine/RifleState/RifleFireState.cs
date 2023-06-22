@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class RifleFireState : RifleState
 {
+    float FireTime;
+
     public RifleFireState(RifleMan owner, StateMachine<State, RifleMan> stateMachine) : base(owner, stateMachine) { }
 
     public override void Setup()
@@ -14,11 +16,18 @@ public class RifleFireState : RifleState
 
     public override void Enter()
     {
-        weaponHolder.Fire();
+        FireTime = 2f;
     }
 
     public override void Update()
     {
+        FireTime -= Time.deltaTime;
+
+        if (FireTime < 0)
+        {
+            FireTime = 2f;
+            weaponHolder.Fire();
+        }
     }
 
     public override void Transition()
@@ -26,10 +35,6 @@ public class RifleFireState : RifleState
         if (!fov.IsFind)
         {
             stateMachine.ChangeState(State.Idle);
-        }
-        else
-        {
-            stateMachine.ChangeState(State.Find);
         }
     }
 

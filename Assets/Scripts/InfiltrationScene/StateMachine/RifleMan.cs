@@ -6,9 +6,10 @@ using UnityEngine.Animations.Rigging;
 
 public class RifleMan : Enemy
 {
+    [SerializeField] public Rig aimRig;
+
     StateMachine<State, RifleMan> rifleStateMachine;
     [HideInInspector] public Vector3 originLookDir;
-    [HideInInspector] public MultiAimConstraint aimRig;
 
     protected override void Awake()
     {
@@ -20,7 +21,6 @@ public class RifleMan : Enemy
         rifleStateMachine.AddState(State.Find, new RifleFindState(this, rifleStateMachine));
         rifleStateMachine.AddState(State.Fire, new RifleFireState(this, rifleStateMachine));
 
-        aimRig = GetComponentInChildren<MultiAimConstraint>();
         originLookDir = transform.forward;
     }
 
