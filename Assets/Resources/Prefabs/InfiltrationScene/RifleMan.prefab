@@ -2157,6 +2157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d1d8d99e7672af4eb0a7d206c8a5753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   edgeResolveIterations: 0
   edgeDstThreshold: 0
   viewMeshFilter: {fileID: 1285884335}
@@ -2762,6 +2763,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   anim: {fileID: 0}
   fov: {fileID: 0}
+  isFind: 0
 --- !u!1001 &875917259745954162
 PrefabInstance:
   m_ObjectHideFlags: 0
