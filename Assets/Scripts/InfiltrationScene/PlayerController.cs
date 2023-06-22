@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
+        anim.SetFloat("MoveSpeed", 0f);
         col.enabled = false;
         input.enabled = false;
         agent.enabled = false;

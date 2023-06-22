@@ -1,6 +1,7 @@
 using EnemyStates;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public struct ViewCastInfo
@@ -43,10 +44,12 @@ public class FieldOfView : MonoBehaviour
     [SerializeField, Range(0, 360)] float angle;
     [SerializeField] LayerMask targetMask;
     [SerializeField] LayerMask obstacleMask;
+    [SerializeField] Transform headTransform;
 
     List<GameObject> findList;
     float cosResult;
     bool isFind;
+    Vector3 originDir;
     Vector3 targetDir;
     public Vector3 TargetDir { get { return targetDir; } }
     public bool IsFind { get { return isFind; } }
@@ -69,11 +72,13 @@ public class FieldOfView : MonoBehaviour
         FindTarget();
         CheckFindList();
 
-        if (isFind)
+        Vector3 lookDir = headTransform.rotation.eulerAngles;
+        if (!isFind)
+            transform.rotation = Quaternion.Euler(new Vector3(20, lookDir.y, lookDir.z));
+        else
         {
             Vector3 targetDir = (player.transform.position - transform.position).normalized;
-            Quaternion lookDir = Quaternion.LookRotation(targetDir);
-            transform.rotation = Quaternion.Lerp(transform.rotation, lookDir, 0.1f);
+            transform.rotation = Quaternion.LookRotation(targetDir);
         }
     }
 

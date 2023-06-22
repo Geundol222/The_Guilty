@@ -15,8 +15,8 @@ public class RifleIdleState : RifleState
 
     public override void Enter()
     {
-        aimRig.weight = 0;
         anim.SetBool("IsFind", false);
+        aimRig.weight = 0;
     }
 
     public override void Update()

@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class RifleFindState : RifleState
 {
-    float FireTime;
-
     public RifleFindState(RifleMan owner, StateMachine<State, RifleMan> stateMachine) : base(owner, stateMachine) { }
 
     public override void Setup()
@@ -16,16 +14,13 @@ public class RifleFindState : RifleState
 
     public override void Enter()
     {
-        FireTime = 0;
-        aimRig.weight = 1;
-        owner.StartCoroutine(owner.LookRoutine(player.transform));
         anim.SetBool("IsFind", true);
+        aimRig.weight = 1f;
+        owner.StartCoroutine(owner.LookRoutine(player.transform));
     }
 
     public override void Update()
     {
-        FireTime += Time.deltaTime;
-
         Vector3 lookPoint = player.transform.position;
         lookPoint.y = transform.position.y;
         transform.LookAt(lookPoint);
@@ -38,7 +33,7 @@ public class RifleFindState : RifleState
             stateMachine.ChangeState(State.Idle);
         }
 
-        if (fov.IsFind && FireTime > 3f)
+        if (fov.IsFind)
         {
             stateMachine.ChangeState(State.Fire);
         }
