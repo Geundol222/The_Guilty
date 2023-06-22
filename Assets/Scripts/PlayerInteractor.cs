@@ -31,7 +31,7 @@ public class PlayerInteractor : MonoBehaviour
     {
         InteractRay();
 
-        StartCoroutine(InteractRoutine(isHidable));
+        InteracUIRender(isHidable);
     }
 
     public void InteractRay()
@@ -54,7 +54,7 @@ public class PlayerInteractor : MonoBehaviour
         Debug.DrawRay(legChecker.position, legChecker.forward * 8f, Color.red);
     }
 
-    IEnumerator InteractRoutine(bool isHide)
+    private void InteracUIRender(bool isHide)
     {
         if (isHide)
         {
@@ -65,14 +65,14 @@ public class PlayerInteractor : MonoBehaviour
                 hideUI.SetOffSet(new Vector2(70, 50));
             }
             else
-                yield break;
+                return;
         }
         else
         {
             if (hideUI != null && hideUI.gameObject.activeSelf)
                 GameManager.UI.CloseInGameUI(hideUI);
             else
-                yield break;
+                return;
         }
     }
 
