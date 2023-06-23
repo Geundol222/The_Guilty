@@ -9,12 +9,15 @@ public class PlayerInteractor : MonoBehaviour
 {
     [SerializeField] Transform headChecker;
     [SerializeField] Transform legChecker;
+    [SerializeField] Transform point;
     [SerializeField] float range;
     [SerializeField] LayerMask obstacleMask;
+    [SerializeField] LayerMask itemMask;
 
     private Vector3 originPosition;
     private RaycastHit headHit;
     private RaycastHit legHit;
+    private ItemInteractUI itemUI;
     private HideInteractUI hideUI;
     private NavMeshAgent agent;
     private Collider col;
@@ -22,6 +25,8 @@ public class PlayerInteractor : MonoBehaviour
     private bool isLong;
     private bool isHidable;
     private bool isHide;
+    private bool isPick = false;
+    private bool isPickable;
     private bool isInteract = false;
 
     public bool IsHide { get { return isHide; } }
@@ -35,12 +40,14 @@ public class PlayerInteractor : MonoBehaviour
 
     private void Update()
     {
-        InteractRay();
-
+        InteractWall();
         InteracUIRender(isHidable);
+
+        InteractItem();
+        IsPickable(isPickable);
     }
 
-    public void InteractRay()
+    public void InteractWall()
     {
         if (Physics.Raycast(legChecker.position, legChecker.forward, out legHit, 6f, obstacleMask))
         {
@@ -93,11 +100,17 @@ public class PlayerInteractor : MonoBehaviour
     private void OnInteract(InputValue value)
     {
         if (isHidable)
+        {
             isInteract = !isInteract;
+            Hide();
+        }
+        else if (isPickable)
+        {
+            isPick = !isPick;
+            PickItem();
+        }
         else
             return;
-
-        Hide();
     }
 
     public void Hide()
@@ -172,5 +185,48 @@ public class PlayerInteractor : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    public void InteractItem()
+    {
+        Collider[] colliders = Physics.OverlapSphere(point.position, range, itemMask);
+        foreach (Collider collider in colliders)
+        {
+            if (collider != null && itemMask.IsContain(collider.gameObject.layer))
+            {
+                isPickable = true;
+            }
+            else
+                isPickable = false;
+        }
+    }
+
+    public void IsPickable(bool isPickable)
+    {
+        if (isPickable)
+        {
+            if (itemUI == null || !itemUI.gameObject.activeSelf)
+            {
+                itemUI = GameManager.UI.ShowInGameUI<ItemInteractUI>("UI/InGameUI/ItemInteractUI");
+                itemUI.SetTarget(transform);
+                itemUI.SetOffSet(new Vector2(70, 50));
+            }
+            else
+                return;
+
+        }
+        else
+        {
+            if (itemUI != null && itemUI.gameObject.activeSelf)
+                GameManager.UI.CloseInGameUI(itemUI);
+            else
+                return;
+        }
+    }
+
+    public void PickItem()
+    {
+        if (isPick)
+            GameManager.UI.ShowPopUpUI<BookOpenPopUpUI>("UI/PopUpUI/BookOpenPopUpUI");
     }
 }
