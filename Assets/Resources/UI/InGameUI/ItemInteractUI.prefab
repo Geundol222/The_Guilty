@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4798905936212390917}
   - component: {fileID: 5161369025987459764}
   - component: {fileID: 9196696439879314050}
-  - component: {fileID: -8850770825554978739}
+  - component: {fileID: 103037658962480647}
   m_Layer: 5
-  m_Name: HideInteractUI
+  m_Name: ItemInteractUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &9196696439879314050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &-8850770825554978739
+--- !u!114 &103037658962480647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4444791904710955346}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22175f0d67d3db544ba52f55dfdd66e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 94b529ccc8f4c114ab1c4882a7bf9f25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   followTarget: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 5906158980748874571}
   - component: {fileID: 630069964885118461}
   m_Layer: 5
-  m_Name: HideText
+  m_Name: ItemText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hide
+  m_text: Pick
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 00ce0b28213d3cb4e895178c34eb4329, type: 2}
   m_sharedMaterial: {fileID: -1683536963962353970, guid: 00ce0b28213d3cb4e895178c34eb4329, type: 2}
