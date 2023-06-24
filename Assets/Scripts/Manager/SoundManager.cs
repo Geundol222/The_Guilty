@@ -7,6 +7,7 @@ public enum Audio { BGM, SFX, Size }
 
 public class SoundManager : MonoBehaviour
 {
+    AudioMixer audioMixer;
     AudioSource[] audioSources;
     Dictionary<string, AudioClip> audioDic;
 
@@ -28,8 +29,6 @@ public class SoundManager : MonoBehaviour
             obj.transform.parent = transform;
             audioSources[i] = obj.AddComponent<AudioSource>();
         }
-
-        audioSources[(int)Audio.BGM].loop = true;
     }
 
     public void Clear()
@@ -43,7 +42,7 @@ public class SoundManager : MonoBehaviour
         audioDic.Clear();
     }
 
-    public void PlaySound(AudioClip audioClip, Audio type = Audio.SFX, float pitch = 1.0f)
+    public void PlaySound(AudioClip audioClip, Audio type = Audio.SFX, float pitch = 1.0f, bool loop = true)
     {
         if (audioClip == null)
             return;
@@ -56,23 +55,30 @@ public class SoundManager : MonoBehaviour
 
             audioSource.pitch = pitch;
             audioSource.clip = audioClip;
+            audioSource.loop = loop;
             audioSource.Play();
         }
         else
         {
             AudioSource audioSource = audioSources[(int)Audio.SFX];
             audioSource.pitch = pitch;
-            audioSource.PlayOneShot(audioClip);
+            audioSource.clip = audioClip;
+            audioSource.loop = loop;
+
+            if (loop) 
+                audioSource.Play();
+            else
+                audioSource.PlayOneShot(audioClip);
         }
     }
 
-    public void PlaySound(string path, Audio type = Audio.SFX, float pitch = 1.0f)
+    public void PlaySound(string path, Audio type = Audio.SFX, float pitch = 1.0f, bool loop = true)
     {
         AudioClip audioClip = GetOrAddAudioClip(path, type);
-        PlaySound(audioClip, type, pitch);
+        PlaySound(audioClip, type, pitch, loop);
     }
 
-    private AudioClip GetOrAddAudioClip(string path, Audio type = Audio.SFX)
+    public AudioClip GetOrAddAudioClip(string path, Audio type = Audio.SFX)
     {
         if (path.Contains("Audios/") == false)
             path = $"AUdios/{path}";

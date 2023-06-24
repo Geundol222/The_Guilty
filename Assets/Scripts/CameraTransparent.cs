@@ -26,40 +26,47 @@ public class CameraTransparent : MonoBehaviour
     {
         RaycastHit hit;
 
-        Vector3 rayDir = (player.transform.position - mainCam.transform.position).normalized;
+        Vector3 rayDir;
 
-        if (Physics.Raycast(mainCam.transform.position, rayDir, out hit, Vector3.Distance(mainCam.transform.position, player.transform.position), obstacleMask))
-        {            
-            obstacleRenderer = hit.collider.gameObject.GetComponentInChildren<Renderer>();
-            if (obstacleRenderer != null )
-            {
-                obstacleWall.Add(obstacleRenderer.gameObject);
-                Material[] materials = obstacleRenderer.materials;
-                foreach (Material material in materials)
-                {
-                    Color color = material.color;
-                    color.a = 0.2f;
-                    material.color = color;
-                }
-            }
-        }
-        else
+        if (player != null)
         {
-            for (int i = 0; i < obstacleWall.Count; i++)
+            rayDir = (player.transform.position - mainCam.transform.position).normalized;
+
+            if (Physics.Raycast(mainCam.transform.position, rayDir, out hit, Vector3.Distance(mainCam.transform.position, player.transform.position), obstacleMask))
             {
-                obstacleRenderer = obstacleWall[i].GetComponentInChildren<Renderer>();
+                obstacleRenderer = hit.collider.gameObject.GetComponentInChildren<Renderer>();
                 if (obstacleRenderer != null)
                 {
+                    obstacleWall.Add(obstacleRenderer.gameObject);
                     Material[] materials = obstacleRenderer.materials;
                     foreach (Material material in materials)
                     {
                         Color color = material.color;
-                        color.a = 1f;
+                        color.a = 0.2f;
                         material.color = color;
                     }
-                    obstacleWall.Remove(obstacleWall[i]);
-                }                
+                }
+            }
+            else
+            {
+                for (int i = 0; i < obstacleWall.Count; i++)
+                {
+                    obstacleRenderer = obstacleWall[i].GetComponentInChildren<Renderer>();
+                    if (obstacleRenderer != null)
+                    {
+                        Material[] materials = obstacleRenderer.materials;
+                        foreach (Material material in materials)
+                        {
+                            Color color = material.color;
+                            color.a = 1f;
+                            material.color = color;
+                        }
+                        obstacleWall.Remove(obstacleWall[i]);
+                    }
+                }
             }
         }
+        else
+            return;
     }
 }

@@ -1,33 +1,72 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class InfiltrationScene : BaseScene
 {
-    public GameObject player;
-    public Transform playerPosition;
+    public Transform playerStartPoint;
+    public Transform itemSpawnPoint;
+    public List<Transform> patrolMenSpawnPoints;
+    public Transform RifleManSpawnPoint;
+    public CinemachineVirtualCamera virtualCamera;
+
+    GameObject hangar;
+    GameObject clearPaper;
+    GameObject player;
+    List<GameObject> patrolMan;
+    GameObject rifleMan;
+
+    private void Awake()
+    {
+        patrolMan = new List<GameObject>();
+    }
 
     protected override IEnumerator LoadingRoutine()
     {
         progress = 0f;
-        Debug.Log("랜덤 맵 생성");
         yield return new WaitForSecondsRealtime(1f);
 
         progress = 0.2f;
-        Debug.Log("랜덤 몬스터 생성");
+        GameManager.UI.InitUI();
         yield return new WaitForSecondsRealtime(1f);
 
-        progress = 0.4f;
-        Debug.Log("랜덤 아이템 생성");
+        progress = 0.4f;        
+        CreatePrefab();
         yield return new WaitForSecondsRealtime(1f);
 
         progress = 0.6f;
-        Debug.Log("플레이어 배치");
-        player.transform.position = playerPosition.position;
-        player.transform.rotation = playerPosition.rotation;
         yield return new WaitForSecondsRealtime(1f);
 
         progress = 1f;
         yield return new WaitForSecondsRealtime(0.1f);
+    }
+
+    private void CreatePrefab()
+    {
+        player = GameManager.Resource.Instantiate<GameObject>("Prefabs/InfiltrationScene/Player");
+        player.transform.position = playerStartPoint.position;
+        player.transform.rotation = playerStartPoint.rotation;
+
+        hangar = GameManager.Resource.Instantiate<GameObject>("Prefabs/InfiltrationScene/Hangar");
+        hangar.transform.position = new Vector3(0, 0, 0);
+
+        virtualCamera.Follow = player.transform;
+        virtualCamera.LookAt = player.transform;
+
+        clearPaper = GameManager.Resource.Instantiate<GameObject>("Prefabs/InfiltrationScene/ClearPaper");
+        clearPaper.transform.position = itemSpawnPoint.position;
+        clearPaper.transform.rotation = itemSpawnPoint.rotation;
+
+        for (int i = 0; i < patrolMenSpawnPoints.Count; i++)
+        {
+            patrolMan.Add(GameManager.Resource.Instantiate<GameObject>("Prefabs/InfiltrationScene/PatrolMan"));
+            patrolMan[i].transform.position = patrolMenSpawnPoints[i].position;
+            patrolMan[i].transform.rotation = patrolMenSpawnPoints[i].rotation;
+        }
+
+        rifleMan = GameManager.Resource.Instantiate<GameObject>("Prefabs/InfiltrationScene/RifleMan");
+        rifleMan.transform.position = RifleManSpawnPoint.position;
+        rifleMan.transform.rotation = RifleManSpawnPoint.rotation;
     }
 }

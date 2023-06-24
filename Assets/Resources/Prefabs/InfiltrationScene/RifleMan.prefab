@@ -9431,7 +9431,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 7499872188280131904, guid: d8ddd32275248af4b938b67b2d601bc7, type: 3}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -15082,7 +15082,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7151935455793593401}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 1
@@ -15093,7 +15093,7 @@ Transform:
   - {fileID: 9143319968440333561}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &3700861490886791836
 Animator:
   serializedVersion: 5
@@ -15127,7 +15127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8afaf1500b7098b439ca29c07402ba74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 7499872188280131904, guid: d8ddd32275248af4b938b67b2d601bc7, type: 3}
   weaponHolder: {fileID: 0}
   agent: {fileID: 0}
   anim: {fileID: 0}
@@ -15905,7 +15905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d1d8d99e7672af4eb0a7d206c8a5753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1280109387, guid: d8ddd32275248af4b938b67b2d601bc7, type: 3}
   edgeResolveIterations: 0
   edgeDstThreshold: 0
   viewMeshFilter: {fileID: 6628047002146131019}

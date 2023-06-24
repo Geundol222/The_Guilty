@@ -8,7 +8,7 @@ public class ExitMainMenu : PopUpUI
     {
         base.Awake();
 
-        buttons["YesButton"].onClick.AddListener(() => { GameManager.Scene.LoadScene("MainMenuScene"); });
+        buttons["YesButton"].onClick.AddListener(() => { Time.timeScale = 1f; GameManager.Scene.LoadScene("MainMenuScene"); });
         buttons["NoButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI<ExitMainMenu>(); });
     }
 }

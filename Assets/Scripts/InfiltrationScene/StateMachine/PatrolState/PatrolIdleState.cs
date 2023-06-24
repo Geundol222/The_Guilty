@@ -6,6 +6,7 @@ using UnityEngine;
 public class PatrolIdleState : PatrolState
 {
     float patrolTime;
+    float randomRange;
 
     public PatrolIdleState(PatrolMan owner, StateMachine<State, PatrolMan> stateMachine) : base(owner, stateMachine) { }
 
@@ -19,7 +20,7 @@ public class PatrolIdleState : PatrolState
         agent.isStopped = true;
         patrolTime = 0f;
         anim.SetFloat("MoveSpeed", 0f);
-
+        randomRange = Random.Range(-10, 10);
     }
 
     public override void Update()
@@ -34,6 +35,7 @@ public class PatrolIdleState : PatrolState
             isFind = false;
             if (patrolTime > 2f)
             {
+                randomPatrolPoint = new Vector3(originPosition.x + randomRange, 0, originPosition.z + randomRange);
                 agent.isStopped = false;
                 stateMachine.ChangeState(State.Patrol);
             }

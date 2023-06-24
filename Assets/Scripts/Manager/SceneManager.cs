@@ -33,6 +33,7 @@ public class SceneManager : MonoBehaviour
 
     IEnumerator LoadingRoutine(string sceneName)
     {
+        GameManager.Sound.Clear();
         loadingUI.FadeOut();
         yield return new WaitForSeconds(1f);
         Time.timeScale = 0f;
