@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class MainMenuScene : BaseScene
 {
-    public void StartButton()
-    {
-        GameManager.Scene.LoadScene("InfiltrationScene");
-    }
-
     protected override IEnumerator LoadingRoutine()
     {
-        yield return null;
+        progress = 0f;
+        yield return new WaitForSecondsRealtime(1f);
+
+        progress = 0.2f;
+        yield return new WaitForSecondsRealtime(1f);
+
+        progress = 0.4f;
+        yield return new WaitForSecondsRealtime(1f);
+
+        progress = 0.6f;
+        yield return new WaitForSecondsRealtime(1f);
+
+        progress = 1f;
+        yield return new WaitForSecondsRealtime(0.1f);
     }
 }

@@ -15,11 +15,11 @@ public class InfiltrationSceneUI : GameSceneUI
     {
         base.Awake();
 
-        curImg = buttons["PauseButton"].image
-            ;
+        curImg = buttons["PauseButton"].image;
 
         buttons["SettingButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<SettingPopUpUI>("UI/PopUpUI/SettingUI"); });
         buttons["PauseButton"].onClick.AddListener(Pause);
+        buttons["ExitButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<ExitMainMenu>("UI/PopUpUI/ExitMainMenu"); });
     }
 
     public void Pause()
