@@ -235,6 +235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1280109387, guid: d8ddd32275248af4b938b67b2d601bc7, type: 3}
+  InfiltrationScene: {fileID: 5405845349277543356, guid: 8f13374cdcff02646b3b6c0d842cb556, type: 3}
   edgeResolveIterations: 0
   edgeDstThreshold: 0
   viewMeshFilter: {fileID: 8115761651095731174}
@@ -903,7 +904,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   muzzleEffect: {fileID: 3402068911098783962}
-  player: {fileID: 0}
+  player: {fileID: 7499872188280131904, guid: d8ddd32275248af4b938b67b2d601bc7, type: 3}
   bulletSpeed: 300
   damage: 50
 --- !u!1 &3055749700342330736
