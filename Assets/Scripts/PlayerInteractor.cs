@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteractor : MonoBehaviour
 {
+    [SerializeField] BaseScene curScene;
     [SerializeField] Transform headChecker;
     [SerializeField] Transform legChecker;
     [SerializeField] Transform point;
@@ -40,8 +41,11 @@ public class PlayerInteractor : MonoBehaviour
 
     private void Update()
     {
-        InteractWall();
-        InteracUIRender(isHidable);
+        if (curScene.name == "InfiltrationScene")
+        {
+            InteractWall();
+            InteracUIRender(isHidable);
+        }
 
         InteractItem();
         IsPickable(isPickable);

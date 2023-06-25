@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMover : MonoBehaviour
 {
+    [SerializeField] BaseScene curScene;
     [SerializeField] bool debug;
     [SerializeField] LayerMask groundMask;
     [SerializeField] LayerMask enemyMask;
@@ -20,11 +21,12 @@ public class PlayerMover : MonoBehaviour
     private Animator anim;
     private Camera mainCam;
     private NavMeshAgent agent;
-    private RaycastHit hit;    
+    private RaycastHit hit;
     private bool isDiscovered = false;
     private bool isCrouching = false;
     private float originWalkStepRange;
     private float originRunStepRange;
+
 
     private void Awake()
     {
@@ -39,16 +41,28 @@ public class PlayerMover : MonoBehaviour
 
     private void Update()
     {
-        Move();
-        Crouch();
+        if (curScene.name == "InfiltrationScene")
+        {
+            Move();
+            Crouch();
+        }
+        else if (curScene.name == "RoomScene")
+            Move();
     }
 
     private void Move()
     {
         if (Vector3.Distance(transform.position, hit.point) < 0.5f)
         {
-            anim.SetFloat("MoveSpeed", 0f);
-            wave.anim.SetFloat("MoveSpeed", 0f);
+            if (curScene.name == "InfiltrationScene")
+            {
+                anim.SetFloat("MoveSpeed", 0f);
+                wave.anim.SetFloat("MoveSpeed", 0f);
+            }
+            else if (curScene.name == "RoomScene")
+            {
+                anim.SetFloat("WalkSpeed", 0f);
+            }
         }
     }
 
@@ -56,23 +70,39 @@ public class PlayerMover : MonoBehaviour
     {
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask) && !interactor.IsHide)
+        if (curScene.name == "InfiltrationScene")
         {
-            wave.RenderMode(isWalk);
-
-            if (groundMask.IsContain(hit.collider.gameObject.layer))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask) && !interactor.IsHide)
             {
-                if (isWalk && !interactor.IsHide)
-                    anim.SetFloat("MoveSpeed", 1f);
-                else if (!isWalk && !interactor.IsHide)
-                    anim.SetFloat("MoveSpeed", 3f);
+                wave.RenderMode(isWalk);
+
+                if (groundMask.IsContain(hit.collider.gameObject.layer))
+                {
+                    if (isWalk && !interactor.IsHide)
+                        anim.SetFloat("MoveSpeed", 1f);
+                    else if (!isWalk && !interactor.IsHide)
+                        anim.SetFloat("MoveSpeed", 3f);
+                }
+
+                agent.destination = hit.point;
             }
+            Move();
 
-            agent.destination = hit.point;
+            StartCoroutine(StepSoundRoutine());
         }
-        Move();
+        else if (curScene.name == "RoomScene")
+        {
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask))
+            {
+                if (groundMask.IsContain(hit.collider.gameObject.layer))
+                {
+                    anim.SetFloat("WalkSpeed", 1f);
+                }
 
-        StartCoroutine(StepSoundRoutine());
+                agent.destination = hit.point;
+            }
+            Move();
+        }
     }
 
     IEnumerator StepSoundRoutine()
@@ -103,22 +133,25 @@ public class PlayerMover : MonoBehaviour
             }
 
             yield return null;
-        }        
+        }
     }
 
     private void Crouch()
     {
-        if (isCrouching)
+        if (curScene.name == "InfiltrationScene")
         {
-            isWalk = true;
-            anim.SetBool("IsCrouch", true);
-            agent.speed = 5f;
-        }
-        else
-        {
-            isWalk = false;
-            anim.SetBool("IsCrouch", false);
-            agent.speed = 15f;
+            if (isCrouching)
+            {
+                isWalk = true;
+                anim.SetBool("IsCrouch", true);
+                agent.speed = 5f;
+            }
+            else
+            {
+                isWalk = false;
+                anim.SetBool("IsCrouch", false);
+                agent.speed = 15f;
+            }
         }
     }
 

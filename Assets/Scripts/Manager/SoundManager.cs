@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -33,13 +34,29 @@ public class SoundManager : MonoBehaviour
 
     public void Clear()
     {
-        foreach(AudioSource audioSource in audioSources)
-        {
-            audioSource.clip = null;
-            audioSource.Stop();
-        }
+        StartCoroutine(ClearRoutine());
 
         audioDic.Clear();
+    }
+
+    IEnumerator ClearRoutine()
+    {
+        foreach (AudioSource audioSource in audioSources)
+        {
+            while (true)
+            {
+                audioSource.volume = Mathf.Lerp(1f, 0f, Time.deltaTime * 10f);
+
+                if (audioSource.volume <= 0f)
+                {
+                    audioSource.clip = null;
+                    audioSource.Stop();
+                }
+
+                yield return null;
+            }
+        }
+        yield break;
     }
 
     public void PlaySound(AudioClip audioClip, Audio type = Audio.SFX, float pitch = 1.0f, bool loop = true)
@@ -65,7 +82,7 @@ public class SoundManager : MonoBehaviour
             audioSource.clip = audioClip;
             audioSource.loop = loop;
 
-            if (loop) 
+            if (loop)
                 audioSource.Play();
             else
                 audioSource.PlayOneShot(audioClip);
