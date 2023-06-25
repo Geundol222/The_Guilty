@@ -14,11 +14,13 @@ namespace EnemyStates
         protected FieldOfView fov { get { return owner.fov; } }
         protected NavMeshAgent agent { get { return owner.agent; } }
         protected Transform transform { get { return owner.transform; } }
-        protected Transform player {  get { return owner.player; } }
+        protected Transform player { get { return owner.player; } }
+        protected Transform rayPoint { get { return owner.rayPoint; } }
+        protected LayerMask obstacleMask { get { return owner.obstacleMask; } }
+        protected Vector3 originPosition { get { return owner.originPosition; } }
         protected Vector3 soundPoint { get { return owner.soundPoint; } }
         protected Vector3 returnPoint { get { return owner.returnPoint; } }
-        protected int patrolIndex { get { return owner.patrolIndex; } set { owner.patrolIndex = value; } }
-        protected Transform[] patrolPoints { get { return owner.patrolPoints; } set { owner.patrolPoints = value; } }
+        protected Vector3 randomPatrolPoint { get { return owner.randomPatrolPoint; } set { owner.randomPatrolPoint = value; } }
         protected bool isListen { get { return owner.isListen; } set { owner.isListen = value; } }
         protected bool isFind { get { return owner.isFind; } set { owner.isFind = value; } }
         protected Animator anim { get { return owner.anim; } set { owner.anim = value; } }

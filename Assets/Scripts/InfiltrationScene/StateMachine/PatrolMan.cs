@@ -1,16 +1,19 @@
 using EnemyStates;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using UnityEngine;
 
 public class PatrolMan : Enemy, IListenable
 {
-    [SerializeField] public Transform[] patrolPoints;
+    public Transform rayPoint;
+    public LayerMask obstacleMask;
 
+    [HideInInspector] public Vector3 originPosition;
     [HideInInspector] public Vector3 soundPoint;
     [HideInInspector] public Vector3 returnPoint;
-    [HideInInspector] public int patrolIndex;
+    [HideInInspector] public Vector3 randomPatrolPoint;
     [HideInInspector] public bool isListen;
 
     StateMachine<State, PatrolMan> patrolStateMachine;
@@ -18,6 +21,8 @@ public class PatrolMan : Enemy, IListenable
     protected override void Awake()
     {
         base.Awake();
+
+        originPosition = transform.position;
 
         patrolStateMachine = new StateMachine<State, PatrolMan>(this);
 

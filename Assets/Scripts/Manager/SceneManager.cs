@@ -45,6 +45,10 @@ public class SceneManager : MonoBehaviour
             yield return null;
         }
 
+        GameManager.Sound.Clear();
+        GameManager.Pool.InitPool();
+        GameManager.UI.InitUI();
+
         // 추가적인 씬에서 준비할 로딩을 진행하고 넘어가야함
         CurScene.LoadAsync();
         while (CurScene.progress < 1f)

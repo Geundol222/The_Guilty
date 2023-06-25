@@ -35,6 +35,7 @@ public class FieldOfView : MonoBehaviour
     Mesh viewMesh;
 
     public PlayerInteractor player;
+    public InfiltrationScene InfiltrationScene;
 
     [SerializeField] int edgeResolveIterations;
     [SerializeField] float edgeDstThreshold;

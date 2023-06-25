@@ -734,9 +734,10 @@ GameObject:
   - component: {fileID: 1512077451388184776}
   - component: {fileID: 4763637128576053938}
   - component: {fileID: 9002445425297151158}
-  - component: {fileID: 8810319466991701365}
   - component: {fileID: 9002445425297151178}
   - component: {fileID: 4763637128576053950}
+  - component: {fileID: 8810319466991701365}
+  - component: {fileID: 1224330789495624227}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -766,7 +767,6 @@ Transform:
   - {fileID: 8284196408504506236}
   - {fileID: 3058815278195958769}
   - {fileID: 4496877661593009768}
-  - {fileID: 9002445425123361759}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -805,21 +805,6 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
---- !u!114 &8810319466991701365
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2283372027419996786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0da9cd5bfdc90f94ba5b09a84dee96bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &9002445425297151178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -872,6 +857,49 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &8810319466991701365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2283372027419996786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0da9cd5bfdc90f94ba5b09a84dee96bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debug: 0
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 256
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 0
+  walkStepRange: 0
+  runStepRange: 0
+--- !u!114 &1224330789495624227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2283372027419996786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c83731f8cf6ae8444b6f25d5cdc62ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headChecker: {fileID: 0}
+  legChecker: {fileID: 0}
+  point: {fileID: 0}
+  range: 0
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
+  itemMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &2317484815580769596
 GameObject:
   m_ObjectHideFlags: 0
@@ -3104,37 +3132,6 @@ Transform:
   - {fileID: 3874870963196409115}
   m_Father: {fileID: 8933234499338740860}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &9002445425123361758
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9002445425123361759}
-  m_Layer: 3
-  m_Name: CameraRoot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9002445425123361759
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9002445425123361758}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1512077451388184776}
-  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9010440946078590081
 GameObject:

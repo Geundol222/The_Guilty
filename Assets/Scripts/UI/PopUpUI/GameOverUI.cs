@@ -8,6 +8,7 @@ public class GameOverUI : PopUpUI
     {
         base.Awake();
 
-        // TODO : 게임 재시작 혹은 메인메뉴 버튼 구현
+        buttons["ContinueButton"].onClick.AddListener(() => { GameManager.Scene.LoadScene("InfiltrationScene"); });
+        buttons["MainMenuButton"].onClick.AddListener(() => { GameManager.Scene.LoadScene("MainMenuScene"); });
     }
 }
