@@ -22,8 +22,6 @@ public class PatrolMan : Enemy, IListenable
     {
         base.Awake();
 
-        originPosition = transform.position;
-
         patrolStateMachine = new StateMachine<State, PatrolMan>(this);
 
         patrolStateMachine.AddState(State.Idle, new PatrolIdleState(this, patrolStateMachine));
@@ -36,6 +34,7 @@ public class PatrolMan : Enemy, IListenable
 
     private void Start()
     {
+        originPosition = transform.position;
         returnPoint = transform.position;
         patrolStateMachine.Setup(State.Idle);
     }

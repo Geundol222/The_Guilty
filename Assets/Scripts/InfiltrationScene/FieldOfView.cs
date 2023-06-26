@@ -50,7 +50,6 @@ public class FieldOfView : MonoBehaviour
     List<GameObject> findList;
     float cosResult;
     bool isFind;
-    Vector3 originDir;
     Vector3 targetDir;
     public Vector3 TargetDir { get { return targetDir; } }
     public bool IsFind { get { return isFind; } }

@@ -35,6 +35,7 @@ public class SceneManager : MonoBehaviour
     {
         loadingUI.FadeOut();
         yield return new WaitForSeconds(1f);
+        yield return new WaitUntil(() => { return GameManager.Sound.Clear(); });
         Time.timeScale = 0f;
 
         AsyncOperation oper = UnitySceneManager.LoadSceneAsync(sceneName);
@@ -45,7 +46,6 @@ public class SceneManager : MonoBehaviour
             yield return null;
         }
 
-        GameManager.Sound.Clear();
         GameManager.Pool.InitPool();
         GameManager.UI.InitUI();
 
@@ -58,6 +58,7 @@ public class SceneManager : MonoBehaviour
         }
 
         Time.timeScale = 1f;
+        GameManager.Sound.FadeInAudio();
         loadingUI.FadeIn();
         yield return new WaitForSeconds(1f);
     }
