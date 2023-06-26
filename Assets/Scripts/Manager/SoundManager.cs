@@ -9,6 +9,7 @@ public enum Audio { BGM, SFX, Size }
 public class SoundManager : MonoBehaviour
 {
     AudioSource bgmSource;
+    AudioSource addSource;
     List<AudioSource> sfxSources;
     Dictionary<string, AudioClip> audioDic;
     private float delay = 1f;
@@ -41,6 +42,8 @@ public class SoundManager : MonoBehaviour
             AudioListener.volume = Mathf.Lerp(currentVolume, 0, elapsedTime / delay);
             if (AudioListener.volume <= 0f)
             {
+                GameManager.Resource.Destroy(bgmSource);
+                GameManager.Resource.Destroy(addSource);
                 isMuted = true;
                 yield break;
             }                
@@ -82,7 +85,7 @@ public class SoundManager : MonoBehaviour
 
         if (type == Audio.BGM)
         {
-            bgmSource = GameManager.Resource.Instantiate<AudioSource>("Prefabs/BGM");
+            bgmSource = GameManager.Resource.Instantiate<AudioSource>("Prefabs/BGM", true);
             if (bgmSource.isPlaying)
                 bgmSource.Stop();
 
@@ -95,18 +98,18 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            AudioSource audioSource = GameManager.Resource.Instantiate<AudioSource>("Prefabs/SFX", true);
-            audioSource.transform.parent = transform;
-            audioSource.volume = volume;
-            audioSource.pitch = pitch;
-            audioSource.clip = audioClip;
-            audioSource.loop = loop;
-            sfxSources.Add(audioSource);
+            addSource = GameManager.Resource.Instantiate<AudioSource>("Prefabs/SFX", true);
+            addSource.transform.parent = transform;
+            addSource.volume = volume;
+            addSource.pitch = pitch;
+            addSource.clip = audioClip;
+            addSource.loop = loop;
+            sfxSources.Add(addSource);
 
             if (loop)
-                audioSource.Play();
+                addSource.Play();
             else
-                audioSource.PlayOneShot(audioClip);
+                addSource.PlayOneShot(audioClip);
         }
     }
 

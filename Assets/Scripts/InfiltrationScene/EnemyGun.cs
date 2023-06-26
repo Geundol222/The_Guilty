@@ -7,9 +7,15 @@ public class EnemyGun : MonoBehaviour
 {
     [SerializeField] LayerMask playerMask;
     [SerializeField] ParticleSystem muzzleEffect;
-    [SerializeField] Transform player;
     [SerializeField] float bulletSpeed;
     [SerializeField] int damage;
+
+    GameObject player;
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     public void Fire()
     {
@@ -17,9 +23,9 @@ public class EnemyGun : MonoBehaviour
 
         RaycastHit hit;
 
-        Vector3 dir = (player.position - muzzleEffect.transform.position).normalized;
+        Vector3 dir = (player.transform.position - muzzleEffect.transform.position).normalized;
 
-        if (Physics.Raycast(muzzleEffect.transform.position, dir, out hit, Vector3.Distance(muzzleEffect.transform.position, player.position), playerMask))
+        if (Physics.Raycast(muzzleEffect.transform.position, dir, out hit, Vector3.Distance(muzzleEffect.transform.position, player.transform.position), playerMask))
         {
             IHittable hittable = hit.transform.gameObject.GetComponent<IHittable>();
             ParticleSystem hitEffect = GameManager.Resource.Instantiate<ParticleSystem>("Particles/HitEffect", hit.point, Quaternion.LookRotation(hit.normal), true);

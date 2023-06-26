@@ -14,7 +14,7 @@ namespace EnemyStates
         protected FieldOfView fov { get { return owner.fov; } }
         protected NavMeshAgent agent { get { return owner.agent; } }
         protected Transform transform { get { return owner.transform; } }
-        protected Transform player { get { return owner.player; } }
+        protected GameObject player { get { return owner.player; } }
         protected Transform rayPoint { get { return owner.rayPoint; } }
         protected LayerMask obstacleMask { get { return owner.obstacleMask; } }
         protected Vector3 originPosition { get { return owner.originPosition; } }
@@ -34,7 +34,7 @@ namespace EnemyStates
         protected FieldOfView fov { get { return owner.fov; } }
         protected NavMeshAgent agent { get { return owner.agent; } }
         protected Transform transform { get { return owner.transform; } }
-        protected Transform player { get { return owner.player; } }
+        protected GameObject player { get { return owner.player; } }
         protected Rig aimRig { get { return owner.aimRig; } }
         protected Vector3 originLookDir { get { return owner.originLookDir; } }
         protected Animator anim { get { return owner.anim; } set { owner.anim = value; } }
