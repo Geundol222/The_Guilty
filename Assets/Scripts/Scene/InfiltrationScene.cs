@@ -6,13 +6,15 @@ using UnityEngine;
 public class InfiltrationScene : BaseScene
 {
     public Transform itemSpawnPoint;
+    public List<Transform> enemySpawnPoints;
 
     GameObject hangar;
     GameObject clearPaper;
+    List<GameObject> patrolMans;
 
     private void Awake()
     {
-
+        patrolMans = new List<GameObject>();
     }
 
     protected override IEnumerator LoadingRoutine()
@@ -44,5 +46,10 @@ public class InfiltrationScene : BaseScene
         clearPaper = GameManager.Resource.Instantiate<GameObject>("Prefabs/InfiltrationScene/ClearPaper");
         clearPaper.transform.position = itemSpawnPoint.position;
         clearPaper.transform.rotation = itemSpawnPoint.rotation;
+
+        for (int i = 0; i < enemySpawnPoints.Count; i++)
+        {
+            patrolMans.Add(GameManager.Resource.Instantiate<GameObject>("Prefabs/InfiltrationScene/PatrolMan", enemySpawnPoints[i].position, enemySpawnPoints[i].rotation, true));
+        }
     }
 }
