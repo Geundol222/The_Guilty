@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class PopUpUI : BaseUI
 {
-    
+    protected virtual IEnumerator PopUpUIRoutine()
+    {
+        yield return null;
+    }
 }
