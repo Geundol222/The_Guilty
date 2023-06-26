@@ -20,8 +20,6 @@ public class InfiltrationScene : BaseScene
     protected override IEnumerator LoadingRoutine()
     {
         progress = 0f;
-        GameManager.Sound.PlaySound("Audios/MainMenu/MainBGM", Audio.BGM, 1f, 0.9f);
-        GameManager.Sound.PlaySound("Audios/MainMenu/RainSound", Audio.SFX);
         yield return new WaitForSecondsRealtime(1f);
 
         progress = 0.2f;
@@ -35,6 +33,7 @@ public class InfiltrationScene : BaseScene
         yield return new WaitForSecondsRealtime(1f);
 
         progress = 1f;
+        GameManager.Sound.PlaySound("Audios/MainMenu/MainBGM", Audio.BGM, 0.5f, 0.7f);
         yield return new WaitForSecondsRealtime(0.1f);
     }
 
@@ -48,8 +47,6 @@ public class InfiltrationScene : BaseScene
         clearPaper.transform.rotation = itemSpawnPoint.rotation;
 
         for (int i = 0; i < enemySpawnPoints.Count; i++)
-        {
             patrolMans.Add(GameManager.Resource.Instantiate<GameObject>("Prefabs/InfiltrationScene/PatrolMan", enemySpawnPoints[i].position, enemySpawnPoints[i].rotation, true));
-        }
     }
 }
