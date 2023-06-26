@@ -5,18 +5,18 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform player;
-
     [HideInInspector] public EnemyWeaponHolder weaponHolder;
     [HideInInspector] public NavMeshAgent agent;
     [HideInInspector] public Animator anim;
     [HideInInspector] public FieldOfView fov;
+    [HideInInspector] public GameObject player;
     [HideInInspector] public bool isFind;
-
+    
     FindPlayerUI findUI;
 
     protected virtual void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         weaponHolder = GetComponentInChildren<EnemyWeaponHolder>();
         fov = GetComponentInChildren<FieldOfView>();
         agent = GetComponent<NavMeshAgent>();

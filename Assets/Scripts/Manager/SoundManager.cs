@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -8,10 +9,12 @@ public enum Audio { BGM, SFX, Size }
 
 public class SoundManager : MonoBehaviour
 {
+    GameObject bgmObj;
     AudioSource bgmSource;
+    GameObject addObj;
+    AudioSource addSource;
     List<AudioSource> sfxSources;
     Dictionary<string, AudioClip> audioDic;
-    private float delay = 1f;
     bool isMuted = false;
 
     private void Awake()
@@ -35,23 +38,27 @@ public class SoundManager : MonoBehaviour
         float elapsedTime = 0;
         float currentVolume = AudioListener.volume;
 
-        while (elapsedTime < delay)
+        while (elapsedTime < 1f)
         {
             elapsedTime += Time.deltaTime;
-            AudioListener.volume = Mathf.Lerp(currentVolume, 0, elapsedTime / delay);
+            AudioListener.volume = Mathf.Lerp(currentVolume, 0, elapsedTime / 1f);
             if (AudioListener.volume <= 0f)
             {
+                GameManager.Resource.Destroy(bgmObj);
+                GameManager.Resource.Destroy(addObj);
                 isMuted = true;
                 yield break;
-            }                
+            }
             yield return null;
         }
     }
 
-    public void FadeInAudio()
+    public bool FadeInAudio()
     {
         AudioListener.volume = 0f;
         StartCoroutine(FadeInRoutine());
+
+        return isMuted;
     }
 
     IEnumerator FadeInRoutine()
@@ -59,11 +66,11 @@ public class SoundManager : MonoBehaviour
         float elapsedTime = 0;
         float currentVolume = AudioListener.volume;
 
-        while (elapsedTime < delay)
+        while (elapsedTime < 1f)
         {
             elapsedTime += Time.deltaTime;
-            AudioListener.volume = Mathf.Lerp(currentVolume, 1, elapsedTime / delay);
-            if (AudioListener.volume <= 1f)
+            AudioListener.volume = Mathf.Lerp(currentVolume, 1f, elapsedTime / 1f);
+            if (AudioListener.volume >= 1f)
             {
                 isMuted = false;
                 yield break;
@@ -75,18 +82,18 @@ public class SoundManager : MonoBehaviour
     public void PlaySound(AudioClip audioClip, Audio type = Audio.SFX, float volume = 1.0f, float pitch = 1.0f, bool loop = true)
     {
         StopAllCoroutines();
-        isMuted = false;
 
         if (audioClip == null)
             return;
 
         if (type == Audio.BGM)
         {
-            bgmSource = GameManager.Resource.Instantiate<AudioSource>("Prefabs/BGM");
+            bgmObj = GameManager.Resource.Instantiate<GameObject>("Prefabs/BGM");
+            bgmObj.transform.parent = transform;
+            bgmSource = bgmObj.GetComponent<AudioSource>();
             if (bgmSource.isPlaying)
                 bgmSource.Stop();
 
-            bgmSource.transform.parent = transform;
             bgmSource.volume = volume;
             bgmSource.pitch = pitch;
             bgmSource.clip = audioClip;
@@ -95,18 +102,22 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            AudioSource audioSource = GameManager.Resource.Instantiate<AudioSource>("Prefabs/SFX", true);
-            audioSource.transform.parent = transform;
-            audioSource.volume = volume;
-            audioSource.pitch = pitch;
-            audioSource.clip = audioClip;
-            audioSource.loop = loop;
-            sfxSources.Add(audioSource);
+            addObj = GameManager.Resource.Instantiate<GameObject>("Prefabs/SFX", true);
+            addObj.transform.parent = transform;
+
+            addSource = addObj.GetComponent<AudioSource>();
+
+            addSource.transform.parent = transform;
+            addSource.volume = volume;
+            addSource.pitch = pitch;
+            addSource.clip = audioClip;
+            addSource.loop = loop;
+            sfxSources.Add(addSource);
 
             if (loop)
-                audioSource.Play();
+                addSource.Play();
             else
-                audioSource.PlayOneShot(audioClip);
+                addSource.PlayOneShot(audioClip);
         }
     }
 
@@ -119,7 +130,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip GetOrAddAudioClip(string path, Audio type = Audio.SFX)
     {
         if (path.Contains("Audios/") == false)
-            path = $"AUdios/{path}";
+            path = $"Audios/{path}";
 
         AudioClip audioClip = null;
 

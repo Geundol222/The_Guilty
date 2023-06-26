@@ -33,8 +33,8 @@ public struct Edge
 public class FieldOfView : MonoBehaviour
 {
     Mesh viewMesh;
-
-    public PlayerInteractor player;
+    GameObject player;
+    PlayerInteractor interactor;
     public InfiltrationScene InfiltrationScene;
 
     [SerializeField] int edgeResolveIterations;
@@ -56,6 +56,8 @@ public class FieldOfView : MonoBehaviour
 
     private void Awake()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        interactor = player.GetComponent<PlayerInteractor>();
         findList = new List<GameObject>();
         cosResult = Mathf.Cos(angle * 0.5f * Mathf.Deg2Rad);
     }
@@ -114,7 +116,7 @@ public class FieldOfView : MonoBehaviour
 
     private void AddList(GameObject obj)
     {
-        if (findList.Count <= 0 && !player.IsHide)
+        if (findList.Count <= 0 && !interactor.IsHide)
             findList.Add (obj);
         else
         {
@@ -125,7 +127,7 @@ public class FieldOfView : MonoBehaviour
 
     private void CheckFindList()
     {
-        if (findList.Count > 0 && !player.IsHide)
+        if (findList.Count > 0 && !interactor.IsHide)
             isFind = true;
         else
             isFind = false;

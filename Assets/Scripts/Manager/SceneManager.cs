@@ -48,6 +48,7 @@ public class SceneManager : MonoBehaviour
 
         GameManager.Pool.InitPool();
         GameManager.UI.InitUI();
+        
 
         // 추가적인 씬에서 준비할 로딩을 진행하고 넘어가야함
         CurScene.LoadAsync();
@@ -58,7 +59,7 @@ public class SceneManager : MonoBehaviour
         }
 
         Time.timeScale = 1f;
-        GameManager.Sound.FadeInAudio();
+        yield return new WaitWhile(() => { return GameManager.Sound.FadeInAudio(); });
         loadingUI.FadeIn();
         yield return new WaitForSeconds(1f);
     }
