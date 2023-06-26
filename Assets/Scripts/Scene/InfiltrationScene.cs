@@ -18,6 +18,8 @@ public class InfiltrationScene : BaseScene
     protected override IEnumerator LoadingRoutine()
     {
         progress = 0f;
+        GameManager.Sound.PlaySound("Audios/MainMenu/MainBGM", Audio.BGM, 1f, 0.9f);
+        GameManager.Sound.PlaySound("Audios/MainMenu/RainSound", Audio.SFX);
         yield return new WaitForSecondsRealtime(1f);
 
         progress = 0.2f;

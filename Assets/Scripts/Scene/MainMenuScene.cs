@@ -7,15 +7,15 @@ public class MainMenuScene : BaseScene
 {
     private void Awake()
     {
-        GameManager.Sound.PlaySound("Audios/MainMenu/MainBGM", Audio.BGM, 0.9f);
-        GameManager.Sound.PlaySound("Audios/MainMenu/RainSound");
+        GameManager.Sound.PlaySound("Audios/MainMenu/MainBGM", Audio.BGM, 1f, 0.9f);
+        GameManager.Sound.PlaySound("Audios/MainMenu/RainSound", Audio.SFX, 0.4f);
     }
 
     protected override IEnumerator LoadingRoutine()
     {
         progress = 0f;
-        GameManager.Sound.PlaySound("Audios/MainMenu/MainBGM", Audio.BGM, 0.9f);
-        GameManager.Sound.PlaySound("Audios/MainMenu/RainSound");
+        GameManager.Sound.PlaySound("Audios/MainMenu/MainBGM", Audio.BGM, 1f, 0.9f);
+        GameManager.Sound.PlaySound("Audios/MainMenu/RainSound", Audio.SFX, 0.4f);
         yield return new WaitForSecondsRealtime(1f);
 
         progress = 0.2f;

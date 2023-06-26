@@ -2638,6 +2638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da9cd5bfdc90f94ba5b09a84dee96bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curScene: {fileID: 0}
   debug: 1
   groundMask:
     serializedVersion: 2
@@ -2698,6 +2699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c83731f8cf6ae8444b6f25d5cdc62ceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curScene: {fileID: 0}
   headChecker: {fileID: 1358243285}
   legChecker: {fileID: 619980645}
   point: {fileID: 59781331}

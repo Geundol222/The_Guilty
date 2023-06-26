@@ -10,6 +10,7 @@ public class BookOpenPopUpUI : PopUpUI, IPointerClickHandler
 
     Vector3 originCameraPoint;
     bool isMove = false;
+    bool isClicked = false;
 
     protected override void Awake()
     {
@@ -18,19 +19,9 @@ public class BookOpenPopUpUI : PopUpUI, IPointerClickHandler
         originCameraPoint = renderCamera.transform.position;
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    private void LateUpdate()
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
-        {
-            isMove = !isMove;
-            Time.timeScale = 1f;
-            StartCoroutine(BookMoveRoutine(isMove));
-        }
-    }
-
-    IEnumerator BookMoveRoutine(bool isMove)
-    {
-        while (true)
+        if (isClicked)
         {
             if (isMove)
             {
@@ -39,9 +30,6 @@ public class BookOpenPopUpUI : PopUpUI, IPointerClickHandler
                 renderCamera.transform.rotation = Quaternion.Lerp(renderCamera.transform.rotation, lookDir, 0.1f);
 
                 renderCamera.fieldOfView = Mathf.Lerp(45f, 15f, 0.1f);
-
-                if (renderCamera.fieldOfView == 15f)
-                    yield break;
             }
             else
             {
@@ -49,13 +37,20 @@ public class BookOpenPopUpUI : PopUpUI, IPointerClickHandler
                 Quaternion lookDir = Quaternion.LookRotation(targetDir);
                 renderCamera.transform.rotation = Quaternion.Lerp(renderCamera.transform.rotation, lookDir, 0.1f);
 
-                renderCamera.fieldOfView = Mathf.Lerp(45f, 15f, 0.1f);
-
-                if (renderCamera.fieldOfView == 15f)
-                    yield break;
+                renderCamera.fieldOfView = Mathf.Lerp(15f, 45f, 0.1f);
             }
+        }
+        else
+            return;
+    }
 
-            yield return null;
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            isClicked = true;
+            isMove = !isMove;
+            Time.timeScale = 1f;
         }
     }
 }
