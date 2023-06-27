@@ -1,21 +1,17 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class PlayerMover : MonoBehaviour
+public class PlayerInfiltrationMover : MonoBehaviour
 {
-    [SerializeField] BaseScene curScene;
     [SerializeField] bool debug;
     [SerializeField] LayerMask groundMask;
     [SerializeField] LayerMask enemyMask;
     [SerializeField] float walkStepRange;
     [SerializeField] float runStepRange;
 
-    private PlayerInteractor interactor;
+    private PlayerInfiltrationInteractor interactor;
     private FootStepRender wave;
     private bool isWalk;
     private Animator anim;
@@ -30,7 +26,7 @@ public class PlayerMover : MonoBehaviour
 
     private void Awake()
     {
-        interactor = GetComponent<PlayerInteractor>();
+        interactor = GetComponent<PlayerInfiltrationInteractor>();
         wave = GetComponentInChildren<FootStepRender>();
         anim = GetComponent<Animator>();
         mainCam = Camera.main;
@@ -41,28 +37,16 @@ public class PlayerMover : MonoBehaviour
 
     private void Update()
     {
-        if (curScene.name == "InfiltrationScene")
-        {
-            Move();
-            Crouch();
-        }
-        else if (curScene.name == "RoomScene")
-            Move();
+        Move();
+        Crouch();
     }
 
     private void Move()
     {
         if (Vector3.Distance(transform.position, hit.point) < 0.5f)
         {
-            if (curScene.name == "InfiltrationScene")
-            {
-                anim.SetFloat("MoveSpeed", 0f);
-                wave.anim.SetFloat("MoveSpeed", 0f);
-            }
-            else if (curScene.name == "RoomScene")
-            {
-                anim.SetFloat("WalkSpeed", 0f);
-            }
+            anim.SetFloat("MoveSpeed", 0f);
+            wave.anim.SetFloat("MoveSpeed", 0f);
         }
     }
 
@@ -70,39 +54,23 @@ public class PlayerMover : MonoBehaviour
     {
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 
-        if (curScene.name == "InfiltrationScene")
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask) && !interactor.IsHide)
         {
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask) && !interactor.IsHide)
+            wave.RenderMode(isWalk);
+
+            if (groundMask.IsContain(hit.collider.gameObject.layer))
             {
-                wave.RenderMode(isWalk);
-
-                if (groundMask.IsContain(hit.collider.gameObject.layer))
-                {
-                    if (isWalk && !interactor.IsHide)
-                        anim.SetFloat("MoveSpeed", 1f);
-                    else if (!isWalk && !interactor.IsHide)
-                        anim.SetFloat("MoveSpeed", 3f);
-                }
-
-                agent.destination = hit.point;
+                if (isWalk && !interactor.IsHide)
+                    anim.SetFloat("MoveSpeed", 1f);
+                else if (!isWalk && !interactor.IsHide)
+                    anim.SetFloat("MoveSpeed", 3f);
             }
-            Move();
 
-            StartCoroutine(StepSoundRoutine());
+            agent.destination = hit.point;
         }
-        else if (curScene.name == "RoomScene")
-        {
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask))
-            {
-                if (groundMask.IsContain(hit.collider.gameObject.layer))
-                {
-                    anim.SetFloat("WalkSpeed", 1f);
-                }
+        Move();
 
-                agent.destination = hit.point;
-            }
-            Move();
-        }
+        StartCoroutine(StepSoundRoutine());
     }
 
     IEnumerator StepSoundRoutine()
@@ -138,20 +106,17 @@ public class PlayerMover : MonoBehaviour
 
     private void Crouch()
     {
-        if (curScene.name == "InfiltrationScene")
+        if (isCrouching)
         {
-            if (isCrouching)
-            {
-                isWalk = true;
-                anim.SetBool("IsCrouch", true);
-                agent.speed = 5f;
-            }
-            else
-            {
-                isWalk = false;
-                anim.SetBool("IsCrouch", false);
-                agent.speed = 15f;
-            }
+            isWalk = true;
+            anim.SetBool("IsCrouch", true);
+            agent.speed = 5f;
+        }
+        else
+        {
+            isWalk = false;
+            anim.SetBool("IsCrouch", false);
+            agent.speed = 15f;
         }
     }
 
@@ -162,9 +127,6 @@ public class PlayerMover : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (!debug)
-            return;
-
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, walkStepRange);
         Gizmos.DrawWireSphere(transform.position, runStepRange);

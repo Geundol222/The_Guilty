@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class PlayerInteractor : MonoBehaviour
+public class PlayerInfiltrationInteractor : MonoBehaviour
 {
     [SerializeField] BaseScene curScene;
     [SerializeField] Transform headChecker;
@@ -23,12 +23,13 @@ public class PlayerInteractor : MonoBehaviour
     private NavMeshAgent agent;
     private Collider col;
     private Animator anim;
+    private bool isInteract = false;
     private bool isLong;
     private bool isHidable;
     private bool isHide;
+
     private bool isPick = false;
     private bool isPickable;
-    private bool isInteract = false;
 
     public bool IsHide { get { return isHide; } }
 
@@ -41,17 +42,13 @@ public class PlayerInteractor : MonoBehaviour
 
     private void Update()
     {
-        if (curScene.name == "InfiltrationScene")
-        {
-            InteractWall();
-            InteracUIRender(isHidable);
-        }
-
+        InteractWall();
+        InteracUIRender(isHidable);
         InteractItem();
         IsPickable(isPickable);
     }
 
-    public void InteractWall()
+    private void InteractWall()
     {
         if (Physics.Raycast(legChecker.position, legChecker.forward, out legHit, 6f, obstacleMask))
         {
@@ -117,7 +114,7 @@ public class PlayerInteractor : MonoBehaviour
             return;
     }
 
-    public void Hide()
+    private void Hide()
     {
         if (isInteract)
         {
@@ -191,7 +188,7 @@ public class PlayerInteractor : MonoBehaviour
         }
     }
 
-    public void InteractItem()
+    private void InteractItem()
     {
         Collider[] colliders = Physics.OverlapSphere(point.position, range, itemMask);
         foreach (Collider collider in colliders)
@@ -205,7 +202,7 @@ public class PlayerInteractor : MonoBehaviour
         }
     }
 
-    public void IsPickable(bool isPickable)
+    private void IsPickable(bool isPickable)
     {
         if (isPickable)
         {
@@ -228,7 +225,7 @@ public class PlayerInteractor : MonoBehaviour
         }
     }
 
-    public void PickItem()
+    private void PickItem()
     {
         if (isPick)
             GameManager.UI.ShowPopUpUI<BookOpenPopUpUI>("UI/PopUpUI/BookOpenPopUpUI");

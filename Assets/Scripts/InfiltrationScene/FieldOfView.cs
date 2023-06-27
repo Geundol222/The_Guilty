@@ -34,7 +34,7 @@ public class FieldOfView : MonoBehaviour
 {
     Mesh viewMesh;
     GameObject player;
-    PlayerInteractor interactor;
+    PlayerInfiltrationInteractor interactor;
     public InfiltrationScene InfiltrationScene;
 
     [SerializeField] int edgeResolveIterations;
@@ -57,7 +57,7 @@ public class FieldOfView : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        interactor = player.GetComponent<PlayerInteractor>();
+        interactor = player.GetComponent<PlayerInfiltrationInteractor>();
         findList = new List<GameObject>();
         cosResult = Mathf.Cos(angle * 0.5f * Mathf.Deg2Rad);
     }
