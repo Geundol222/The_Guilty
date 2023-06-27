@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -42,6 +43,7 @@ public class CameraTransparent : MonoBehaviour
 
     Renderer obstacleRenderer;
     List<GameObject> obstacleWall;
+    List<GameObject> hitList;
     List<Material> wallMaterials;
     Camera mainCam;
     RaycastHit[] hits;
@@ -52,6 +54,7 @@ public class CameraTransparent : MonoBehaviour
     {
         mainCam = Camera.main;
         obstacleWall = new List<GameObject>();
+        hitList = new List<GameObject>();
         wallMaterials = new List<Material>();
     }
 
@@ -68,54 +71,67 @@ public class CameraTransparent : MonoBehaviour
 
             hits = Physics.RaycastAll(mainCam.transform.position, rayDir, Vector3.Distance(mainCam.transform.position, player.transform.position), obstacleMask);
 
-
-            if (obstacleWall != null)
-            {
-                for (int i = 0; i < hits.Length; i++)
-                {
-                    for (int j = 0; j < obstacleWall.Count; j++)
-                    {
-                        if (obstacleWall[j] == hits[i].transform.gameObject)
-                            break;
-                    }
-                }
-            }
-
-            if (isContain)
-            {
-                obstacleRenderer = obstacleWall[j].GetComponentInChildren<Renderer>();
-                Material[] materials = obstacleRenderer.materials;
-
-                FadeMaterial(StandardShaderUtils.BlendMode.Opaque, 0.1f, 1f);
-                obstacleWall.Remove(obstacleWall[j]);
-
-                foreach (Material material in materials)
-                    wallMaterials.Remove(material);
-            }
-            else
-            {
-
-            }
-
-
-
             for (int i = 0; i < hits.Length; i++)
             {
-                if (!obstacleWall.Contains(hits[i].transform.gameObject))
-                {
-                    obstacleRenderer = hits[i].transform.gameObject.GetComponentInChildren<Renderer>();
-                    Material[] materials = obstacleRenderer.materials;
-
-                    FadeMaterial(StandardShaderUtils.BlendMode.Transparent, 1f, 0.1f);
-                    obstacleWall.Add(hits[i].transform.gameObject);
-
-                    foreach (Material material in materials)
-                        wallMaterials.Add(material);
-                }
+                if (hitList.Contains(hits[i].transform.gameObject))
+                    continue;
+                else
+                    hitList.Add(hits[i].transform.gameObject);
             }
+
+            for (int i = 0; i < hitList.Count; i++)
+            {
+                obstacleRenderer = hitList[i].GetComponentInChildren<Renderer>();
+                Material[] addMaterials = obstacleRenderer.materials;
+
+                foreach (Material material in addMaterials)
+                    wallMaterials.Add(material);
+                obstacleWall.Add(hitList[i]);
+
+                FadeMaterial(StandardShaderUtils.BlendMode.Transparent, 1f, 0.1f);
+            }
+
+            CheckFade();
         }
         else
             return;
+    }
+
+    private void CheckFade()
+    {
+        if (hitList != null)
+        {
+            for (int i = 0; i < obstacleWall.Count; i++)
+            {
+                if (!obstacleWall.Contains(hitList[i]))
+                {
+                    obstacleRenderer = obstacleWall[i].GetComponentInChildren<Renderer>();
+                    Material[] removeMaterials = obstacleRenderer.materials;
+
+                    FadeMaterial(StandardShaderUtils.BlendMode.Opaque, 0.1f, 1f);
+
+                    foreach (Material material in removeMaterials)
+                        wallMaterials.Remove(material);
+                    obstacleWall.Remove(obstacleWall[i]);
+                }
+            }
+
+            for (int i = 0; i < hitList.Count; i++)
+            {
+                if (!hitList.Contains(obstacleWall[i]))
+                {
+                    obstacleRenderer = hitList[i].GetComponentInChildren<Renderer>();
+                    Material[] addMaterials = obstacleRenderer.materials;
+
+                    foreach (Material material in addMaterials)
+                        wallMaterials.Add(material);
+                    obstacleWall.Add(hitList[i]);
+
+                    FadeMaterial(StandardShaderUtils.BlendMode.Transparent, 1f, 0.1f);
+                }
+            }
+            hitList.Clear();
+        }
     }
 
     private void FadeMaterial(StandardShaderUtils.BlendMode blendMode, float curAlpha, float changeAlpha)
