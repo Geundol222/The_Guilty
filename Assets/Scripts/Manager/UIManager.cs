@@ -54,7 +54,6 @@ public class UIManager : MonoBehaviour
         ui.transform.SetParent(popUpCanvas.transform, false);
 
         popUpStack.Push(ui);
-
         Time.timeScale = 0f;
 
         return ui;
