@@ -1,23 +1,30 @@
+using System.ComponentModel;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Color = UnityEngine.Color;
 
 public class PlayerRoomInteractor : MonoBehaviour
 {
-    [SerializeField] Transform point;
+    [SerializeField] Transform itemPoint;
+    [SerializeField] Transform doorPoint;
     [SerializeField] float range;
     [SerializeField] LayerMask itemMask;
     [SerializeField] LayerMask doorMask;
 
+    private Collider itemCol;
+    private GameObject doorObj;
+    private OpenDoor door;
     private ItemInteractUI itemUI;
     private DoorInteractUI doorUI;
     private Collider col;
     private Animator anim;
+    private RaycastHit hit;
+
     private bool isPick = false;
     private bool isPickable;
 
-    private bool isOpen = false;
     private bool isOpenable;
 
     private void Awake()
@@ -30,7 +37,8 @@ public class PlayerRoomInteractor : MonoBehaviour
     {
         InteractDoor();
         DoorInteractUIRenderer(isOpenable);
-        OpenDoor();
+        InteractItem();
+        IsPickable(isPickable);
     }
 
     private void OnInteract(InputValue value)
@@ -42,7 +50,7 @@ public class PlayerRoomInteractor : MonoBehaviour
         }
         else if (isOpenable)
         {
-            isOpen = !isOpen;
+            OpenDoor();
         }
         else
             return;
@@ -50,18 +58,19 @@ public class PlayerRoomInteractor : MonoBehaviour
 
     private void InteractItem()
     {
-        Collider[] colliders = Physics.OverlapSphere(point.position, range, itemMask);
+        Collider[] colliders = Physics.OverlapSphere(itemPoint.position, range, itemMask);
         foreach (Collider collider in colliders)
         {
             if (collider != null && itemMask.IsContain(collider.gameObject.layer))
             {
+                itemCol = collider;
                 isPickable = true;
             }
             else
                 isPickable = false;
         }
     }
-
+    
     private void IsPickable(bool isPickable)
     {
         if (isPickable)
@@ -74,7 +83,7 @@ public class PlayerRoomInteractor : MonoBehaviour
             }
             else
                 return;
-
+    
         }
         else
         {
@@ -88,45 +97,46 @@ public class PlayerRoomInteractor : MonoBehaviour
     private void PickItem()
     {
         if (isPick)
-            GameManager.UI.ShowPopUpUI<BookOpenPopUpUI>("UI/PopUpUI/BookOpenPopUpUI");
+        {
+            IInteractable interactable = itemCol.gameObject.GetComponent<IInteractable>();
+            interactable?.Interact();
+        }
     }
 
     private void OpenDoor()
     {
-        IInteractable interactable = GetComponent<IInteractable>();
-        interactable?.Interact();
+        if (isOpenable)
+        {
+            IInteractable interactable = hit.transform.GetComponent<IInteractable>();
+            interactable?.Interact();
+        }
+
     }
 
     private void InteractDoor()
     {
-        Collider[] colliders = Physics.OverlapSphere(point.position, range, doorMask);
-        foreach (Collider collider in colliders)
+        if (Physics.Raycast(doorPoint.position, doorPoint.forward, out hit, 4f, doorMask))
         {
-            if (collider != null && doorMask.IsContain(collider.gameObject.layer))
+            if (doorMask.IsContain(hit.transform.gameObject.layer))
             {
+                doorObj = hit.transform.gameObject;
+                door = doorObj.GetComponent<OpenDoor>();
                 isOpenable = true;
             }
-            else
-                isOpenable = false;
         }
+        else
+            isOpenable = false;
     }
 
     private void DoorInteractUIRenderer(bool isOpenable)
     {
-        if (isOpenable)
+        if (isOpenable && !door.IsOpen)
         {
             if (doorUI == null || !doorUI.gameObject.activeSelf)
             {
                 doorUI = GameManager.UI.ShowInGameUI<DoorInteractUI>("UI/InGameUI/DoorInteractUI");
                 doorUI.SetTarget(transform);
                 doorUI.SetOffSet(new Vector2(70, 50));
-            }
-            else if (doorUI != null && doorUI.gameObject.activeSelf)
-            {
-                if (!isOpen)
-                    doorUI.Open();
-                else
-                    doorUI.Close();
             }
             else
                 return;
@@ -141,9 +151,9 @@ public class PlayerRoomInteractor : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(point.position, range);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(itemPoint.position, range);
     }
 }

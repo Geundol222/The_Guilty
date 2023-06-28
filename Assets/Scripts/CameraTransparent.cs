@@ -41,21 +41,15 @@ public class CameraTransparent : MonoBehaviour
     [SerializeField] LayerMask obstacleMask;
     [SerializeField] GameObject player;
 
-    Renderer obstacleRenderer;
     List<GameObject> obstacleWall;
-    List<GameObject> hitList;
-    List<Material> wallMaterials;
     Camera mainCam;
     RaycastHit[] hits;
     Vector3 rayDir;
-    bool isContain;
 
     private void Awake()
     {
         mainCam = Camera.main;
         obstacleWall = new List<GameObject>();
-        hitList = new List<GameObject>();
-        wallMaterials = new List<Material>();
     }
 
     private void LateUpdate()
@@ -73,75 +67,72 @@ public class CameraTransparent : MonoBehaviour
 
             for (int i = 0; i < hits.Length; i++)
             {
-                if (hitList.Contains(hits[i].transform.gameObject))
-                    continue;
-                else
-                    hitList.Add(hits[i].transform.gameObject);
+                ObjectTransparency[] obj = hits[i].transform.GetComponentsInChildren<ObjectTransparency>();
+
+                for (int j = 0; j < obstacleWall.Count; j++)
+                {
+                    obj[j]?.BecomeTransparent();
+                }
             }
-
-            for (int i = 0; i < hitList.Count; i++)
-            {
-                obstacleRenderer = hitList[i].GetComponentInChildren<Renderer>();
-                Material[] addMaterials = obstacleRenderer.materials;
-
-                foreach (Material material in addMaterials)
-                    wallMaterials.Add(material);
-                obstacleWall.Add(hitList[i]);
-
-                FadeMaterial(StandardShaderUtils.BlendMode.Transparent, 1f, 0.1f);
-            }
-
-            CheckFade();
         }
         else
             return;
     }
 
-    private void CheckFade()
-    {
-        if (hitList != null)
-        {
-            for (int i = 0; i < obstacleWall.Count; i++)
-            {
-                if (!obstacleWall.Contains(hitList[i]))
-                {
-                    obstacleRenderer = obstacleWall[i].GetComponentInChildren<Renderer>();
-                    Material[] removeMaterials = obstacleRenderer.materials;
+    //private void CheckFade()
+    //{
+    //    if (hitList != null)
+    //    {
+    //        for (int i = 0; i < hitList.Count; i++)
+    //        {
+    //            if (!obstacleWall.Contains(hitList[i]))
+    //            {
+    //                foreach (GameObject obj in obstacleWall)
+    //                    obstacleRenderer = obj.GetComponentInChildren<Renderer>();
+    //                Material[] removeMaterials = obstacleRenderer.materials;
 
-                    FadeMaterial(StandardShaderUtils.BlendMode.Opaque, 0.1f, 1f);
+    //                FadeMaterial(StandardShaderUtils.BlendMode.Opaque, 1f);
 
-                    foreach (Material material in removeMaterials)
-                        wallMaterials.Remove(material);
-                    obstacleWall.Remove(obstacleWall[i]);
-                }
-            }
+    //                foreach (Material material in removeMaterials)
+    //                    wallMaterials.Remove(material);
+    //                obstacleWall.Remove(obstacleWall[i]);
+    //            }
+    //        }
 
-            for (int i = 0; i < hitList.Count; i++)
-            {
-                if (!hitList.Contains(obstacleWall[i]))
-                {
-                    obstacleRenderer = hitList[i].GetComponentInChildren<Renderer>();
-                    Material[] addMaterials = obstacleRenderer.materials;
+    //        for (int i = 0; i < obstacleWall.Count; i++)
+    //        {
+    //            if (!hitList.Contains(obstacleWall[i]))
+    //            {
+    //                foreach (GameObject obj in hitList)
+    //                    obstacleRenderer = obj.GetComponentInChildren<Renderer>();
+    //                Material[] addMaterials = obstacleRenderer.materials;
 
-                    foreach (Material material in addMaterials)
-                        wallMaterials.Add(material);
-                    obstacleWall.Add(hitList[i]);
+    //                foreach (Material material in addMaterials)
+    //                {
+    //                    if (wallMaterials.Contains(material))
+    //                        continue;
+    //                    else
+    //                        wallMaterials.Add(material);
+    //                }
 
-                    FadeMaterial(StandardShaderUtils.BlendMode.Transparent, 1f, 0.1f);
-                }
-            }
-            hitList.Clear();
-        }
-    }
+    //                obstacleWall.Add(hitList[i]);
+    //                obstacleWall.Distinct();
 
-    private void FadeMaterial(StandardShaderUtils.BlendMode blendMode, float curAlpha, float changeAlpha)
-    {
-        for (int i = 0; i < wallMaterials.Count; i++)
-        {
-            StandardShaderUtils.ChangeRenderMode(wallMaterials[i], blendMode);
-            Color color = wallMaterials[i].color;
-            color.a = Mathf.Lerp(curAlpha, changeAlpha, Time.deltaTime * 0.5f);
-            wallMaterials[i].color = color;
-        }
-    }
+    //                FadeMaterial(StandardShaderUtils.BlendMode.Transparent, 0.1f);
+    //            }
+    //            hitList.Clear();
+    //        }
+    //    }
+    //}
+
+    // private void FadeMaterial(StandardShaderUtils.BlendMode blendMode, float changeAlpha)
+    // {
+    //     for (int i = 0; i < wallMaterials.Count; i++)
+    //     {
+    //         StandardShaderUtils.ChangeRenderMode(wallMaterials[i], blendMode);
+    //         Color color = wallMaterials[i].color;
+    //         color.a = Mathf.Lerp(color.a, changeAlpha, Time.deltaTime * 0.5f);
+    //         wallMaterials[i].color = color;
+    //     }
+    // }
 }
