@@ -25,7 +25,6 @@ public class PlayerRoomInteractor : MonoBehaviour
     private bool isPick = false;
     private bool isPickable;
 
-    private bool isOpen = false;
     private bool isOpenable;
 
     private void Awake()
