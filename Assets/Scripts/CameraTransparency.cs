@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectTransparency : MonoBehaviour
+public class CameraTransparency : MonoBehaviour
 {
-    public bool IsTransparent { get; private set; } = false;
+    [SerializeField] LayerMask obstacleMask;
+    [SerializeField] GameObject player;
+
+    List<GameObject> obstacleWall;
+    Camera mainCam;
+    RaycastHit[] hits;
+    Vector3 rayDir;
 
     Renderer[] renderers;
     bool isReseting = false;
+    bool isTransparent = false;
     float timer = 0f;
 
     Coroutine timeCheckCoroutine;
@@ -16,12 +23,42 @@ public class ObjectTransparency : MonoBehaviour
 
     private void Awake()
     {
-        renderers = GetComponentsInChildren<Renderer>();
+        mainCam = Camera.main;
+        obstacleWall = new List<GameObject>();
+    }
+
+    private void LateUpdate()
+    {
+        ObstacleTransparency();
+    }
+
+    private void ObstacleTransparency()
+    {
+        if (player != null)
+        {
+            rayDir = (player.transform.position - mainCam.transform.position).normalized;
+
+            hits = Physics.RaycastAll(mainCam.transform.position, rayDir, Vector3.Distance(mainCam.transform.position, player.transform.position), obstacleMask);
+
+            for (int i = 0; i < hits.Length; i++)
+            {
+                renderers = hits[i].transform.GetComponentsInChildren<Renderer>();
+
+                obstacleWall.Add(renderers[i].gameObject);
+
+                for (int j = 0; j < obstacleWall.Count; j++)
+                {
+                    BecomeTransparent();
+                }
+            }
+        }
+        else
+            return;
     }
 
     public void BecomeTransparent()
     {
-        if (IsTransparent)
+        if (isTransparent)
         {
             timer = 0f;
             return;
@@ -30,12 +67,12 @@ public class ObjectTransparency : MonoBehaviour
         if (resetCoroutine != null && isReseting)
         {
             isReseting = false;
-            IsTransparent = false;
+            isTransparent = false;
             StopCoroutine(resetCoroutine);
         }
 
         SetMaterialTransparent();
-        IsTransparent = true;
+        isTransparent = true;
         becomeTransparentCoroutine = StartCoroutine(BecomeTransparentCoroutine());
     }
 
@@ -95,7 +132,7 @@ public class ObjectTransparency : MonoBehaviour
 
     IEnumerator ResetOriginalTransparentCoroutine()
     {
-        IsTransparent = false;
+        isTransparent = false;
 
         while (true)
         {

@@ -67,11 +67,10 @@ public class CameraTransparent : MonoBehaviour
 
             for (int i = 0; i < hits.Length; i++)
             {
-                ObjectTransparency[] obj = hits[i].transform.GetComponentsInChildren<ObjectTransparency>();
 
                 for (int j = 0; j < obstacleWall.Count; j++)
                 {
-                    obj[j]?.BecomeTransparent();
+
                 }
             }
         }
