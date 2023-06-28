@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Floors
   - Fire
+  - Door
   layers:
   - Default
   - TransparentFX
