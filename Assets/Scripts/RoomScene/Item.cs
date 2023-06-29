@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    [SerializeField] GameObject UIObject; 
+
     ParticleSystem particle;
     Collider col;
 
@@ -18,6 +20,6 @@ public class Item : MonoBehaviour
         GameManager.Resource.Destroy(particle.gameObject);
         col.enabled = false;
         ItemPopUpUI itemPopUpUI = GameManager.UI.ShowPopUpUI<ItemPopUpUI>("UI/PopUpUI/ItemPopUpUI");
-        itemPopUpUI.ShowItem(gameObject);
+        itemPopUpUI.ShowItem(UIObject);
     }
 }
