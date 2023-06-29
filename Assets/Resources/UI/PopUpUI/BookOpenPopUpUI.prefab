@@ -61,8 +61,8 @@ RectTransform:
   m_GameObject: {fileID: 1640706785949061084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 309336509856891542}
   - {fileID: 1640706785957924763}
@@ -170,13 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03c05a591e79bcb4cbe030d5275aa347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderCamera: {fileID: 5497375341058230141, guid: 93dd717dd752f06439273b479176c886, type: 3}
-  nameText: {fileID: 4111424742734819267}
   book: {fileID: 1639951830731401058}
   movePoint: {fileID: 667730434}
-  textMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!1 &1640706785957924760
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,10 +624,5 @@ MeshFilter:
 --- !u!4 &1645189861575888120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4527064727974542, guid: 00931e932c93cef48ae2d8cc87408c66, type: 3}
-  m_PrefabInstance: {fileID: 1640706785926086262}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4111424742734819267 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3443636488704070069, guid: 00931e932c93cef48ae2d8cc87408c66, type: 3}
   m_PrefabInstance: {fileID: 1640706785926086262}
   m_PrefabAsset: {fileID: 0}

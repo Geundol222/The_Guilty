@@ -7,16 +7,11 @@ using UnityEngine.EventSystems;
 public class FlipableItem : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] RectTransform flipPoint;
-    [SerializeField] RectTransform StopPoint;
+    [SerializeField] RectTransform stopPoint;
+    [SerializeField] RectTransform startPoint;
 
-    Vector3 originFlipPoint;
     bool isClicked = false;
     bool isMove = false;
-
-    private void OnEnable()
-    {
-        originFlipPoint = flipPoint.transform.position;
-    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -36,20 +31,20 @@ public class FlipableItem : MonoBehaviour, IPointerClickHandler
             {
                 if (isMove)
                 {
-                    flipPoint.transform.Translate(Vector3.up * Time.unscaledDeltaTime * 50f, Space.World);
-                    if (Vector3.Distance(flipPoint.transform.position, StopPoint.transform.position) < 0.1f)
+                    flipPoint.transform.Translate(Vector3.up * Time.unscaledDeltaTime * 2000f, Space.World);
+                    if ((stopPoint.transform.position.y - flipPoint.transform.position.y) < 0.1f)
                     {
-                        flipPoint.transform.position = StopPoint.transform.position;
+                        flipPoint.transform.position = stopPoint.transform.position;
                         isClicked = false;
                         yield break;
                     }
                 }
                 else
                 {
-                    flipPoint.transform.Translate(Vector3.down * Time.unscaledDeltaTime * 50f, Space.World);
-                    if (Vector3.Distance(flipPoint.transform.position, originFlipPoint) < 0.1f)
+                    flipPoint.transform.Translate(Vector3.down * Time.unscaledDeltaTime * 2000f, Space.World);
+                    if ((flipPoint.transform.position.y - startPoint.transform.position.y) < 0.1f)
                     {
-                        flipPoint.transform.position = originFlipPoint;
+                        flipPoint.transform.position = startPoint.transform.position;
                         isClicked = false;
                         yield break;
                     }

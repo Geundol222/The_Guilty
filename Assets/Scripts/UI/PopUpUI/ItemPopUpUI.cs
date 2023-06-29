@@ -13,7 +13,7 @@ public class ItemPopUpUI : PopUpUI
     {
         base.Awake();
 
-        buttons["Blocker"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI<ItemPopUpUI>(); });
+        buttons["ExitButton"].onClick.AddListener(RemoveItem);
         texts["RotateText"].text = "Rotate";
     }
 
@@ -21,5 +21,11 @@ public class ItemPopUpUI : PopUpUI
     {
         uiObj = GameManager.Resource.Instantiate(obj, obj.transform.position, obj.transform.rotation, true);
         uiObj.transform.SetParent(transform, false);
+    }
+
+    public void RemoveItem()
+    {
+        GameManager.Resource.Destroy(uiObj);
+        GameManager.UI.ClosePopUpUI<ItemPopUpUI>();
     }
 }

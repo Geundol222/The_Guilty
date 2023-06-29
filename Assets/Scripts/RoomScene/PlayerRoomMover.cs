@@ -35,17 +35,22 @@ public class PlayerRoomMover : MonoBehaviour
 
     private void OnMove(InputValue value)
     {
-        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask))
+        if (Time.timeScale > 0f)
         {
-            if (groundMask.IsContain(hit.collider.gameObject.layer))
-            {
-                anim.SetFloat("WalkSpeed", 1f);
-            }
+            Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 
-            agent.destination = hit.point;
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask))
+            {
+                if (groundMask.IsContain(hit.collider.gameObject.layer))
+                {
+                    anim.SetFloat("WalkSpeed", 1f);
+                }
+
+                agent.destination = hit.point;
+            }
+            Move();
         }
-        Move();
+        else
+            return;
     }
 }

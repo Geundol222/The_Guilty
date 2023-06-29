@@ -100,15 +100,20 @@ public class PlayerInfiltrationInteractor : MonoBehaviour
 
     private void OnInteract(InputValue value)
     {
-        if (isHidable)
+        if (Time.timeScale > 0f)
         {
-            isInteract = !isInteract;
-            Hide();
-        }
-        else if (isPickable)
-        {
-            isPick = !isPick;
-            PickItem();
+            if (isHidable)
+            {
+                isInteract = !isInteract;
+                Hide();
+            }
+            else if (isPickable)
+            {
+                isPick = !isPick;
+                PickItem();
+            }
+            else
+                return;
         }
         else
             return;
