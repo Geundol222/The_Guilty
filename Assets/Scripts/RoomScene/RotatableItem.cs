@@ -5,17 +5,17 @@ using UnityEngine.EventSystems;
 
 public class RotatableItem : MonoBehaviour, IDragHandler, IScrollHandler
 {
-    [SerializeField] GameObject realItem;
-    
+    [SerializeField] GameObject item;
+
     float maxZoom = 3f;
     Vector3 originPosition;
     Vector3 objectScale;
-    bool isZoomed;
+    bool isZoomed = false;
 
     private void Awake()
     {
-        originPosition = realItem.transform.position;
-        objectScale = realItem.transform.localScale;
+        originPosition = item.transform.position;
+        objectScale = item.transform.localScale;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -25,29 +25,25 @@ public class RotatableItem : MonoBehaviour, IDragHandler, IScrollHandler
 
         if (!isZoomed)
         {
-            if (realItem.transform.localRotation.y < 0)
-                y = -y;
-
             Vector3 eulerAngle = new Vector3(0, -x * 10f, y * 10f);
 
-            Quaternion rot = realItem.transform.rotation;
-            realItem.transform.rotation = Quaternion.Euler(eulerAngle) * rot;
+            Quaternion rot = item.transform.rotation;
+            item.transform.rotation = Quaternion.Euler(eulerAngle) * rot;
         }
         else
         {
-            realItem.transform.position += new Vector3(x * 0.5f, y * 0.5f, 0);
+            item.transform.position += new Vector3(x * 0.5f, y * 0.5f, 0);
         }
-
     }
 
     public void OnScroll(PointerEventData eventData)
     {
         Vector3 delta = Vector3.one * (eventData.scrollDelta.y * Time.unscaledDeltaTime * 10f);
-        Vector3 Scale = realItem.transform.localScale + delta;
+        Vector3 Scale = item.transform.localScale + delta;
 
         Scale = ClampDesiredScale(Scale);
 
-        realItem.transform.localScale = Scale;
+        item.transform.localScale = Scale;
 
         if (Scale.magnitude > objectScale.magnitude)
         {
@@ -56,7 +52,7 @@ public class RotatableItem : MonoBehaviour, IDragHandler, IScrollHandler
         else
         {
             isZoomed = false;
-            realItem.transform.position = originPosition;
+            item.transform.position = originPosition;
         }
     }
 

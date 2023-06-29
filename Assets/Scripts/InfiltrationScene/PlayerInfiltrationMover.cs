@@ -52,25 +52,30 @@ public class PlayerInfiltrationMover : MonoBehaviour
 
     private void OnMove(InputValue value)
     {
-        Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask) && !interactor.IsHide)
+        if (Time.timeScale > 0f)
         {
-            wave.RenderMode(isWalk);
+            Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 
-            if (groundMask.IsContain(hit.collider.gameObject.layer))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundMask) && !interactor.IsHide)
             {
-                if (isWalk && !interactor.IsHide)
-                    anim.SetFloat("MoveSpeed", 1f);
-                else if (!isWalk && !interactor.IsHide)
-                    anim.SetFloat("MoveSpeed", 3f);
+                wave.RenderMode(isWalk);
+
+                if (groundMask.IsContain(hit.collider.gameObject.layer))
+                {
+                    if (isWalk && !interactor.IsHide)
+                        anim.SetFloat("MoveSpeed", 1f);
+                    else if (!isWalk && !interactor.IsHide)
+                        anim.SetFloat("MoveSpeed", 3f);
+                }
+
+                agent.destination = hit.point;
             }
+            Move();
 
-            agent.destination = hit.point;
+            StartCoroutine(StepSoundRoutine());
         }
-        Move();
-
-        StartCoroutine(StepSoundRoutine());
+        else
+            return;
     }
 
     IEnumerator StepSoundRoutine()
@@ -122,7 +127,10 @@ public class PlayerInfiltrationMover : MonoBehaviour
 
     private void OnCrouch(InputValue value)
     {
-        isCrouching = !isCrouching;
+        if (Time.timeScale > 0f)
+            isCrouching = !isCrouching;
+        else
+            return;
     }
 
     private void OnDrawGizmosSelected()

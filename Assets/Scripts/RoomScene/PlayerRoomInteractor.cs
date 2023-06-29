@@ -43,14 +43,19 @@ public class PlayerRoomInteractor : MonoBehaviour
 
     private void OnInteract(InputValue value)
     {
-        if (isPickable)
+        if (Time.timeScale > 0f)
         {
-            isPick = !isPick;
-            PickItem();
-        }
-        else if (isOpenable)
-        {
-            OpenDoor();
+            if (isPickable)
+            {
+                isPick = !isPick;
+                PickItem();
+            }
+            else if (isOpenable)
+            {
+                OpenDoor();
+            }
+            else
+                return;
         }
         else
             return;
