@@ -23,7 +23,6 @@ public class PlayerRoomInteractor : MonoBehaviour
     private RaycastHit hit;
 
     private bool isPick = false;
-    private bool isPickable;
 
     private bool isOpenable;
 
@@ -37,14 +36,13 @@ public class PlayerRoomInteractor : MonoBehaviour
         InteractDoor();
         DoorInteractUIRenderer(isOpenable);
         IsPickable(InteractItem());
-        CheckFindList();
     }
 
     private void OnInteract(InputValue value)
     {
         if (Time.timeScale > 0f)
         {
-            if (isPickable && itemCol != null)
+            if (InteractItem() && itemCol != null)
             {
                 isPick = !isPick;
                 PickItem();
@@ -68,38 +66,16 @@ public class PlayerRoomInteractor : MonoBehaviour
             if (collider != null && itemMask.IsContain(collider.gameObject.layer))
             {
                 itemCol = collider;
-                AddList(collider.gameObject);
                 return true;
             }
             else
-                itemList.Clear();
 
             if (Vector3.Distance(transform.position, collider.gameObject.transform.position) > range && itemList != null)
             {
-                itemList.Clear();
                 return false;
             }                
         }
         return false;
-    }
-
-    private void AddList(GameObject obj)
-    {
-        if (itemList.Count <= 0)
-            itemList.Add(obj);
-        else
-        {
-            if (itemList.Contains(obj))
-                return;
-        }
-    }
-
-    private void CheckFindList()
-    {
-        if (itemList.Count > 0)
-            isPickable = true;
-        else
-            isPickable = false;
     }
 
     private void IsPickable(bool isPickable)
@@ -129,6 +105,7 @@ public class PlayerRoomInteractor : MonoBehaviour
     {
         if (isPick)
         {
+            isPick = false;
             IInteractable interactable = itemCol.gameObject.GetComponent<IInteractable>();
             interactable?.Interact();
         }

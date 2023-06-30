@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Floors
   - ItemCamera
+  - Lock
   layers:
   - Default
   - TransparentFX

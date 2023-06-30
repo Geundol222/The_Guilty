@@ -6,7 +6,7 @@ public class Item : MonoBehaviour
 {
     [SerializeField] GameObject UIObject;
 
-    protected void Interact()
+    public void Interact()
     {
         ItemPopUpUI itemPopUpUI = GameManager.UI.ShowPopUpUI<ItemPopUpUI>("UI/PopUpUI/ItemPopUpUI");
         itemPopUpUI.ShowItem(UIObject);

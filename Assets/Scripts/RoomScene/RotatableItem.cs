@@ -24,7 +24,7 @@ public class RotatableItem : MonoBehaviour, IDragHandler, IScrollHandler
 
         if (!isZoomed)
         {
-            Vector3 eulerAngle = new Vector3(0, -x * 10f, y * 10f);
+            Vector3 eulerAngle = new Vector3(y * 10f, -x * 10f, 0);
 
             Quaternion rot = realItem.transform.rotation;
             realItem.transform.rotation = Quaternion.Euler(eulerAngle) * rot;
@@ -52,6 +52,7 @@ public class RotatableItem : MonoBehaviour, IDragHandler, IScrollHandler
         {
             isZoomed = false;
             realItem.transform.position = StartPosition.position;
+            realItem.transform.rotation = StartPosition.rotation;
         }
     }
 

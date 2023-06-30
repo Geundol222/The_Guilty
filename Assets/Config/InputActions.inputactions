@@ -68,6 +68,98 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Lock",
+            "id": "95b5f613-e6aa-4baf-baba-251b227027e5",
+            "actions": [
+                {
+                    "name": "ChangeRuller",
+                    "type": "Button",
+                    "id": "6e207908-9ddb-49f9-9002-0eeaba39d91e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RotateRuller",
+                    "type": "Button",
+                    "id": "24eb98ee-9a81-446c-8e88-c55e8d2217f1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Left&Right",
+                    "id": "c4c7655a-fc33-4b76-87d2-2e57dec22a71",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeRuller",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "593b054d-ee18-4100-8859-46f18fb76271",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeRuller",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "68d264f8-f2b3-4212-af3c-02fa51f8c134",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeRuller",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Up&Down",
+                    "id": "b972456d-1812-41e9-af47-008f61bfca2b",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateRuller",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "e369b31a-2d9d-41e9-af49-5c456ce581fa",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateRuller",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "4fb530c3-81e6-46e0-a98c-fc3f48007039",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateRuller",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
         }
     ],
     "controlSchemes": []
