@@ -4,21 +4,10 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField] GameObject UIObject; 
+    [SerializeField] GameObject UIObject;
 
-    ParticleSystem particle;
-    Collider col;
-
-    private void Awake()
+    protected void Interact()
     {
-        col = GetComponent<Collider>();
-        particle = GetComponentInChildren<ParticleSystem>();
-    }
-
-    public void Interact()
-    {
-        GameManager.Resource.Destroy(particle.gameObject);
-        col.enabled = false;
         ItemPopUpUI itemPopUpUI = GameManager.UI.ShowPopUpUI<ItemPopUpUI>("UI/PopUpUI/ItemPopUpUI");
         itemPopUpUI.ShowItem(UIObject);
     }

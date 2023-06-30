@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b638e7b27f21741aeeeec8be8e20b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIObject: {fileID: 8357422006486104067, guid: 15531679fa1c6d5458107c6be229b865, type: 3}
 --- !u!114 &6285448280961277685
 MonoBehaviour:
   m_ObjectHideFlags: 0

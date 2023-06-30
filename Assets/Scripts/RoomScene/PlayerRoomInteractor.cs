@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.CompilerServices;
@@ -13,13 +14,12 @@ public class PlayerRoomInteractor : MonoBehaviour
     [SerializeField] LayerMask itemMask;
     [SerializeField] LayerMask doorMask;
 
+    private List<GameObject> itemList;
     private Collider itemCol;
     private GameObject doorObj;
     private OpenDoor door;
     private ItemInteractUI itemUI;
     private DoorInteractUI doorUI;
-    private Collider col;
-    private Animator anim;
     private RaycastHit hit;
 
     private bool isPick = false;
@@ -29,23 +29,22 @@ public class PlayerRoomInteractor : MonoBehaviour
 
     private void Awake()
     {
-        col = GetComponent<Collider>();
-        anim = GetComponent<Animator>();
+        itemList = new List<GameObject>();
     }
 
     private void Update()
     {
         InteractDoor();
         DoorInteractUIRenderer(isOpenable);
-        InteractItem();
-        IsPickable(isPickable);
+        IsPickable(InteractItem());
+        CheckFindList();
     }
 
     private void OnInteract(InputValue value)
     {
         if (Time.timeScale > 0f)
         {
-            if (isPickable)
+            if (isPickable && itemCol != null)
             {
                 isPick = !isPick;
                 PickItem();
@@ -61,7 +60,7 @@ public class PlayerRoomInteractor : MonoBehaviour
             return;
     }
 
-    private void InteractItem()
+    private bool InteractItem()
     {
         Collider[] colliders = Physics.OverlapSphere(itemPoint.position, range, itemMask);
         foreach (Collider collider in colliders)
@@ -69,13 +68,40 @@ public class PlayerRoomInteractor : MonoBehaviour
             if (collider != null && itemMask.IsContain(collider.gameObject.layer))
             {
                 itemCol = collider;
-                isPickable = true;
+                AddList(collider.gameObject);
+                return true;
             }
             else
-                isPickable = false;
+                itemList.Clear();
+
+            if (Vector3.Distance(transform.position, collider.gameObject.transform.position) > range && itemList != null)
+            {
+                itemList.Clear();
+                return false;
+            }                
+        }
+        return false;
+    }
+
+    private void AddList(GameObject obj)
+    {
+        if (itemList.Count <= 0)
+            itemList.Add(obj);
+        else
+        {
+            if (itemList.Contains(obj))
+                return;
         }
     }
-    
+
+    private void CheckFindList()
+    {
+        if (itemList.Count > 0)
+            isPickable = true;
+        else
+            isPickable = false;
+    }
+
     private void IsPickable(bool isPickable)
     {
         if (isPickable)
