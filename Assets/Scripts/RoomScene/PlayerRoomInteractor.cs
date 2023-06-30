@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.CompilerServices;
@@ -13,39 +14,35 @@ public class PlayerRoomInteractor : MonoBehaviour
     [SerializeField] LayerMask itemMask;
     [SerializeField] LayerMask doorMask;
 
+    private List<GameObject> itemList;
     private Collider itemCol;
     private GameObject doorObj;
     private OpenDoor door;
     private ItemInteractUI itemUI;
     private DoorInteractUI doorUI;
-    private Collider col;
-    private Animator anim;
     private RaycastHit hit;
 
     private bool isPick = false;
-    private bool isPickable;
 
     private bool isOpenable;
 
     private void Awake()
     {
-        col = GetComponent<Collider>();
-        anim = GetComponent<Animator>();
+        itemList = new List<GameObject>();
     }
 
     private void Update()
     {
         InteractDoor();
         DoorInteractUIRenderer(isOpenable);
-        InteractItem();
-        IsPickable(isPickable);
+        IsPickable(InteractItem());
     }
 
     private void OnInteract(InputValue value)
     {
         if (Time.timeScale > 0f)
         {
-            if (isPickable)
+            if (InteractItem() && itemCol != null)
             {
                 isPick = !isPick;
                 PickItem();
@@ -61,7 +58,7 @@ public class PlayerRoomInteractor : MonoBehaviour
             return;
     }
 
-    private void InteractItem()
+    private bool InteractItem()
     {
         Collider[] colliders = Physics.OverlapSphere(itemPoint.position, range, itemMask);
         foreach (Collider collider in colliders)
@@ -69,13 +66,18 @@ public class PlayerRoomInteractor : MonoBehaviour
             if (collider != null && itemMask.IsContain(collider.gameObject.layer))
             {
                 itemCol = collider;
-                isPickable = true;
+                return true;
             }
             else
-                isPickable = false;
+
+            if (Vector3.Distance(transform.position, collider.gameObject.transform.position) > range && itemList != null)
+            {
+                return false;
+            }                
         }
+        return false;
     }
-    
+
     private void IsPickable(bool isPickable)
     {
         if (isPickable)
@@ -103,6 +105,7 @@ public class PlayerRoomInteractor : MonoBehaviour
     {
         if (isPick)
         {
+            isPick = false;
             IInteractable interactable = itemCol.gameObject.GetComponent<IInteractable>();
             interactable?.Interact();
         }
