@@ -90,6 +90,7 @@ public class UnLockToLock : MonoBehaviour
     {
         if (vertical > 0)
         {
+            GameManager.Sound.PlaySound("Audios/RoomScene/RullerTurnSound", Audio.SFX, 0.5f);
             rullers[changeIndex].transform.Rotate(-scrollAngle, 0, 0, Space.Self);
 
             numberArr[changeIndex] += 1;
@@ -99,6 +100,7 @@ public class UnLockToLock : MonoBehaviour
         }
         else if (vertical < 0)
         {
+            GameManager.Sound.PlaySound("Audios/RoomScene/RullerTurnSound", Audio.SFX, 0.5f);
             rullers[changeIndex].transform.Rotate(scrollAngle, 0, 0, Space.Self);
 
             numberArr[changeIndex] -= 1;

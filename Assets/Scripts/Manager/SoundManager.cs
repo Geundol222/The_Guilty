@@ -79,7 +79,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlaySound(AudioClip audioClip, Audio type = Audio.SFX, float volume = 1.0f, float pitch = 1.0f, bool loop = true)
+    public void PlaySound(AudioClip audioClip, Audio type = Audio.SFX, float volume = 1.0f, float pitch = 1.0f, bool loop = false)
     {
         StopAllCoroutines();
 
@@ -121,7 +121,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlaySound(string path, Audio type = Audio.SFX, float volume = 1.0f, float pitch = 1.0f, bool loop = true)
+    public void PlaySound(string path, Audio type = Audio.SFX, float volume = 1.0f, float pitch = 1.0f, bool loop = false)
     {
         AudioClip audioClip = GetOrAddAudioClip(path, type);
         PlaySound(audioClip, type, volume, pitch, loop);

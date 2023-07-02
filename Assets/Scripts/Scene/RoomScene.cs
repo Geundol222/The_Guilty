@@ -29,12 +29,13 @@ public class RoomScene : BaseScene
         yield return new WaitForSecondsRealtime(1f);
 
         progress = 1f;
+        GameManager.Sound.PlaySound("Audios/RoomScene/RoomBGM", Audio.BGM, 0.3f);
         yield return new WaitForSecondsRealtime(0.1f);
     }
 
     private void CreatePrefab()
     {
-        room = GameManager.Resource.Instantiate<GameObject>("Prefabs/RoomScene/Hangar");
+        room = GameManager.Resource.Instantiate<GameObject>("Prefabs/RoomScene/Room");
         room.transform.position = new Vector3(0, 0, 0);
     }
 }

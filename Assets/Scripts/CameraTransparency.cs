@@ -44,7 +44,7 @@ public class CameraTransparency : MonoBehaviour
             {
                 renderers = hits[i].transform.GetComponentsInChildren<Renderer>();
 
-                obstacleWall.Add(renderers[i].gameObject);
+                obstacleWall.Add(hits[i].transform.gameObject);
 
                 for (int j = 0; j < obstacleWall.Count; j++)
                 {
@@ -126,8 +126,8 @@ public class CameraTransparency : MonoBehaviour
 
     public void ResetOriginalTransparent()
     {
-        SetMaterialOpaque();
         resetCoroutine = StartCoroutine(ResetOriginalTransparentCoroutine());
+        SetMaterialOpaque();
     }
 
     IEnumerator ResetOriginalTransparentCoroutine()

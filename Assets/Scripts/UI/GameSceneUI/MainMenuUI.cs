@@ -8,7 +8,7 @@ public class MainMenuUI : GameSceneUI
     {
         base.Awake();
 
-        buttons["StartButton"].onClick.AddListener(() => { GameManager.Scene.LoadScene("InfiltrationScene"); });
+        buttons["StartButton"].onClick.AddListener(() => { GameManager.Scene.LoadScene("RoomScene"); });
         buttons["ExitButton"].onClick.AddListener(ClickExit);
         buttons["SettingButton"].onClick.AddListener(ClickSetting);
     }

@@ -7,8 +7,8 @@ public class MainMenuScene : BaseScene
 {
     private void Awake()
     {
-        GameManager.Sound.PlaySound("Audios/MainMenu/MainBGM", Audio.BGM, 1f, 0.9f);
-        GameManager.Sound.PlaySound("Audios/MainMenu/RainSound", Audio.SFX, 0.4f);
+        GameManager.Sound.PlaySound("Audios/MainMenu/MainBGM", Audio.BGM, 0.5f, 0.9f);
+        GameManager.Sound.PlaySound("Audios/MainMenu/RainSound", Audio.SFX, 0.4f, 1f, true);
     }
 
     protected override IEnumerator LoadingRoutine()
@@ -27,8 +27,8 @@ public class MainMenuScene : BaseScene
         yield return new WaitForSecondsRealtime(1f);
 
         progress = 1f;
-        GameManager.Sound.PlaySound("Audios/MainMenu/MainBGM", Audio.BGM, 1f, 0.9f);
-        GameManager.Sound.PlaySound("Audios/MainMenu/RainSound", Audio.SFX, 0.4f);
+        GameManager.Sound.PlaySound("Audios/MainMenu/MainBGM", Audio.BGM, 0.5f, 0.9f);
+        GameManager.Sound.PlaySound("Audios/MainMenu/RainSound", Audio.SFX, 0.4f, 1f, true);
         yield return new WaitForSecondsRealtime(0.1f);
     }
 }

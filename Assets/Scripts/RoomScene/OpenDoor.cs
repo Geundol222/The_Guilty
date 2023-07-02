@@ -17,4 +17,9 @@ public class OpenDoor : MonoBehaviour
         anim.SetBool("IsOpen", true);
         IsOpen = true;
     }
+
+    public void OpenSound()
+    {
+        GameManager.Sound.PlaySound("Audios/RoomScene/OpenDoorSound", Audio.SFX, 0.4f);
+    }
 }
