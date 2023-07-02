@@ -33,7 +33,7 @@ public class InfiltrationScene : BaseScene
         yield return new WaitForSecondsRealtime(1f);
 
         progress = 1f;
-        GameManager.Sound.PlaySound("Audios/MainMenu/MainBGM", Audio.BGM, 0.5f, 0.7f);
+        GameManager.Sound.PlaySound("Audios/MainMenu/MainBGM", Audio.BGM, 0.4f, 0.7f);
         yield return new WaitForSecondsRealtime(0.1f);
     }
 

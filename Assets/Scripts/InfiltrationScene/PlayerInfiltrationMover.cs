@@ -133,6 +133,22 @@ public class PlayerInfiltrationMover : MonoBehaviour
             return;
     }
 
+    public void FirstStepSound()
+    {
+        if (isCrouching)
+            GameManager.Sound.PlaySound("Audios/InfiltrationScene/CrouchWalk1", Audio.SFX, 0.5f);
+        else
+            GameManager.Sound.PlaySound("Audios/InfiltrationScene/RunSound1", Audio.SFX, 0.5f);
+    }
+
+    public void SecondStepSound()
+    {
+        if (isCrouching)
+            GameManager.Sound.PlaySound("Audios/InfiltrationScene/CrouchWalk2", Audio.SFX, 0.5f);
+        else
+            GameManager.Sound.PlaySound("Audios/InfiltrationScene/RunSound2", Audio.SFX, 0.5f);
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.cyan;

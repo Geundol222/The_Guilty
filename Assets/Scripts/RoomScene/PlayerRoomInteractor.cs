@@ -13,8 +13,8 @@ public class PlayerRoomInteractor : MonoBehaviour
     [SerializeField] float range;
     [SerializeField] LayerMask itemMask;
     [SerializeField] LayerMask doorMask;
+    [SerializeField] LayerMask watchMask;
 
-    private List<GameObject> itemList;
     private Collider itemCol;
     private GameObject doorObj;
     private OpenDoor door;
@@ -26,10 +26,7 @@ public class PlayerRoomInteractor : MonoBehaviour
 
     private bool isOpenable;
 
-    private void Awake()
-    {
-        itemList = new List<GameObject>();
-    }
+    public bool IsWatch { get; private set; } = false;
 
     private void Update()
     {
@@ -44,8 +41,16 @@ public class PlayerRoomInteractor : MonoBehaviour
         {
             if (InteractItem() && itemCol != null)
             {
-                isPick = !isPick;
-                PickItem();
+                if (itemMask.IsContain(itemCol.gameObject.layer))
+                {
+                    isPick = !isPick;
+                    PickItem();
+                }                    
+                else if (watchMask.IsContain(itemCol.gameObject.layer))
+                {
+                    IsWatch = !IsWatch;
+                    WatchItem();
+                }
             }
             else if (isOpenable)
             {
@@ -68,12 +73,10 @@ public class PlayerRoomInteractor : MonoBehaviour
                 itemCol = collider;
                 return true;
             }
-            else
-
-            if (Vector3.Distance(transform.position, collider.gameObject.transform.position) > range && itemList != null)
+            else if (Vector3.Distance(transform.position, collider.gameObject.transform.position) > range)
             {
                 return false;
-            }                
+            }
         }
         return false;
     }
@@ -98,6 +101,15 @@ public class PlayerRoomInteractor : MonoBehaviour
                 GameManager.UI.CloseInGameUI(itemUI);
             else
                 return;
+        }
+    }
+
+    private void WatchItem()
+    {
+        if (IsWatch)
+        {
+            IInteractable interactable = itemCol.gameObject.GetComponent<IInteractable>();
+            interactable?.Interact();
         }
     }
 

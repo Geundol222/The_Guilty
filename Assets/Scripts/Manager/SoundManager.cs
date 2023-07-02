@@ -45,7 +45,7 @@ public class SoundManager : MonoBehaviour
             if (AudioListener.volume <= 0f)
             {
                 GameManager.Resource.Destroy(bgmObj);
-                GameManager.Resource.Destroy(addObj);
+                addObj.SetActive(false);
                 isMuted = true;
                 yield break;
             }
@@ -117,7 +117,12 @@ public class SoundManager : MonoBehaviour
             if (loop)
                 addSource.Play();
             else
+            {
                 addSource.PlayOneShot(audioClip);
+
+                if (!addSource.isPlaying)
+                    GameManager.Resource.Destroy(addObj);
+            }
         }
     }
 

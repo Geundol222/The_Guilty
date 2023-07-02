@@ -35,7 +35,6 @@ public class RoomScene : BaseScene
 
     private void CreatePrefab()
     {
-        room = GameManager.Resource.Instantiate<GameObject>("Prefabs/RoomScene/Room");
-        room.transform.position = new Vector3(0, 0, 0);
+
     }
 }
