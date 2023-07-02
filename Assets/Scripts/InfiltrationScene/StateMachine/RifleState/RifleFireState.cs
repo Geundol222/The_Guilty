@@ -26,6 +26,7 @@ public class RifleFireState : RifleState
         if (FireTime < 0)
         {
             FireTime = 2f;
+            GameManager.Sound.PlaySound("Audios/InfiltrationScene/RifleShotSound", Audio.SFX, 0.3f);
             weaponHolder.Fire();
         }
     }

@@ -7,6 +7,8 @@ TagManager:
   - Floors
   - ItemCamera
   - Lock
+  - Drawer
+  - Clear
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - Obstacle
   - Ground
   - Door
-  - 
+  - Watch
   - 
   - 
   - 

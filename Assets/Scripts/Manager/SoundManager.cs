@@ -45,7 +45,7 @@ public class SoundManager : MonoBehaviour
             if (AudioListener.volume <= 0f)
             {
                 GameManager.Resource.Destroy(bgmObj);
-                GameManager.Resource.Destroy(addObj);
+                addObj.SetActive(false);
                 isMuted = true;
                 yield break;
             }
@@ -79,7 +79,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void PlaySound(AudioClip audioClip, Audio type = Audio.SFX, float volume = 1.0f, float pitch = 1.0f, bool loop = true)
+    public void PlaySound(AudioClip audioClip, Audio type = Audio.SFX, float volume = 1.0f, float pitch = 1.0f, bool loop = false)
     {
         StopAllCoroutines();
 
@@ -117,11 +117,16 @@ public class SoundManager : MonoBehaviour
             if (loop)
                 addSource.Play();
             else
+            {
                 addSource.PlayOneShot(audioClip);
+
+                if (!addSource.isPlaying)
+                    GameManager.Resource.Destroy(addObj);
+            }
         }
     }
 
-    public void PlaySound(string path, Audio type = Audio.SFX, float volume = 1.0f, float pitch = 1.0f, bool loop = true)
+    public void PlaySound(string path, Audio type = Audio.SFX, float volume = 1.0f, float pitch = 1.0f, bool loop = false)
     {
         AudioClip audioClip = GetOrAddAudioClip(path, type);
         PlaySound(audioClip, type, volume, pitch, loop);

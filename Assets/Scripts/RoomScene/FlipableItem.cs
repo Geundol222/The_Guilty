@@ -19,6 +19,7 @@ public class FlipableItem : MonoBehaviour, IPointerClickHandler
         {
             isClicked = true;
             isMove = !isMove;
+            GameManager.Sound.PlaySound("Audios/RoomScene/PageFlipSound", Audio.SFX, 0.5f);
             StartCoroutine(PopUpUIRoutine());
         }
     }

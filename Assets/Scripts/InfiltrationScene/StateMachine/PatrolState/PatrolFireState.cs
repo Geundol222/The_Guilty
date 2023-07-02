@@ -26,6 +26,7 @@ public class PatrolFireState : PatrolState
         if (FireTime < 0)
         {
             FireTime = 2f;
+            GameManager.Sound.PlaySound("Audios/InfiltrationScene/PistolShotSound", Audio.SFX, 0.3f);
             weaponHolder.Fire();
         }
     }

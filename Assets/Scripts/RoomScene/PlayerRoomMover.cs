@@ -53,4 +53,14 @@ public class PlayerRoomMover : MonoBehaviour
         else
             return;
     }
+
+    public void FirstStepSound()
+    {
+        GameManager.Sound.PlaySound("Audios/RoomScene/Floor_step0");
+    }
+
+    public void SecondStepSound()
+    {
+        GameManager.Sound.PlaySound("Audios/RoomScene/Floor_step1");
+    }
 }

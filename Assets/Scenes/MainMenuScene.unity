@@ -667,6 +667,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 942578440150660627, guid: 48e5f47af3c6e1849a1dfec5eb94b753, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5818451023887513299, guid: 48e5f47af3c6e1849a1dfec5eb94b753, type: 3}
       propertyPath: m_Name
       value: Murderer
@@ -869,6 +873,10 @@ PrefabInstance:
     - target: {fileID: 721138408402601070, guid: be8223978b9513f48a476c4cfd3258a8, type: 3}
       propertyPath: m_Name
       value: Victim
+      objectReference: {fileID: 0}
+    - target: {fileID: 6316865790313743534, guid: be8223978b9513f48a476c4cfd3258a8, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be8223978b9513f48a476c4cfd3258a8, type: 3}

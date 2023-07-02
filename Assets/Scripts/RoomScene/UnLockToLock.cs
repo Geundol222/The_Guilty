@@ -7,11 +7,13 @@ using UnityEngine.UI;
 public class UnLockToLock : MonoBehaviour
 {
     GameObject sceneObj;
+    [SerializeField] ClearPaper paper;
     [SerializeField] List<GameObject> rullers;
     [SerializeField] int[] answerArr;
     [SerializeField] Image selectArrow;
     [SerializeField] Image anwerArrow;
 
+    Animator drawerAnim;
     Animator anim;
     Vector3 originSelectArrow;
     Vector3 arrowPosition;
@@ -26,6 +28,8 @@ public class UnLockToLock : MonoBehaviour
 
     private void Awake()
     {
+        drawerAnim = GameObject.FindGameObjectWithTag("Drawer").GetComponent<Animator>();
+
         originSelectArrow = selectArrow.rectTransform.anchoredPosition;
         arrowPosition = selectArrow.rectTransform.anchoredPosition;
 
@@ -90,6 +94,7 @@ public class UnLockToLock : MonoBehaviour
     {
         if (vertical > 0)
         {
+            GameManager.Sound.PlaySound("Audios/RoomScene/RullerTurnSound", Audio.SFX, 0.5f);
             rullers[changeIndex].transform.Rotate(-scrollAngle, 0, 0, Space.Self);
 
             numberArr[changeIndex] += 1;
@@ -99,6 +104,7 @@ public class UnLockToLock : MonoBehaviour
         }
         else if (vertical < 0)
         {
+            GameManager.Sound.PlaySound("Audios/RoomScene/RullerTurnSound", Audio.SFX, 0.5f);
             rullers[changeIndex].transform.Rotate(scrollAngle, 0, 0, Space.Self);
 
             numberArr[changeIndex] -= 1;
@@ -125,17 +131,25 @@ public class UnLockToLock : MonoBehaviour
                 return;
         }
 
-        if (count >= 4)
+        if (count == 4)
         {
             anim.SetBool("IsOpen", true);
         }
+    }
+
+    public void PlayUnLockSound()
+    {
+        GameManager.Sound.PlaySound("Audios/RoomScene/LockOpenSound", Audio.SFX, 0.5f);
     }
 
     public void CloseUI()
     {
         GameManager.Resource.Destroy(sceneObj);
         GameManager.UI.ClosePopUpUI<ItemPopUpUI>();
-        GameManager.UI.ClosePopUpUI<LockInteractUI>();        
+        GameManager.UI.ClosePopUpUI<LockInteractUI>();
+
+        drawerAnim.SetBool("IsOpen", true);
+        paper.gameObject.SetActive(true);
     }
 
     private void OnDisable()
