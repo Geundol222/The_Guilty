@@ -7,144 +7,117 @@ using UnityEngine;
 
 public class CameraTransparent : MonoBehaviour
 {
-    [SerializeField] LayerMask obstacleMask;
-    [SerializeField] GameObject player;
+    [SerializeField] private LayerMask obstacleMask;
+    [SerializeField] private GameObject player;
+    [SerializeField] private float fadeDuration = 1f;
 
-    public List<GameObject> curWall;
-    public List<GameObject> prevWall;
-    Renderer[] renderers;
-    Renderer[] returnRenders;
-    Camera mainCam;
-    RaycastHit[] hits;
-
-    Coroutine fadeInRoutine;
-    Coroutine fadeOutRoutine;
+    private Camera mainCam;
+    private List<Renderer> wallRenderers;
+    private List<bool> isOpaque;
+    private List<float> currentAlpha;
+    private List<float> targetAlpha;
+    private List<float> lerpTime;
 
     private void Awake()
     {
-        mainCam = Camera.main;
-        curWall = new List<GameObject>();
-        prevWall = new List<GameObject>();
+        wallRenderers = new List<Renderer>();
+        isOpaque = new List<bool>();
+        currentAlpha = new List<float>();
+        targetAlpha = new List<float>();
+        lerpTime = new List<float>();
+    }
+
+    private void Start()
+    {
+        // Obtain all wall renderers in the scene
+        Renderer[] renderers = FindObjectsOfType<Renderer>();
+        foreach (Renderer renderer in renderers)
+        {
+            if (obstacleMask == (obstacleMask | (1 << renderer.gameObject.layer)))
+            {
+                wallRenderers.Add(renderer);
+                isOpaque.Add(true);
+                currentAlpha.Add(1f);
+                targetAlpha.Add(1f);
+                lerpTime.Add(0f);
+            }
+        }
     }
 
     private void LateUpdate()
     {
-        ObstacleRay();
-    }
-
-    private void ObstacleRay()
-    {
-        if (player != null)
-        {
-            Vector3 rayDir = (player.transform.position - mainCam.transform.position).normalized;
-
-            hits = Physics.RaycastAll(mainCam.transform.position, rayDir, Vector3.Distance(mainCam.transform.position, player.transform.position), obstacleMask);
-            curWall.Clear();
-
-            foreach (RaycastHit hit in hits)
-            {
-                curWall.Add(hit.collider.gameObject);
-            }
-
-            for (int i = 0; i < prevWall.Count; i++)
-            {
-                if (!curWall.Contains(prevWall[i]))
-                {
-                    // Enter
-                    prevWall.Remove(prevWall[i]);
-                    i--;
-                }
-            }
-
-            for (int i = 0; i < curWall.Count; i++)
-            {
-                if (!prevWall.Contains(curWall[i]))
-                {
-                    // Exit
-                    prevWall.Add(curWall[i]);                    
-                }
-            }
-        }
-        else
+        if (player == null)
             return;
-    }
 
-    IEnumerator OpaqueRoutine()
-    {
-        for (int i = 0; i < prevWall.Count; i++)
-        {
-            Renderer[] renderers = prevWall[i].GetComponentsInChildren<Renderer>();
-        }
+        Vector3 rayDir = (player.transform.position - transform.position).normalized;
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, rayDir, Vector3.Distance(transform.position, player.transform.position), obstacleMask);
 
-        while (true)
+        ResetWallTransparency();
+
+        int wallCount = wallRenderers.Count;
+        for (int i = 0; i < wallCount; i++)
         {
-            for (int i = 0; i < renderers.Length; i++)
+            if (hits.Length > 0)
             {
-                StandardShaderUtils.ChangeRenderMode(renderers[i].material, StandardShaderUtils.BlendMode.Opaque);
-                Color color = renderers[i].material.color;
-                color.a = Mathf.Lerp(color.a, 1f, 0.1f);
-                renderers[i].material.color = color;
+                if (isOpaque[i])
+                {
+                    isOpaque[i] = false;
+                    targetAlpha[i] = 0f;
+                    lerpTime[i] = 0f;
+                }
             }
-            yield return null;
+            else
+            {
+                if (!isOpaque[i])
+                {
+                    isOpaque[i] = true;
+                    targetAlpha[i] = 1f;
+                    lerpTime[i] = 0f;
+                }
+            }
+
+            if (lerpTime[i] < fadeDuration)
+            {
+                lerpTime[i] += Time.deltaTime;
+                currentAlpha[i] = Mathf.Lerp(currentAlpha[i], targetAlpha[i], lerpTime[i] / fadeDuration);
+            }
+
+            SetWallTransparency(i, currentAlpha[i]);
         }
     }
 
-    //private void CheckList()
-    //{
-    //    if (prevWall.Count > 0)
-    //    {
-    //        int count = 0;
-    //        for (int i = 0; i < prevWall.Count; i++)
-    //            returnRenders = prevWall[i].GetComponentsInChildren<Renderer>();
+    private void ResetWallTransparency()
+    {
+        int wallCount = wallRenderers.Count;
+        for (int i = 0; i < wallCount; i++)
+        {
+            if (isOpaque[i])
+            {
+                isOpaque[i] = false;
+                targetAlpha[i] = 0f;
+                lerpTime[i] = 0f;
+                SetWallTransparency(i, 0f);
+            }
+        }
+    }
 
-    //        for (int i = 0; i < returnRenders.Length; i++)
-    //        {
-    //            if (returnRenders[i].material.color.a >= 1f)
-    //                count++;
-    //        }
+    private void SetWallTransparency(int wallIndex, float alpha)
+    {
+        Renderer renderer = wallRenderers[wallIndex];
+        foreach (Material material in renderer.materials)
+        {
+            Color color = material.color;
+            color.a = alpha;
+            material.color = color;
 
-    //        if (count == returnRenders.Length)
-    //            prevWall.Clear();
-    //    }
-    //}
-
-    //IEnumerator FadeInMaterial()
-    //{
-    //    for (int i = 0; i < prevWall.Count; i++)
-    //    {
-    //        renderers = prevWall[i].GetComponentsInChildren<Renderer>();
-    //    }
-
-    //    while (true)
-    //    {
-    //        for (int i = 0; i < renderers.Length; i++)
-    //        {
-    //            Color color = renderers[i].material.color;
-    //            color.a = Mathf.Lerp(color.a, 1f, Time.deltaTime * 0.5f);
-    //            renderers[i].material.color = color;
-    //            StandardShaderUtils.ChangeRenderMode(renderers[i].material, StandardShaderUtils.BlendMode.Opaque);
-    //        }
-    //        yield return null;
-    //    }
-    //}
-
-    //IEnumerator FadeOutMaterial()
-    //{
-    //    for (int i = 0; i < curWall.Count; i++)
-    //    {
-    //        renderers = curWall[i].GetComponentsInChildren<Renderer>();
-    //    }
-
-    //    while (true)
-    //    {
-    //        for (int i = 0; i < renderers.Length; i++)
-    //        {
-    //            StandardShaderUtils.ChangeRenderMode(renderers[i].material, StandardShaderUtils.BlendMode.Transparent);
-    //            Color color = renderers[i].material.color;
-    //            color.a = Mathf.Lerp(color.a, 0.1f, Time.deltaTime * 0.5f);
-    //            renderers[i].material.color = color;
-    //        }
-    //        yield return null;
-    //    }
-    //}
+            if (alpha < 1f)
+            {
+                StandardShaderUtils.ChangeRenderMode(material, StandardShaderUtils.BlendMode.Transparent);
+            }
+            else
+            {
+                StandardShaderUtils.ChangeRenderMode(material, StandardShaderUtils.BlendMode.Opaque);
+            }
+        }
+    }
 }
