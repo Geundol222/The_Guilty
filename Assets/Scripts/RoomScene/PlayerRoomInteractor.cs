@@ -13,7 +13,6 @@ public class PlayerRoomInteractor : MonoBehaviour
     [SerializeField] float range;
     [SerializeField] LayerMask itemMask;
     [SerializeField] LayerMask doorMask;
-    [SerializeField] LayerMask watchMask;
 
     private Collider itemCol;
     private GameObject doorObj;
@@ -43,13 +42,16 @@ public class PlayerRoomInteractor : MonoBehaviour
             {
                 if (itemMask.IsContain(itemCol.gameObject.layer))
                 {
-                    isPick = !isPick;
-                    PickItem();
-                }                    
-                else if (watchMask.IsContain(itemCol.gameObject.layer))
-                {
-                    IsWatch = !IsWatch;
-                    WatchItem();
+                    if (itemCol.gameObject.name == "Paper")
+                    {
+                        IsWatch = !IsWatch;
+                        WatchItem();
+                    }
+                    else
+                    {
+                        isPick = !isPick;
+                        PickItem();
+                    }
                 }
             }
             else if (isOpenable)
@@ -87,13 +89,22 @@ public class PlayerRoomInteractor : MonoBehaviour
         {
             if (itemUI == null || !itemUI.gameObject.activeSelf)
             {
-                itemUI = GameManager.UI.ShowInGameUI<ItemInteractUI>("UI/InGameUI/ItemInteractUI");
+                if (itemCol.gameObject.name == "Paper")
+                {
+                    itemUI = GameManager.UI.ShowInGameUI<ItemInteractUI>("UI/InGameUI/ItemInteractUI");
+                    itemUI.WatchText();
+                }
+                else
+                {
+                    itemUI = GameManager.UI.ShowInGameUI<ItemInteractUI>("UI/InGameUI/ItemInteractUI");
+                    itemUI.ItemText(); 
+                }
                 itemUI.SetTarget(transform);
                 itemUI.SetOffSet(new Vector2(70, 50));
             }
             else
                 return;
-    
+
         }
         else
         {
@@ -106,11 +117,8 @@ public class PlayerRoomInteractor : MonoBehaviour
 
     private void WatchItem()
     {
-        if (IsWatch)
-        {
-            IInteractable interactable = itemCol.gameObject.GetComponent<IInteractable>();
-            interactable?.Interact();
-        }
+        IInteractable interactable = itemCol.gameObject.GetComponent<IInteractable>();
+        interactable?.Interact();
     }
 
     private void PickItem()

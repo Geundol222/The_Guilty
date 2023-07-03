@@ -8,7 +8,7 @@ public class GameOverUI : PopUpUI
     {
         base.Awake();
 
-        buttons["ContinueButton"].onClick.AddListener(() => { GameManager.Scene.LoadScene("InfiltrationScene"); });
-        buttons["MainMenuButton"].onClick.AddListener(() => { GameManager.Scene.LoadScene("MainMenuScene"); });
+        buttons["ContinueButton"].onClick.AddListener(() => { Time.timeScale = 1f; GameManager.Scene.LoadScene("InfiltrationScene"); });
+        buttons["MainMenuButton"].onClick.AddListener(() => { Time.timeScale = 1f; GameManager.Scene.LoadScene("MainMenuScene"); });
     }
 }
