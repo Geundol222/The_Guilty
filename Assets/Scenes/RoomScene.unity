@@ -1667,6 +1667,22 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5537662818523365672, guid: adf76d2abc85af240819e4c922ad3197, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5537662818523365672, guid: adf76d2abc85af240819e4c922ad3197, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5537662818523365672, guid: adf76d2abc85af240819e4c922ad3197, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5537662818523365672, guid: adf76d2abc85af240819e4c922ad3197, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278255360
+      objectReference: {fileID: 0}
     - target: {fileID: 8980447824468444318, guid: adf76d2abc85af240819e4c922ad3197, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

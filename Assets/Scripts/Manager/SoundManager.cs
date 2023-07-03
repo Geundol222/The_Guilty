@@ -19,6 +19,11 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
+        InitSound();
+    }
+
+    public void InitSound()
+    {
         sfxSources = new List<AudioSource>();
         audioDic = new Dictionary<string, AudioClip>();
     }
@@ -45,7 +50,7 @@ public class SoundManager : MonoBehaviour
             if (AudioListener.volume <= 0f)
             {
                 GameManager.Resource.Destroy(bgmObj);
-                addObj.SetActive(false);
+                GameManager.Resource.Destroy(addObj);
                 isMuted = true;
                 yield break;
             }
