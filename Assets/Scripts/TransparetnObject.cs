@@ -10,28 +10,49 @@ public class TransparetnObject : MonoBehaviour
     {
         if (obstacleMask.IsContain(other.gameObject.layer))
         {
-            StartCoroutine
+            StartCoroutine(TransparentRoutine(other));
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        
+        if (obstacleMask.IsContain(other.gameObject.layer))
+        {
+            StartCoroutine(OpaqueRoutine(other));
+        }
     }
 
     IEnumerator TransparentRoutine(Collider collider)
     {
-        Renderer[] renderers = collider.gameObject.GetComponentsInChildren<Renderer>();
+        Renderer renderer = collider.gameObject.GetComponent<Renderer>();
 
         while (true)
         {
-            for (int i = 0; i < renderers.Length; i++)
-            {
-                StandardShaderUtils.ChangeRenderMode(renderers[i].material, StandardShaderUtils.BlendMode.Transparent);
-                Color color = renderers[i].material.color;
-                color.a = Mathf.Lerp(color.a, 0.1f, Time.deltaTime * 0.5f);
-                renderers[i].material.color = color;
-            }
+            StandardShaderUtils.ChangeRenderMode(renderer.material, StandardShaderUtils.BlendMode.Transparent);
+            Color color = renderer.material.color;
+            color.a = Mathf.Lerp(color.a, 0.1f, 0.1f);
+            renderer.material.color = color;
+            if (renderer.material.color.a <= 0.1f)
+                yield break;
+
+            yield return null;
+        }
+    }
+
+    IEnumerator OpaqueRoutine(Collider collider)
+    {
+        Renderer renderer = collider.gameObject.GetComponent<Renderer>();
+
+        while (true)
+        {
+            StandardShaderUtils.ChangeRenderMode(renderer.material, StandardShaderUtils.BlendMode.Opaque);
+            Color color = renderer.material.color;
+            color.a = Mathf.Lerp(color.a, 1f, 0.1f);
+            renderer.material.color = color;
+
+            if (renderer.material.color.a >= 1f)
+                yield break;
+
             yield return null;
         }
     }
