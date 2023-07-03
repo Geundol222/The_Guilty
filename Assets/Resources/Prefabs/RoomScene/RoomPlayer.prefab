@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1223189928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1223189929}
+  - component: {fileID: 1223189931}
+  m_Layer: 3
+  m_Name: TransparentTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1223189929
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223189928}
+  m_LocalRotation: {x: -0.25559294, y: -0.36198622, z: -0.13230298, w: 0.88664204}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8270189307489247251}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: -33.3, y: -43.4, z: -3.4}
+--- !u!136 &1223189931
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223189928}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.01
+  m_Height: 30
+  m_Direction: 1
+  m_Center: {x: 0, y: 15, z: 0}
 --- !u!1 &1982879274
 GameObject:
   m_ObjectHideFlags: 0
@@ -2851,6 +2897,8 @@ GameObject:
   - component: {fileID: 2604683187768310373}
   - component: {fileID: -5983776284664921885}
   - component: {fileID: 9002445425234759148}
+  - component: {fileID: 2283372027483433818}
+  - component: {fileID: 2283372027483433817}
   m_Layer: 3
   m_Name: RoomPlayer
   m_TagString: Player
@@ -2882,6 +2930,7 @@ Transform:
   - {fileID: 6365408566783538867}
   - {fileID: 7367439519978607240}
   - {fileID: 1982879275}
+  - {fileID: 1223189929}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2970,8 +3019,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af35aabb4024a142a874ae4c5174535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  point: {fileID: 7367439519978607240}
-  range: 1
+  itemPoint: {fileID: 1982879275}
+  doorPoint: {fileID: 7367439519978607240}
+  range: 4
   itemMask:
     serializedVersion: 2
     m_Bits: 128
@@ -2993,6 +3043,36 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 512
+--- !u!54 &2283372027483433818
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759024048543972009}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!136 &2283372027483433817
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8759024048543972009}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!1 &8827961381375066286
 GameObject:
   m_ObjectHideFlags: 0

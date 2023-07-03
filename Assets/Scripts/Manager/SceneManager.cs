@@ -48,7 +48,7 @@ public class SceneManager : MonoBehaviour
 
         GameManager.Pool.InitPool();
         GameManager.UI.InitUI();
-        
+        GameManager.Sound.InitSound();        
 
         // 추가적인 씬에서 준비할 로딩을 진행하고 넘어가야함
         CurScene.LoadAsync();

@@ -29,7 +29,6 @@ public class PlayerInfiltrationInteractor : MonoBehaviour
     private bool isHide;
 
     private bool isPick = false;
-    private bool isPickable;
 
     public bool IsHide { get { return isHide; } }
 
@@ -44,8 +43,7 @@ public class PlayerInfiltrationInteractor : MonoBehaviour
     {
         InteractWall();
         InteracUIRender(isHidable);
-        InteractItem();
-        IsPickable(isPickable);
+        IsPickable(InteractItem());
     }
 
     private void InteractWall()
@@ -107,7 +105,7 @@ public class PlayerInfiltrationInteractor : MonoBehaviour
                 isInteract = !isInteract;
                 Hide();
             }
-            else if (isPickable)
+            else if (InteractItem())
             {
                 isPick = !isPick;
                 PickItem();
@@ -193,18 +191,21 @@ public class PlayerInfiltrationInteractor : MonoBehaviour
         }
     }
 
-    private void InteractItem()
+    private bool InteractItem()
     {
         Collider[] colliders = Physics.OverlapSphere(point.position, range, itemMask);
         foreach (Collider collider in colliders)
         {
             if (collider != null && itemMask.IsContain(collider.gameObject.layer))
             {
-                isPickable = true;
+                return true;
             }
-            else
-                isPickable = false;
+            else if (Vector3.Distance(transform.position, collider.gameObject.transform.position) > range)
+            {
+                return false;
+            }
         }
+        return false;
     }
 
     private void IsPickable(bool isPickable)

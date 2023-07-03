@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InfiltrationSceneUI : GameSceneUI
+public class RoomSceneUI : GameSceneUI
 {
     QuestData quest;
     [SerializeField] Sprite PlayImage;
@@ -18,7 +18,7 @@ public class InfiltrationSceneUI : GameSceneUI
         base.Awake();
 
         anim = GetComponent<Animator>();
-        quest = GameManager.Resource.Load<QuestData>("Data/InfiltrationQuest");
+        quest = GameManager.Resource.Load<QuestData>("Data/RoomQuest");
 
         Init();
     }

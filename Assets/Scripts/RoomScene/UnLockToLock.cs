@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 public class UnLockToLock : MonoBehaviour
 {
     GameObject sceneObj;
-    [SerializeField] ClearPaper paper;
+    [SerializeField] GameObject parentObj;
     [SerializeField] List<GameObject> rullers;
     [SerializeField] int[] answerArr;
     [SerializeField] Image selectArrow;
@@ -39,8 +40,13 @@ public class UnLockToLock : MonoBehaviour
 
     private void OnEnable()
     {
-        awakeRot = new Vector3(144, 0, 0);
+        awakeRot = new Vector3(144, 0, 0);        
         selectArrow.rectTransform.anchoredPosition = originSelectArrow;
+
+        for (int i = 0; i < numberArr.Length; i++)
+        {
+            numberArr[i] = 0;
+        }
 
         foreach (GameObject obj in rullers)
         {
@@ -144,12 +150,12 @@ public class UnLockToLock : MonoBehaviour
 
     public void CloseUI()
     {
-        GameManager.Resource.Destroy(sceneObj);
+        sceneObj.SetActive(false);
+        GameManager.Resource.Destroy(parentObj);
         GameManager.UI.ClosePopUpUI<ItemPopUpUI>();
         GameManager.UI.ClosePopUpUI<LockInteractUI>();
 
         drawerAnim.SetBool("IsOpen", true);
-        paper.gameObject.SetActive(true);
     }
 
     private void OnDisable()

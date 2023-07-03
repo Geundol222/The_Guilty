@@ -8,4 +8,14 @@ public class ItemInteractUI : InGameUI
     {
         base.Awake();
     }
+
+    public void ItemText()
+    {
+        texts["ItemText"].text = "Pick";
+    }
+
+    public void WatchText()
+    {
+        texts["ItemText"].text = "Watch";
+    }
 }

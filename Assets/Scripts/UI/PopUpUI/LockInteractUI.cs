@@ -30,7 +30,7 @@ public class LockInteractUI : PopUpUI
 
     public void OpenUnLock()
     {
-        ItemPopUpUI itemPopUpUI = GameManager.UI.ShowPopUpUI<ItemPopUpUI>("UI/PopUpUI/ItemPopUpUI");
+        ItemPopUpUI itemPopUpUI = GameManager.UI.ShowPopUpUI<ItemPopUpUI>("UI/PopUpUI/ItemPopUpUI");        
         itemPopUpUI.ShowItem(unLockObject);
     }
 }

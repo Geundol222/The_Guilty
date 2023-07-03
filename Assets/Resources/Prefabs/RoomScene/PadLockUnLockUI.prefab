@@ -2181,6 +2181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07ef923203793c840851fd4ee61ecef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentObj: {fileID: 6533388374845700978}
   rullers:
   - {fileID: 2823386956814244028}
   - {fileID: 4244868425493099244}
