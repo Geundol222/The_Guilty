@@ -19,6 +19,9 @@ public class QuestData : ScriptableObject
 
     public void ClearQuest()
     {
-        listIndex++;
+        if ((questList.Count - 1) > listIndex)
+            listIndex++;
+        else
+            return;
     }
 }

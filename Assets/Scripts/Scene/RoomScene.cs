@@ -5,8 +5,7 @@ using UnityEngine;
 public class RoomScene : BaseScene
 {
     public List<Transform> itemSpawnPoints;
-
-    GameObject room;
+    [SerializeField] RoomSceneUI roomUI;
 
     private void Awake()
     {
@@ -16,6 +15,7 @@ public class RoomScene : BaseScene
     protected override IEnumerator LoadingRoutine()
     {
         progress = 0f;
+        roomUI.Init();
         yield return new WaitForSecondsRealtime(1f);
 
         progress = 0.2f;
