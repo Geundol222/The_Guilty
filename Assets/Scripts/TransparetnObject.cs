@@ -4,56 +4,106 @@ using UnityEngine;
 
 public class TransparetnObject : MonoBehaviour
 {
-    [SerializeField] LayerMask obstacleMask;
+    [SerializeField] private LayerMask obstacleMask;
+    [SerializeField] private GameObject player;
+    [SerializeField] private float fadeDuration = 1f;
 
-    private void OnTriggerEnter(Collider other)
+    private List<Renderer> wallRenderers;
+    private Dictionary<Renderer, float> initialTransparency;
+    private Dictionary<Renderer, bool> isOpaque;
+    private Dictionary<Renderer, float> targetAlpha;
+    private Dictionary<Renderer, float> lerpTime;
+
+    private void Awake()
     {
-        if (obstacleMask.IsContain(other.gameObject.layer))
+        wallRenderers = new List<Renderer>();
+        initialTransparency = new Dictionary<Renderer, float>();
+        isOpaque = new Dictionary<Renderer, bool>();
+        targetAlpha = new Dictionary<Renderer, float>();
+        lerpTime = new Dictionary<Renderer, float>();
+    }
+
+    private void Start()
+    {
+        // Obtain all wall renderers in the scene
+        Renderer[] renderers = FindObjectsOfType<Renderer>();
+        foreach (Renderer renderer in renderers)
         {
-            StartCoroutine(TransparentRoutine(other));
+            if (obstacleMask == (obstacleMask | (1 << renderer.gameObject.layer)))
+            {
+                wallRenderers.Add(renderer);
+                initialTransparency[renderer] = GetMaxAlpha(renderer);
+                isOpaque[renderer] = true;
+                targetAlpha[renderer] = 1f;
+                lerpTime[renderer] = 0f;
+            }
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void Update()
     {
-        if (obstacleMask.IsContain(other.gameObject.layer))
+        if (player == null)
+            return;
+
+        Vector3 rayDir = (player.transform.position - transform.position).normalized;
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, rayDir, Vector3.Distance(transform.position, player.transform.position), obstacleMask);
+
+        foreach (Renderer renderer in wallRenderers)
         {
-            StartCoroutine(OpaqueRoutine(other));
+            if (hits.Length > 0)
+            {
+                if (isOpaque[renderer])
+                {
+                    isOpaque[renderer] = false;
+                    targetAlpha[renderer] = 0f;
+                    lerpTime[renderer] = 0f;
+                }
+            }
+            else
+            {
+                if (!isOpaque[renderer])
+                {
+                    isOpaque[renderer] = true;
+                    targetAlpha[renderer] = initialTransparency[renderer];
+                    lerpTime[renderer] = 0f;
+                }
+            }
+
+            if (lerpTime[renderer] < fadeDuration)
+            {
+                lerpTime[renderer] += Time.deltaTime;
+                float currentAlpha = Mathf.Lerp(initialTransparency[renderer], targetAlpha[renderer], lerpTime[renderer] / fadeDuration);
+                SetWallTransparency(renderer, currentAlpha);
+            }
         }
     }
 
-    IEnumerator TransparentRoutine(Collider collider)
+    private float GetMaxAlpha(Renderer renderer)
     {
-        Renderer renderer = collider.gameObject.GetComponent<Renderer>();
-
-        while (true)
+        float maxAlpha = 0f;
+        foreach (Material material in renderer.materials)
         {
-            StandardShaderUtils.ChangeRenderMode(renderer.material, StandardShaderUtils.BlendMode.Transparent);
-            Color color = renderer.material.color;
-            color.a = Mathf.Lerp(color.a, 0.1f, 0.1f);
-            renderer.material.color = color;
-            if (renderer.material.color.a <= 0.1f)
-                yield break;
-
-            yield return null;
+            maxAlpha = Mathf.Max(maxAlpha, material.color.a);
         }
+        return maxAlpha;
     }
 
-    IEnumerator OpaqueRoutine(Collider collider)
+    private void SetWallTransparency(Renderer renderer, float alpha)
     {
-        Renderer renderer = collider.gameObject.GetComponent<Renderer>();
-
-        while (true)
+        foreach (Material material in renderer.materials)
         {
-            StandardShaderUtils.ChangeRenderMode(renderer.material, StandardShaderUtils.BlendMode.Opaque);
-            Color color = renderer.material.color;
-            color.a = Mathf.Lerp(color.a, 1f, 0.1f);
-            renderer.material.color = color;
+            Color color = material.color;
+            color.a = alpha;
+            material.color = color;
 
-            if (renderer.material.color.a >= 1f)
-                yield break;
-
-            yield return null;
+            if (alpha < 1f)
+            {
+                StandardShaderUtils.ChangeRenderMode(material, StandardShaderUtils.BlendMode.Transparent);
+            }
+            else
+            {
+                StandardShaderUtils.ChangeRenderMode(material, StandardShaderUtils.BlendMode.Opaque);
+            }
         }
     }
 }

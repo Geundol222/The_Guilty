@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4305025917746968}
   - component: {fileID: 33150059347195458}
   - component: {fileID: 23386995376923278}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: notepad_bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5573165447381364313}
   - component: {fileID: 23117047845703346}
   - component: {fileID: 65411172062421724}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: notepad_top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 4527064727974542}
   - component: {fileID: 33799047194329006}
   - component: {fileID: 23515938872195488}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Notepad
   m_TagString: Untagged
   m_Icon: {fileID: 0}

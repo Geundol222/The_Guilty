@@ -270,8 +270,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   player: {fileID: 2283372027483433811}
-  curWall: []
-  prevWall: []
+  fadeDuration: 1
 --- !u!1 &466716302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,7 +1374,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: bf915871fe551cb498d21ec4e291d1f0, type: 3}
 --- !u!114 &7054277889251811839 stripped
 MonoBehaviour:
@@ -1610,6 +1610,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5537662818523365672, guid: adf76d2abc85af240819e4c922ad3197, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 5bbc674b6955519488beea8bc42e2d00, type: 2}
+    - target: {fileID: 5537662818523365672, guid: adf76d2abc85af240819e4c922ad3197, type: 3}
       propertyPath: m_fontColor.b
       value: 0
       objectReference: {fileID: 0}
@@ -1621,6 +1625,10 @@ PrefabInstance:
       propertyPath: m_fontColor.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5537662818523365672, guid: adf76d2abc85af240819e4c922ad3197, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 7579116043611879733, guid: 5bbc674b6955519488beea8bc42e2d00, type: 2}
     - target: {fileID: 5537662818523365672, guid: adf76d2abc85af240819e4c922ad3197, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4278255360
