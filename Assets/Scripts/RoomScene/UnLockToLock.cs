@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class UnLockToLock : MonoBehaviour
 {
+    ItemPopUpUI itemUI;
     GameObject sceneObj;
     [SerializeField] GameObject parentObj;
     [SerializeField] List<GameObject> rullers;
@@ -36,6 +37,11 @@ public class UnLockToLock : MonoBehaviour
 
         sceneObj = GameObject.FindGameObjectWithTag("Lock");
         anim = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        itemUI = GetComponentInParent<ItemPopUpUI>();
     }
 
     private void OnEnable()
@@ -139,6 +145,7 @@ public class UnLockToLock : MonoBehaviour
 
         if (count == 4)
         {
+            itemUI.DialogueRender("UnLock");
             anim.SetBool("IsOpen", true);
         }
     }
@@ -150,7 +157,7 @@ public class UnLockToLock : MonoBehaviour
 
     public void CloseUI()
     {
-        sceneObj.SetActive(false);
+        sceneObj.SetActive(false);        
         GameManager.Resource.Destroy(parentObj);
         GameManager.UI.ClosePopUpUI<ItemPopUpUI>();
         GameManager.UI.ClosePopUpUI<LockInteractUI>();

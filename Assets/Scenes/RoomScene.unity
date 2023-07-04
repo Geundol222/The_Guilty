@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 76c3716d56babd24d9e5ec450491d83f, type: 2}
---- !u!114 &326561143 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4633904699974579661, guid: 06e8ed28aa18f0f4388fa0d1ec02c22f, type: 3}
-  m_PrefabInstance: {fileID: 1089484106365908021}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 823191c2b9a0aae49be3fa31cc8611d3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &349424492
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,14 +387,6 @@ PrefabInstance:
     - target: {fileID: 1658452077661900100, guid: 171a9cbcfd2a7324a96d30d63ab48e4f, type: 3}
       propertyPath: m_Name
       value: Knife
-      objectReference: {fileID: 0}
-    - target: {fileID: 3309354175777457027, guid: 171a9cbcfd2a7324a96d30d63ab48e4f, type: 3}
-      propertyPath: m_ReceiveShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3309575685630953099, guid: 171a9cbcfd2a7324a96d30d63ab48e4f, type: 3}
-      propertyPath: m_ReceiveShadows
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8092043686980113687, guid: 171a9cbcfd2a7324a96d30d63ab48e4f, type: 3}
       propertyPath: m_RootOrder
@@ -1158,36 +1139,11 @@ PrefabInstance:
       propertyPath: paper
       value: 
       objectReference: {fileID: 1786899864}
-    - target: {fileID: 4679433455225048696, guid: 06e8ed28aa18f0f4388fa0d1ec02c22f, type: 3}
-      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4679433455225048696, guid: 06e8ed28aa18f0f4388fa0d1ec02c22f, type: 3}
-      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 326561143}
-    - target: {fileID: 4679433455225048696, guid: 06e8ed28aa18f0f4388fa0d1ec02c22f, type: 3}
-      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Interact
-      objectReference: {fileID: 0}
-    - target: {fileID: 4679433455225048696, guid: 06e8ed28aa18f0f4388fa0d1ec02c22f, type: 3}
-      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PadLock, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4679433455225048696, guid: 06e8ed28aa18f0f4388fa0d1ec02c22f, type: 3}
-      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 9031100186063984998, guid: 06e8ed28aa18f0f4388fa0d1ec02c22f, type: 3}
       propertyPath: m_Name
       value: PadLock
       objectReference: {fileID: 0}
-    - target: {fileID: 9031100186063984998, guid: 06e8ed28aa18f0f4388fa0d1ec02c22f, type: 3}
-      propertyPath: m_TagString
-      value: Lock
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 795163138164166983, guid: 06e8ed28aa18f0f4388fa0d1ec02c22f, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06e8ed28aa18f0f4388fa0d1ec02c22f, type: 3}
 --- !u!4 &1512077451449528809 stripped
 Transform:
@@ -1217,10 +1173,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4275833707962890127, guid: 0961bda698200f04290b8df32edaa77d, type: 3}
-      propertyPath: UIObject
-      value: 
-      objectReference: {fileID: 3050774750545366144, guid: 45341abbfed966c419c1d2c04dd5d7c9, type: 3}
     - target: {fileID: 4923680970882129824, guid: 0961bda698200f04290b8df32edaa77d, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1278,26 +1230,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 117452100265392184, guid: bf915871fe551cb498d21ec4e291d1f0, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 117452100265392184, guid: bf915871fe551cb498d21ec4e291d1f0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 117452100265392184, guid: bf915871fe551cb498d21ec4e291d1f0, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 1802074583099434391, guid: bf915871fe551cb498d21ec4e291d1f0, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5694018616715636228, guid: bf915871fe551cb498d21ec4e291d1f0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.4
-      objectReference: {fileID: 0}
     - target: {fileID: 7227610036695055396, guid: bf915871fe551cb498d21ec4e291d1f0, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -1366,16 +1298,7 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 466716303}
-    - target: {fileID: 8823766194375243730, guid: bf915871fe551cb498d21ec4e291d1f0, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8947682623012094177, guid: bf915871fe551cb498d21ec4e291d1f0, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf915871fe551cb498d21ec4e291d1f0, type: 3}
 --- !u!114 &7054277889251811839 stripped
 MonoBehaviour:
@@ -1608,30 +1531,6 @@ PrefabInstance:
     - target: {fileID: 5466938490611121805, guid: adf76d2abc85af240819e4c922ad3197, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5537662818523365672, guid: adf76d2abc85af240819e4c922ad3197, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 5bbc674b6955519488beea8bc42e2d00, type: 2}
-    - target: {fileID: 5537662818523365672, guid: adf76d2abc85af240819e4c922ad3197, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5537662818523365672, guid: adf76d2abc85af240819e4c922ad3197, type: 3}
-      propertyPath: m_fontColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5537662818523365672, guid: adf76d2abc85af240819e4c922ad3197, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5537662818523365672, guid: adf76d2abc85af240819e4c922ad3197, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 7579116043611879733, guid: 5bbc674b6955519488beea8bc42e2d00, type: 2}
-    - target: {fileID: 5537662818523365672, guid: adf76d2abc85af240819e4c922ad3197, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4278255360
       objectReference: {fileID: 0}
     - target: {fileID: 8980447824468444318, guid: adf76d2abc85af240819e4c922ad3197, type: 3}
       propertyPath: m_AnchorMax.y

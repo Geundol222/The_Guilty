@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class RoomSceneUI : GameSceneUI
 {
     QuestData quest;
+    DialogueData dialogue;
     [SerializeField] Sprite PlayImage;
     [SerializeField] Sprite PauseImage;
 
@@ -19,6 +21,7 @@ public class RoomSceneUI : GameSceneUI
 
         anim = GetComponent<Animator>();
         quest = GameManager.Resource.Load<QuestData>("Data/RoomQuest");
+        dialogue = GameManager.Resource.Load<DialogueData>("Data/RoomDialogueData");
 
         Init();
     }
@@ -33,6 +36,7 @@ public class RoomSceneUI : GameSceneUI
         buttons["PauseButton"].onClick.AddListener(Pause);
         buttons["ExitButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<ExitMainMenu>("UI/PopUpUI/ExitMainMenu"); });
         texts["QuestText"].text = quest.QuestList[quest.ListIndex];
+        texts["DialogueText"].text = "";
     }
 
     public void Pause()
@@ -55,5 +59,23 @@ public class RoomSceneUI : GameSceneUI
     {
         texts["QuestText"].text = quest.QuestList[quest.ListIndex];
         anim.Play("QuestText");
+    }
+
+    public void DialogueRender(string name)
+    {
+        for (int i = 0; i < dialogue.Dialogue.Length; i++)
+        {
+            if (name.Contains(dialogue.Dialogue[i].name))
+            {
+                texts["DialogueText"].text = dialogue.Dialogue[i].description;
+            }
+            else
+                continue;
+        }
+    }
+
+    public void DialogueClose()
+    {
+        texts["DialogueText"].text = "";
     }
 }

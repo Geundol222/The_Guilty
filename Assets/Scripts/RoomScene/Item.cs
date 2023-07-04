@@ -9,6 +9,7 @@ public class Item : MonoBehaviour
     public void Interact()
     {
         ItemPopUpUI itemPopUpUI = GameManager.UI.ShowPopUpUI<ItemPopUpUI>("UI/PopUpUI/ItemPopUpUI");
+        itemPopUpUI.DialogueRender(UIObject.name);
         itemPopUpUI.ShowItem(UIObject);
     }
 }

@@ -17,7 +17,7 @@ public class BookOpenPopUpUI : PopUpUI, IPointerClickHandler
         base.Awake();
         originBookPoint = book.transform.position;
 
-        buttons["Blocker"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI<BookOpenPopUpUI>(); });
+        buttons["ExitButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI<BookOpenPopUpUI>(); });
     }
 
     public void OnPointerClick(PointerEventData eventData)

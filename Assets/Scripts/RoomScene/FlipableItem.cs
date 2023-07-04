@@ -6,12 +6,24 @@ using UnityEngine.EventSystems;
 
 public class FlipableItem : MonoBehaviour, IPointerClickHandler
 {
+    ItemPopUpUI itemUI;
     [SerializeField] RectTransform flipPoint;
     [SerializeField] RectTransform stopPoint;
     [SerializeField] RectTransform startPoint;
 
     bool isClicked = false;
     bool isMove = false;
+
+    private void Start()
+    {
+        itemUI = GetComponentInParent<ItemPopUpUI>();
+    }
+
+    private void OnEnable()
+    {
+        flipPoint.transform.position = startPoint.transform.position;
+        isMove = false;
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -35,6 +47,7 @@ public class FlipableItem : MonoBehaviour, IPointerClickHandler
                     flipPoint.transform.Translate(Vector3.up * Time.unscaledDeltaTime * 2000f, Space.World);
                     if ((stopPoint.transform.position.y - flipPoint.transform.position.y) < 0.1f)
                     {
+                        itemUI.DialogueRender("Password");
                         flipPoint.transform.position = stopPoint.transform.position;
                         isClicked = false;
                         yield break;

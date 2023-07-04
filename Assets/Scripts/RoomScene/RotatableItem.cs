@@ -15,6 +15,7 @@ public class RotatableItem : MonoBehaviour, IDragHandler, IScrollHandler
     private void Awake()
     {
         objectScale = realItem.transform.localScale;
+        RotateText.text = "Rotate";
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -47,10 +48,12 @@ public class RotatableItem : MonoBehaviour, IDragHandler, IScrollHandler
         if (Scale.magnitude > objectScale.magnitude)
         {
             isZoomed = true;
+            RotateText.text = "Move";
         }
         else
         {
             isZoomed = false;
+            RotateText.text = "Rotate";
             realItem.transform.position = StartPosition.position;
             realItem.transform.rotation = StartPosition.rotation;
         }
