@@ -6,7 +6,6 @@ public class ItemPopUpUI : PopUpUI
     [SerializeField] GameObject itemPosition;
     GameObject uiObj;
     DialogueData dialogue;
-    RoomSceneUI roomUI;
 
 
     protected override void Awake()
