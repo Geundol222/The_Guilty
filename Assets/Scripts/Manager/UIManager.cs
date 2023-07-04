@@ -54,6 +54,7 @@ public class UIManager : MonoBehaviour
         ui.transform.SetParent(popUpCanvas.transform, false);
 
         popUpStack.Push(ui);
+        inGameCanvas.gameObject.SetActive(false);
         Time.timeScale = 0f;
 
         return ui;
@@ -76,7 +77,10 @@ public class UIManager : MonoBehaviour
             curUI.gameObject.SetActive(true);
         }
         if (popUpStack.Count == 0)
+        {
             Time.timeScale = 1f;
+            inGameCanvas.gameObject.SetActive(true);
+        }
     }
 
     public T ShowWindowUI<T>(T windowUI) where T : WindowUI

@@ -25,6 +25,7 @@ public class LockInteractUI : PopUpUI
     public void OpenInvestigation()
     {
         ItemPopUpUI itemPopUpUI = GameManager.UI.ShowPopUpUI<ItemPopUpUI>("UI/PopUpUI/ItemPopUpUI");
+        itemPopUpUI.DialogueRender(investigateObject.name);
         itemPopUpUI.ShowItem(investigateObject);
     }
 

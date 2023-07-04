@@ -108,8 +108,8 @@ public class SoundManager : MonoBehaviour
         else
         {
             addObj = GameManager.Resource.Instantiate<GameObject>("Prefabs/SFX", true);
-            addObj.transform.parent = transform;
 
+            addObj.transform.parent = transform;
             addSource = addObj.GetComponent<AudioSource>();
 
             addSource.transform.parent = transform;
@@ -124,9 +124,6 @@ public class SoundManager : MonoBehaviour
             else
             {
                 addSource.PlayOneShot(audioClip);
-
-                if (!addSource.isPlaying)
-                    GameManager.Resource.Destroy(addObj);
             }
         }
     }
