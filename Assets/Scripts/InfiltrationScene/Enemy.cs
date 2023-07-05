@@ -11,12 +11,14 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public FieldOfView fov;
     [HideInInspector] public GameObject player;
     [HideInInspector] public bool isFind;
-    
+    [HideInInspector] public PlayerController playerController;
+
     FindPlayerUI findUI;
 
     protected virtual void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
         weaponHolder = GetComponentInChildren<EnemyWeaponHolder>();
         fov = GetComponentInChildren<FieldOfView>();
         agent = GetComponent<NavMeshAgent>();

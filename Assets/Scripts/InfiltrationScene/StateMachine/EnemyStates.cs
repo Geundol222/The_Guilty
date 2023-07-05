@@ -11,6 +11,7 @@ namespace EnemyStates
     public abstract class PatrolState : StateBase<State, PatrolMan>
     {
         protected EnemyWeaponHolder weaponHolder { get { return owner.weaponHolder; } }
+        protected PlayerController playerController { get { return owner.playerController; } }
         protected FieldOfView fov { get { return owner.fov; } }
         protected NavMeshAgent agent { get { return owner.agent; } }
         protected Transform transform { get { return owner.transform; } }
@@ -31,6 +32,7 @@ namespace EnemyStates
     public abstract class RifleState : StateBase<State, RifleMan>
     {
         protected EnemyWeaponHolder weaponHolder { get { return owner.weaponHolder; } }
+        protected PlayerController playerController { get { return owner.playerController; } }
         protected FieldOfView fov { get { return owner.fov; } }
         protected NavMeshAgent agent { get { return owner.agent; } }
         protected Transform transform { get { return owner.transform; } }

@@ -234,7 +234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d1d8d99e7672af4eb0a7d206c8a5753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1280109387, guid: d8ddd32275248af4b938b67b2d601bc7, type: 3}
   InfiltrationScene: {fileID: 5405845349277543356, guid: 8f13374cdcff02646b3b6c0d842cb556, type: 3}
   edgeResolveIterations: 0
   edgeDstThreshold: 0
@@ -904,9 +903,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   muzzleEffect: {fileID: 3402068911098783962}
-  player: {fileID: 7499872188280131904, guid: d8ddd32275248af4b938b67b2d601bc7, type: 3}
   bulletSpeed: 300
-  damage: 50
+  damage: 1
 --- !u!1 &3055749700342330736
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,11 +1090,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ae9b1d8c3d04c44980e16719c34789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7499872188280131904, guid: d8ddd32275248af4b938b67b2d601bc7, type: 3}
   weaponHolder: {fileID: 0}
   agent: {fileID: 0}
   anim: {fileID: 0}
   fov: {fileID: 0}
+  player: {fileID: 7499872188280131904, guid: d8ddd32275248af4b938b67b2d601bc7, type: 3}
   isFind: 0
   rayPoint: {fileID: 8115761650255058142}
   obstacleMask:
