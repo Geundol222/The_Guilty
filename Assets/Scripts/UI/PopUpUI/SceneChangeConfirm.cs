@@ -8,7 +8,7 @@ public class SceneChangeConfirm : PopUpUI
     {
         base.Awake();
 
-        buttons["YesButton"].onClick.AddListener(() => { Time.timeScale = 1f; GameManager.Scene.LoadScene("InfiltrationScene"); });
+        buttons["YesButton"].onClick.AddListener(() => { Time.timeScale = 1f; GameManager.Scene.NextScene(); });
         buttons["NoButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI<SceneChangeConfirm>(); });
     }
 }

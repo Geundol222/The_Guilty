@@ -6,6 +6,7 @@ using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 public class SceneManager : MonoBehaviour
 {
     private LoadingUI loadingUI;
+    private int nextIndex = 0;
 
     private BaseScene curScene;
     public BaseScene CurScene
@@ -26,19 +27,29 @@ public class SceneManager : MonoBehaviour
         loadingUI.transform.SetParent(transform, false);
     }
 
-    public void LoadScene(string sceneName)
+    public void NextScene()
     {
-        StartCoroutine(LoadingRoutine(sceneName));
+        int index = UnitySceneManager.GetActiveScene().buildIndex;
+        if (UnitySceneManager.sceneCountInBuildSettings > index)
+            nextIndex = index + 1;
+
+        LoadScene(nextIndex);
     }
 
-    IEnumerator LoadingRoutine(string sceneName)
+    public void LoadScene(int index)
+    {
+        StartCoroutine(LoadingRoutine(index));
+    }
+
+    IEnumerator LoadingRoutine(int index)
     {
         loadingUI.FadeOut();
         yield return new WaitForSeconds(1f);
-        yield return new WaitUntil(() => { return GameManager.Sound.Clear(); });
+        GameManager.Sound.Clear();
+        yield return new WaitUntil(() => { return GameManager.Sound.IsMuted(); });
         Time.timeScale = 0f;
 
-        AsyncOperation oper = UnitySceneManager.LoadSceneAsync(sceneName);
+        AsyncOperation oper = UnitySceneManager.LoadSceneAsync(index);
 
         while (!oper.isDone)
         {
@@ -48,7 +59,7 @@ public class SceneManager : MonoBehaviour
 
         GameManager.Pool.InitPool();
         GameManager.UI.InitUI();
-        GameManager.Sound.InitSound();        
+        GameManager.Sound.InitSound();
 
         // 추가적인 씬에서 준비할 로딩을 진행하고 넘어가야함
         CurScene.LoadAsync();
@@ -59,7 +70,8 @@ public class SceneManager : MonoBehaviour
         }
 
         Time.timeScale = 1f;
-        yield return new WaitWhile(() => { return GameManager.Sound.FadeInAudio(); });
+        GameManager.Sound.FadeInAudio();
+        yield return new WaitWhile(() => { return GameManager.Sound.IsMuted(); });
         loadingUI.FadeIn();
         yield return new WaitForSeconds(1f);
     }
