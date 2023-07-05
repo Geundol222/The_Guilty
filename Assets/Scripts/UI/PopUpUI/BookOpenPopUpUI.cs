@@ -10,17 +10,17 @@ public class BookOpenPopUpUI : PopUpUI, IPointerClickHandler
     [SerializeField] GameObject book;
     [SerializeField] GameObject movePoint;
 
+    InfiltrationSceneUI sceneUI;
     DialogueData dialogue;
     Vector3 originBookPoint;
     bool isMove = false;
     bool isClicked = false;
 
-    public UnityEvent OnClear;
-
     protected override void Awake()
     {
         base.Awake();
         originBookPoint = book.transform.position;
+        sceneUI = FindObjectOfType<InfiltrationSceneUI>();
         dialogue = GameManager.Resource.Load<DialogueData>("Data/InfiltrationDialogueData");
 
         buttons["ExitButton"].onClick.AddListener(CloseUI);
@@ -92,7 +92,7 @@ public class BookOpenPopUpUI : PopUpUI, IPointerClickHandler
 
     public void CloseUI()
     {
-        OnClear?.Invoke();
+        sceneUI.Clear();
         GameManager.UI.ClosePopUpUI<BookOpenPopUpUI>();
     }
 }

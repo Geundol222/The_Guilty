@@ -1201,6 +1201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 787bb230f8a4370408cb9ed415243f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clearTrigger: {fileID: 0}
   PlayImage: {fileID: 21300000, guid: 631c4e5a9ae0d442588cb1aac69fb23b, type: 3}
   PauseImage: {fileID: 21300000, guid: 198226040756c4c0d9b6f14001e3ac47, type: 3}
 --- !u!95 &894149169
@@ -1586,7 +1587,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "\uB2E4\uC774\uC5BC\uB85C\uADF8"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d94b4d803ce0ecb42ae8e87383fd8776, type: 2}
   m_sharedMaterial: {fileID: 7741063497882328167, guid: d94b4d803ce0ecb42ae8e87383fd8776, type: 2}
@@ -1595,8 +1596,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278190156
+  m_fontColor: {r: 0.3, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1613,8 +1614,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

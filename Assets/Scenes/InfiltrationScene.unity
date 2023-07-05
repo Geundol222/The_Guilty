@@ -499,34 +499,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3757513457792986838, guid: 0d684b57775da6e4c80affd0dcdcef1c, type: 3}
-      propertyPath: m_text
-      value: "\uB2E4\uC774\uC5BC\uB85C\uADF8"
-      objectReference: {fileID: 0}
-    - target: {fileID: 3757513457792986838, guid: 0d684b57775da6e4c80affd0dcdcef1c, type: 3}
-      propertyPath: m_fontSize
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3757513457792986838, guid: 0d684b57775da6e4c80affd0dcdcef1c, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3757513457792986838, guid: 0d684b57775da6e4c80affd0dcdcef1c, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3757513457792986838, guid: 0d684b57775da6e4c80affd0dcdcef1c, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3757513457792986838, guid: 0d684b57775da6e4c80affd0dcdcef1c, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3757513457792986838, guid: 0d684b57775da6e4c80affd0dcdcef1c, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4278190156
-      objectReference: {fileID: 0}
     - target: {fileID: 4098250559556785810, guid: 0d684b57775da6e4c80affd0dcdcef1c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -575,6 +547,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6125729289939554520, guid: 0d684b57775da6e4c80affd0dcdcef1c, type: 3}
+      propertyPath: clearTrigger
+      value: 
+      objectReference: {fileID: 121414919}
     - target: {fileID: 6374399821510016258, guid: 0d684b57775da6e4c80affd0dcdcef1c, type: 3}
       propertyPath: m_Name
       value: InfiltrationSceneUI

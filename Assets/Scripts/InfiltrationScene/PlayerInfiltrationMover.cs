@@ -149,10 +149,10 @@ public class PlayerInfiltrationMover : MonoBehaviour
             GameManager.Sound.PlaySound("Audios/InfiltrationScene/RunSound2", Audio.SFX, 0.5f);
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, walkStepRange);
-        Gizmos.DrawWireSphere(transform.position, runStepRange);
-    }
+    // private void OnDrawGizmosSelected()
+    // {
+    //     Gizmos.color = Color.cyan;
+    //     Gizmos.DrawWireSphere(transform.position, walkStepRange);
+    //     Gizmos.DrawWireSphere(transform.position, runStepRange);
+    // }
 }

@@ -30,8 +30,10 @@ public class SceneManager : MonoBehaviour
     public void NextScene()
     {
         int index = UnitySceneManager.GetActiveScene().buildIndex;
-        if (UnitySceneManager.sceneCountInBuildSettings > index)
+        if (UnitySceneManager.sceneCountInBuildSettings - 1 > index)
             nextIndex = index + 1;
+        else
+            nextIndex = index;
 
         LoadScene(nextIndex);
     }
