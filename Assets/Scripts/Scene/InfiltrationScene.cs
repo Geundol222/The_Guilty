@@ -8,7 +8,6 @@ public class InfiltrationScene : BaseScene
     public Transform itemSpawnPoint;
     public List<Transform> enemySpawnPoints;
 
-    GameObject hangar;
     GameObject clearPaper;
     List<GameObject> patrolMans;
 
@@ -39,9 +38,6 @@ public class InfiltrationScene : BaseScene
 
     private void CreatePrefab()
     {
-        hangar = GameManager.Resource.Instantiate<GameObject>("Prefabs/InfiltrationScene/Hangar");
-        hangar.transform.position = new Vector3(0, 0, 0);
-
         clearPaper = GameManager.Resource.Instantiate<GameObject>("Prefabs/InfiltrationScene/ClearPaper");
         clearPaper.transform.position = itemSpawnPoint.position;
         clearPaper.transform.rotation = itemSpawnPoint.rotation;

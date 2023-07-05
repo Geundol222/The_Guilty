@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
 public class BookOpenPopUpUI : PopUpUI, IPointerClickHandler
@@ -8,6 +10,8 @@ public class BookOpenPopUpUI : PopUpUI, IPointerClickHandler
     [SerializeField] GameObject book;
     [SerializeField] GameObject movePoint;
 
+    InfiltrationSceneUI sceneUI;
+    DialogueData dialogue;
     Vector3 originBookPoint;
     bool isMove = false;
     bool isClicked = false;
@@ -16,8 +20,11 @@ public class BookOpenPopUpUI : PopUpUI, IPointerClickHandler
     {
         base.Awake();
         originBookPoint = book.transform.position;
+        sceneUI = FindObjectOfType<InfiltrationSceneUI>();
+        dialogue = GameManager.Resource.Load<DialogueData>("Data/InfiltrationDialogueData");
 
-        buttons["ExitButton"].onClick.AddListener(() => { GameManager.UI.ClosePopUpUI<BookOpenPopUpUI>(); });
+        buttons["ExitButton"].onClick.AddListener(CloseUI);
+        DialogueRender("NoteBook");
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -45,6 +52,7 @@ public class BookOpenPopUpUI : PopUpUI, IPointerClickHandler
 
                     if (Vector3.Distance(book.transform.position, movePoint.transform.position) < 0.1f)
                     {
+                        DialogueRender("Click");
                         book.transform.position = movePoint.transform.position;
                         isClicked = false;
                         yield break;
@@ -67,5 +75,24 @@ public class BookOpenPopUpUI : PopUpUI, IPointerClickHandler
 
             yield return null;
         }
+    }
+
+    public void DialogueRender(string name)
+    {
+        for (int i = 0; i < dialogue.Dialogue.Length; i++)
+        {
+            if (name.Contains(dialogue.Dialogue[i].name))
+            {
+                texts["DialogueText"].text = dialogue.Dialogue[i].description;
+            }
+            else
+                continue;
+        }
+    }
+
+    public void CloseUI()
+    {
+        sceneUI.Clear();
+        GameManager.UI.ClosePopUpUI<BookOpenPopUpUI>();
     }
 }

@@ -16,16 +16,16 @@ public class PatrolFireState : PatrolState
 
     public override void Enter()
     {
-        FireTime = 2f;
+        FireTime = 1.5f;
     }
 
     public override void Update()
     {
         FireTime -= Time.deltaTime;
 
-        if (FireTime < 0)
+        if (FireTime < 0 && !playerController.IsDead)
         {
-            FireTime = 2f;
+            FireTime = 1.5f;
             GameManager.Sound.PlaySound("Audios/InfiltrationScene/PistolShotSound", Audio.SFX, 0.3f);
             weaponHolder.Fire();
         }

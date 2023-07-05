@@ -2495,6 +2495,7 @@ GameObject:
   - component: {fileID: 7499872188280131904}
   - component: {fileID: 4536473721220172602}
   - component: {fileID: 2100784446}
+  - component: {fileID: 1775758623967862143}
   - component: {fileID: 2100784447}
   - component: {fileID: 2100784450}
   - component: {fileID: 480643308488881405}
@@ -2574,6 +2575,22 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!54 &1775758623967862143
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7160502029636635642}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!195 &2100784447
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2638,7 +2655,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da9cd5bfdc90f94ba5b09a84dee96bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curScene: {fileID: 0}
   debug: 1
   groundMask:
     serializedVersion: 2
@@ -2687,6 +2703,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 833826128a80f3c4ebd1874f29d39703, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCam: {fileID: 0}
+  hpList:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1280109387
 MonoBehaviour:
   m_ObjectHideFlags: 0
