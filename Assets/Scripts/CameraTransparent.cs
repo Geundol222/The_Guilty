@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using UnityEngine;
 
 public class CameraTransparent : MonoBehaviour
@@ -11,7 +7,6 @@ public class CameraTransparent : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private float fadeDuration = 1f;
 
-    private Camera mainCam;
     private List<Renderer> wallRenderers;
     private List<bool> isOpaque;
     private List<float> currentAlpha;

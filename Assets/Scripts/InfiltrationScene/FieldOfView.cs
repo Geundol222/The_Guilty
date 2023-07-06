@@ -133,16 +133,16 @@ public class FieldOfView : MonoBehaviour
             isFind = false;
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);
-
-        Vector3 rightDir = AngleToDir(transform.eulerAngles.y + angle * 0.5f);
-        Vector3 leftDir = AngleToDir(transform.eulerAngles.y - angle * 0.5f);
-        Debug.DrawRay(transform.position, rightDir * range, Color.green);
-        Debug.DrawRay(transform.position, leftDir * range, Color.green);
-    }
+    // private void OnDrawGizmosSelected()
+    // {
+    //     Gizmos.color = Color.red;
+    //     Gizmos.DrawWireSphere(transform.position, range);
+    // 
+    //     Vector3 rightDir = AngleToDir(transform.eulerAngles.y + angle * 0.5f);
+    //     Vector3 leftDir = AngleToDir(transform.eulerAngles.y - angle * 0.5f);
+    //     Debug.DrawRay(transform.position, rightDir * range, Color.green);
+    //     Debug.DrawRay(transform.position, leftDir * range, Color.green);
+    // }
 
     private Vector3 AngleToDir(float angle)
     {

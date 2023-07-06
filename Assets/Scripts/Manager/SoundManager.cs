@@ -11,7 +11,7 @@ public class SoundManager : MonoBehaviour
 {
     GameObject bgmObj;
     AudioSource bgmSource;
-    GameObject addObj;
+    GameObject loopSFX;
     AudioSource addSource;
     List<AudioSource> sfxSources;
     Dictionary<string, AudioClip> audioDic;
@@ -28,13 +28,16 @@ public class SoundManager : MonoBehaviour
         audioDic = new Dictionary<string, AudioClip>();
     }
 
-    public bool Clear()
+    public void Clear()
     {
         StartCoroutine(ClearRoutine());
 
         sfxSources.Clear();
         audioDic.Clear();
+    }
 
+    public bool IsMuted()
+    {
         return isMuted;
     }
 
@@ -50,7 +53,8 @@ public class SoundManager : MonoBehaviour
             if (AudioListener.volume <= 0f)
             {
                 GameManager.Resource.Destroy(bgmObj);
-                GameManager.Resource.Destroy(addObj);
+                if (loopSFX != null)
+                    GameManager.Resource.Destroy(loopSFX);
                 isMuted = true;
                 yield break;
             }
@@ -58,12 +62,10 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public bool FadeInAudio()
+    public void FadeInAudio()
     {
         AudioListener.volume = 0f;
         StartCoroutine(FadeInRoutine());
-
-        return isMuted;
     }
 
     IEnumerator FadeInRoutine()
@@ -86,7 +88,8 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySound(AudioClip audioClip, Audio type = Audio.SFX, float volume = 1.0f, float pitch = 1.0f, bool loop = false)
     {
-        StopAllCoroutines();
+        StopCoroutine(FadeInRoutine());
+        StopCoroutine(ClearRoutine());
 
         if (audioClip == null)
             return;
@@ -107,25 +110,45 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            addObj = GameManager.Resource.Instantiate<GameObject>("Prefabs/SFX", true);
-
-            addObj.transform.parent = transform;
-            addSource = addObj.GetComponent<AudioSource>();
-
-            addSource.transform.parent = transform;
-            addSource.volume = volume;
-            addSource.pitch = pitch;
-            addSource.clip = audioClip;
-            addSource.loop = loop;
-            sfxSources.Add(addSource);
-
             if (loop)
+            {
+                loopSFX = GameManager.Resource.Instantiate<GameObject>("Prefabs/SFX");
+                addSource = loopSFX.GetComponent<AudioSource>();
+
+                addSource.transform.parent = transform;
+                addSource.volume = volume;
+                addSource.pitch = pitch;
+                addSource.clip = audioClip;
+                addSource.loop = loop;
+                sfxSources.Add(addSource);
+
                 addSource.Play();
+            }
             else
             {
-                addSource.PlayOneShot(audioClip);
+                GameObject addObj = GameManager.Resource.Instantiate<GameObject>("Prefabs/SFX", true);
+
+                addObj.transform.parent = transform;
+                addSource = addObj.GetComponent<AudioSource>();
+
+                addSource.transform.parent = transform;
+                addSource.volume = volume;
+                addSource.pitch = pitch;
+                addSource.clip = audioClip;
+                addSource.loop = loop;
+                sfxSources.Add(addSource);
+
+                StartCoroutine(SFXPlayRoutine(addObj, audioClip));
             }
         }
+    }
+
+    IEnumerator SFXPlayRoutine(GameObject addObj, AudioClip audioClip)
+    {
+        addSource.PlayOneShot(audioClip);
+        yield return new WaitUntil(() => { return addSource.isPlaying; });
+        GameManager.Resource.Destroy(addObj);
+        yield break;
     }
 
     public void PlaySound(string path, Audio type = Audio.SFX, float volume = 1.0f, float pitch = 1.0f, bool loop = false)

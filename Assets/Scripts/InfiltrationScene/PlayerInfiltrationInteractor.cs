@@ -62,8 +62,8 @@ public class PlayerInfiltrationInteractor : MonoBehaviour
         else
             isHidable = false;
 
-        Debug.DrawRay(headChecker.position, headChecker.forward * 6f, Color.red);
-        Debug.DrawRay(legChecker.position, legChecker.forward * 6f, Color.red);
+        // Debug.DrawRay(headChecker.position, headChecker.forward * 6f, Color.red);
+        // Debug.DrawRay(legChecker.position, legChecker.forward * 6f, Color.red);
     }
 
     private void InteracUIRender(bool isHidable)
