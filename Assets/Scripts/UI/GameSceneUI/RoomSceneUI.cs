@@ -32,7 +32,7 @@ public class RoomSceneUI : GameSceneUI
 
         quest.InitQuest();
 
-        buttons["SettingButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<SettingPopUpUI>("UI/PopUpUI/SettingUI"); });
+        buttons["SettingButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<SettingUI>("UI/PopUpUI/SettingUI"); });
         buttons["PauseButton"].onClick.AddListener(Pause);
         buttons["ExitButton"].onClick.AddListener(() => { GameManager.UI.ShowPopUpUI<ExitMainMenu>("UI/PopUpUI/ExitMainMenu"); });
         texts["QuestText"].text = quest.QuestList[quest.ListIndex];

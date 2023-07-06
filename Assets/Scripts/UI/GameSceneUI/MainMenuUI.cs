@@ -20,6 +20,6 @@ public class MainMenuUI : GameSceneUI
 
     public void ClickSetting()
     {
-        GameManager.UI.ShowPopUpUI<SettingPopUpUI>("UI/PopUpUI/SettingUI");
+        GameManager.UI.ShowPopUpUI<SettingUI>("UI/PopUpUI/SettingUI");
     }
 }
