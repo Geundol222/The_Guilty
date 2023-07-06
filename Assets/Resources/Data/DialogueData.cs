@@ -1,6 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [CreateAssetMenu (fileName = "DialogueData", menuName = "Data/Dialogue")]
@@ -17,6 +17,5 @@ public class DialogueData : ScriptableObject
 
         [TextArea(3, 5)]
         public string description;
-        public bool chackRead;
     }
 }
