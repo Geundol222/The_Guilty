@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/InfiltrationScene.unity
     guid: 32a47e91347164f43a77cd00e0263a27
+  - enabled: 1
+    path: Assets/Scenes/EndingScene.unity
+    guid: 29e7e1742f8e32e4e88a71555d492897
   m_configObjects: {}
