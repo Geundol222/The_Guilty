@@ -11,7 +11,6 @@ public class EndingSceneUI : GameSceneUI
     private DialogueData data;
     private Animator anim;
 
-    public UnityEvent OnDialogueStart;
     public UnityEvent OnCameraStart;
 
     protected override void Awake()
@@ -40,5 +39,17 @@ public class EndingSceneUI : GameSceneUI
         GameManager.Resource.Destroy(dialogue.gameObject);
         GameManager.Resource.Destroy(gameObject);
 
+    }
+
+    public void PlayPhoneRing()
+    {
+        GameManager.Sound.PlaySound("Audios/EndingScene/RingToneSound", Audio.SFX, 0.3f);
+    }
+
+    public void BeepSound()
+    {
+        GameObject ring = GameObject.Find("RingToneSound");
+        GameManager.Resource.Destroy(ring.gameObject);
+        GameManager.Sound.PlaySound("Audios/EndingScene/PhoneBeepSound", Audio.SFX, 0.3f);
     }
 }

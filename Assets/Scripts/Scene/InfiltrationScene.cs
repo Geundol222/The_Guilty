@@ -19,17 +19,17 @@ public class InfiltrationScene : BaseScene
     protected override IEnumerator LoadingRoutine()
     {
         progress = 0f;
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         progress = 0.2f;
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         progress = 0.4f;        
         CreatePrefab();
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         progress = 0.6f;
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         progress = 1f;
         GameManager.Sound.PlaySound("Audios/MainMenu/MainBGM", Audio.BGM, 0.4f, 0.7f);

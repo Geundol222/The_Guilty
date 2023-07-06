@@ -16,17 +16,17 @@ public class RoomScene : BaseScene
     {
         progress = 0f;
         roomUI.Init();
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         progress = 0.2f;
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         progress = 0.4f;
         CreatePrefab();
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         progress = 0.6f;
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         progress = 1f;
         GameManager.Sound.PlaySound("Audios/RoomScene/RoomBGM", Audio.BGM, 0.3f);
