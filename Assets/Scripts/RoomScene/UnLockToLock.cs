@@ -163,6 +163,7 @@ public class UnLockToLock : MonoBehaviour
         GameManager.UI.ClosePopUpUI<LockInteractUI>();
 
         drawerAnim.SetBool("IsOpen", true);
+        GameManager.Sound.PlaySound("Audios/RoomScene/OpenDrawerSound", Audio.SFX, 0.3f);
     }
 
     private void OnDisable()

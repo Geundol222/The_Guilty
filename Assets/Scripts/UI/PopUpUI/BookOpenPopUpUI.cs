@@ -95,4 +95,9 @@ public class BookOpenPopUpUI : PopUpUI, IPointerClickHandler
         sceneUI.Clear();
         GameManager.UI.ClosePopUpUI<BookOpenPopUpUI>();
     }
+
+    public void PageSound()
+    {
+        GameManager.Sound.PlaySound("Audios/RoomScene/PageFlipSound", Audio.SFX, 0.5f);
+    }
 }

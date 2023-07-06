@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public enum Audio { BGM, SFX, Size }
 
@@ -107,6 +104,7 @@ public class SoundManager : MonoBehaviour
             bgmSource.pitch = pitch;
             bgmSource.clip = audioClip;
             bgmSource.loop = true;
+            bgmObj.name = bgmSource.clip.name;
             bgmSource.Play();
         }
         else
@@ -121,6 +119,7 @@ public class SoundManager : MonoBehaviour
                 addSource.pitch = pitch;
                 addSource.clip = audioClip;
                 addSource.loop = loop;
+                loopSFX.name = addSource.clip.name;
                 sfxSources.Add(addSource);
 
                 addSource.Play();
@@ -137,6 +136,7 @@ public class SoundManager : MonoBehaviour
                 addSource.pitch = pitch;
                 addSource.clip = audioClip;
                 addSource.loop = loop;
+                addObj.name = addSource.clip.name;
                 sfxSources.Add(addSource);
 
                 StartCoroutine(SFXPlayRoutine(addObj, audioClip));
@@ -147,8 +147,9 @@ public class SoundManager : MonoBehaviour
     IEnumerator SFXPlayRoutine(GameObject addObj, AudioClip audioClip)
     {
         addSource.PlayOneShot(audioClip);
-        yield return new WaitUntil(() => { return addSource.isPlaying; });
-        GameManager.Resource.Destroy(addObj);
+        yield return new WaitWhile(() => { return addSource.isPlaying; });
+        if (addObj != null)
+            GameManager.Resource.Destroy(addObj);
         yield break;
     }
 

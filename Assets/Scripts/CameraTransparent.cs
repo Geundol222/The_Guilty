@@ -24,7 +24,6 @@ public class CameraTransparent : MonoBehaviour
 
     private void Start()
     {
-        // Obtain all wall renderers in the scene
         Renderer[] renderers = FindObjectsOfType<Renderer>();
         foreach (Renderer renderer in renderers)
         {
@@ -115,4 +114,5 @@ public class CameraTransparent : MonoBehaviour
             }
         }
     }
+
 }

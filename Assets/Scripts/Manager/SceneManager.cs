@@ -14,7 +14,7 @@ public class SceneManager : MonoBehaviour
         get
         {
             if (curScene == null)
-                curScene = GameObject.FindObjectOfType<BaseScene>();
+                curScene = FindObjectOfType<BaseScene>();
 
             return curScene;
         }
@@ -24,7 +24,7 @@ public class SceneManager : MonoBehaviour
     {
         LoadingUI ui = Resources.Load<LoadingUI>("UI/LoadingSceneUI");
         loadingUI = Instantiate(ui);
-        loadingUI.transform.SetParent(transform, false);
+        loadingUI.transform.SetParent(transform, false);        
     }
 
     public void NextScene()
