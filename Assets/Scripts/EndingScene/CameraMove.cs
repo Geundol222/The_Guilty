@@ -10,19 +10,22 @@ public class CameraMove : MonoBehaviour
     [SerializeField] CinemachineSmoothPath path;
     [SerializeField] CinemachineVirtualCamera dollyCam;
     [SerializeField] CinemachineVirtualCamera virtualCamera;
+    [SerializeField] Canvas continueCanvas;
 
+    private Animator continueAnim;
     private CinemachineTrackedDolly dolly;
     private float lerpTime = 0;
     private float duration = 2f;
 
     private void Awake()
     {
+        continueAnim = continueCanvas.GetComponent<Animator>();
         dolly = dollyCam.GetCinemachineComponent<CinemachineTrackedDolly>();
     }
 
     private void LateUpdate()
     {
-        if (cart.m_Position > path.PathLength - 60)
+        if (cart.m_Position > path.PathLength + (-60))
         {
             ChangeCamera();
         }
@@ -54,5 +57,6 @@ public class CameraMove : MonoBehaviour
     {
         dollyCam.Priority = 1;
         virtualCamera.Priority = 10;
+        continueAnim.SetBool("IsActive", true);
     }
 }

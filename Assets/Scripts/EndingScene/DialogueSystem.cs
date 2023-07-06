@@ -19,11 +19,6 @@ public class DialogueSystem : MonoBehaviour
         data = GameManager.Resource.Load<DialogueData>("Data/EndingDialogueData");
     }
 
-    private void Start()
-    {
-        Begin(data.Dialogue);
-    }
-
     public void Begin(DialogueInfo[] info)
     {
         sentences.Clear();

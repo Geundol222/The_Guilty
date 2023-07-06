@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - name: Me
-    description: "Peter\uC5D0 \uB300\uD55C \uC815\uBCF4\uB294 \uC5BB\uC5C8\uC5B4?"
+    description: "\uC5EC\uBCF4\uC138\uC694?"
+  - name: ???
+    description: "\uB098\uC57C"
+  - name: Me
+    description: "Peter\uC5D0 \uB300\uD55C \uC815\uBCF4\uB294 \uCC3E\uC558\uC5B4?"
   - name: ???
     description: "\uC751 \uC608\uC0C1\uB300\uB85C \uB274\uC695\uC5D0 \uC788\uC5C8\uC5B4
       \uC8FC\uC18C \uCC0D\uC5B4\uC904\uAC8C"

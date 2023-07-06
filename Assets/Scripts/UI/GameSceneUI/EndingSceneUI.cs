@@ -8,6 +8,10 @@ public class EndingSceneUI : GameSceneUI
 {
     [SerializeField] DialogueSystem dialogue;
 
+    private DialogueData data;
+    private Animator anim;
+
+    public UnityEvent OnDialogueStart;
     public UnityEvent OnCameraStart;
 
     protected override void Awake()
@@ -16,15 +20,19 @@ public class EndingSceneUI : GameSceneUI
 
         texts["Name"].text = "";
         texts["Dialogue"].text = "";
+
+        anim = GetComponent<Animator>();
+        data = GameManager.Resource.Load<DialogueData>("Data/EndingDialogueData");
     }
 
-    private void Start()
+    public void DialogueStart()
     {
         StartCoroutine(StartRoutine());
     }
 
     IEnumerator StartRoutine()
     {
+        dialogue.Begin(data.Dialogue);
         yield return new WaitUntil(() => { return dialogue.IsEnd; });
 
         OnCameraStart?.Invoke();

@@ -52,7 +52,8 @@ public class SoundManager : MonoBehaviour
             AudioListener.volume = Mathf.Lerp(currentVolume, 0, elapsedTime / 1f);
             if (AudioListener.volume <= 0f)
             {
-                GameManager.Resource.Destroy(bgmObj);
+                if (bgmObj != null)
+                    GameManager.Resource.Destroy(bgmObj);
                 if (loopSFX != null)
                     GameManager.Resource.Destroy(loopSFX);
                 isMuted = true;
