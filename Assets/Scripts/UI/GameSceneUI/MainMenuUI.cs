@@ -8,17 +8,18 @@ public class MainMenuUI : GameSceneUI
     {
         base.Awake();
 
+        buttons["StartButton"].onClick.AddListener(() => { GameManager.Scene.NextScene(); });
         buttons["ExitButton"].onClick.AddListener(ClickExit);
         buttons["SettingButton"].onClick.AddListener(ClickSetting);
     }
 
     public void ClickExit()
     {
-        GameManager.UI.ShowPopUpUI<GameExitConfirm>("UI/ExitConfirm");
+        GameManager.UI.ShowPopUpUI<GameExitConfirm>("UI/PopUpUI/ExitConfirm");
     }
 
     public void ClickSetting()
     {
-        GameManager.UI.ShowPopUpUI<SettingPopUpUI>("UI/SettingUI");
+        GameManager.UI.ShowPopUpUI<SettingUI>("UI/PopUpUI/SettingUI");
     }
 }

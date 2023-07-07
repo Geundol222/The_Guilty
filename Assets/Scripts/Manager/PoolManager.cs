@@ -11,6 +11,11 @@ public class PoolManager : MonoBehaviour
     Canvas canvasRoot;
 
     private void Awake()
+    {        
+        InitPool();
+    }
+
+    public void InitPool()
     {
         poolDic = new Dictionary<string, ObjectPool<GameObject>>();
         poolContainer = new Dictionary<string, Transform>();
@@ -29,7 +34,7 @@ public class PoolManager : MonoBehaviour
                 CreatePool(key, prefab);
 
             GameObject obj = poolDic[key].Get();
-            obj.transform.parent = parent;
+            obj.transform.SetParent(parent, false);
             obj.transform.position = position;
             obj.transform.rotation = rotation;
             return obj as T;
@@ -145,12 +150,12 @@ public class PoolManager : MonoBehaviour
             actionOnGet: (GameObject obj) =>
             {
                 obj.gameObject.SetActive(true);
-                obj.transform.parent = null;
+                obj.transform.SetParent(null);
             },
             actionOnRelease: (GameObject obj) =>
             {
                 obj.gameObject.SetActive(false);
-                obj.transform.parent = poolContainer[key];
+                obj.transform.SetParent(poolContainer[key]);
             },
             actionOnDestroy: (GameObject obj) =>
             {

@@ -20,6 +20,11 @@ public class UIManager : MonoBehaviour
         eventSystem = GameManager.Resource.Instantiate<EventSystem>("UI/EventSystem");
         eventSystem.transform.parent = transform;
 
+        InitUI();
+    }
+
+    public void InitUI()
+    {
         popUpCanvas = GameManager.Resource.Instantiate<Canvas>("UI/Canvas");
         popUpCanvas.gameObject.name = "PopUpCanvas";
         popUpCanvas.sortingOrder = 100;
@@ -49,7 +54,7 @@ public class UIManager : MonoBehaviour
         ui.transform.SetParent(popUpCanvas.transform, false);
 
         popUpStack.Push(ui);
-
+        inGameCanvas.gameObject.SetActive(false);
         Time.timeScale = 0f;
 
         return ui;
@@ -72,7 +77,10 @@ public class UIManager : MonoBehaviour
             curUI.gameObject.SetActive(true);
         }
         if (popUpStack.Count == 0)
+        {
             Time.timeScale = 1f;
+            inGameCanvas.gameObject.SetActive(true);
+        }
     }
 
     public T ShowWindowUI<T>(T windowUI) where T : WindowUI

@@ -6,8 +6,6 @@ public class MainMenuCreate : MonoBehaviour
 {
     [SerializeField] GameObject Citizen;
 
-    Coroutine create;
-
     IEnumerator CreateRoutine()
     {
         yield return new WaitForSeconds(14f);

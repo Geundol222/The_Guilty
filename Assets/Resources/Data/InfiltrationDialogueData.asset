@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f70ce9981fb3dc4d994a875be0ad1a9, type: 3}
+  m_Name: InfiltrationDialogueData
+  m_EditorClassIdentifier: 
+  dialogue:
+  - name: Enter
+    description: "\uC6A9\uBCD1\uC5D0 \uB4E4\uD0A4\uC9C0 \uC54A\uAC8C \uC870\uC2EC\uD574\uC57C\uACA0\uC5B4"
+    chackRead: 0
+  - name: NoteBook
+    description: "\uD638\uC624.. \uC545\uCDE8\uBBF8\uC778\uAC78"
+    chackRead: 0
+  - name: Click
+    description: "\uC774\uB984\uC740 Peter\uB77C\uACE0 \uD558\uB294\uAD70 \uC774\uC0AC\uB78C\uC774
+      \uBC94\uC778\uC778\uAC00?"
+    chackRead: 0
+  - name: Clear
+    description: "\uC6B0\uC120 Peter\uB77C\uB294 \uC0AC\uB78C\uC744 \uCC3E\uC544\uC57C\uACA0\uC5B4
+      \uC870\uC2EC\uD574\uC11C \uB2E4\uC2DC \uB098\uAC00\uC790"
+    chackRead: 0

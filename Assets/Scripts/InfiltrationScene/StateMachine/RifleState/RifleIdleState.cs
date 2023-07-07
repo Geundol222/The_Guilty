@@ -15,20 +15,20 @@ public class RifleIdleState : RifleState
 
     public override void Enter()
     {
-
+        anim.SetBool("IsFind", false);
+        aimRig.weight = 0;
     }
 
     public override void Update()
     {
-        
+        Quaternion lookDir = Quaternion.LookRotation(originLookDir);
+        transform.rotation = Quaternion.Lerp(transform.rotation, lookDir, 0.1f);
     }
 
     public override void Transition()
     {
-        if (fov.IsFinded())
+        if (fov.IsFind)
         {
-            Debug.Log("플레이어 발견");
-            agent.isStopped = true;
             stateMachine.ChangeState(State.Find);
         }
     }
