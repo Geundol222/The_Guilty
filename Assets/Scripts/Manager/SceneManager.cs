@@ -70,6 +70,7 @@ public class SceneManager : MonoBehaviour
             yield return null;
         }
         GameManager.Sound.FadeInAudio();
+
         Time.timeScale = 1f;
         loadingUI.FadeIn();
         yield return new WaitWhile(() => { return GameManager.Sound.IsMuted(); });
