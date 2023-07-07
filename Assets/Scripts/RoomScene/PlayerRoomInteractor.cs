@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using Color = UnityEngine.Color;
 
@@ -14,6 +15,8 @@ public class PlayerRoomInteractor : MonoBehaviour
     [SerializeField] LayerMask itemMask;
     [SerializeField] LayerMask doorMask;
 
+    private Animator anim;
+    private NavMeshAgent agent;
     private Collider itemCol;
     private GameObject doorObj;
     private OpenDoor door;
@@ -27,6 +30,12 @@ public class PlayerRoomInteractor : MonoBehaviour
 
     public bool IsWatch { get; private set; } = false;
 
+    private void Awake()
+    {
+        agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
+    }
+
     private void Update()
     {
         InteractDoor();
@@ -38,6 +47,9 @@ public class PlayerRoomInteractor : MonoBehaviour
     {
         if (Time.timeScale > 0f)
         {
+            agent.destination = transform.position;
+            anim.SetFloat("WalkSpeed", 0f);
+
             if (InteractItem() && itemCol != null)
             {
                 if (itemMask.IsContain(itemCol.gameObject.layer))

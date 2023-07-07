@@ -17,7 +17,6 @@ public class MainMenuScene : BaseScene
         yield return new WaitForSecondsRealtime(0.5f);
 
         progress = 0.2f;
-        GameManager.UI.InitUI();
         yield return new WaitForSecondsRealtime(0.5f);
 
         progress = 0.4f;

@@ -73,7 +73,7 @@ public class SoundManager : MonoBehaviour
 
         while (elapsedTime < 1f)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             AudioListener.volume = Mathf.Lerp(currentVolume, 1f, elapsedTime / 1f);
             if (AudioListener.volume >= 1f)
             {

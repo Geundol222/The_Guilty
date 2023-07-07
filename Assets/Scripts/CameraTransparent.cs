@@ -56,7 +56,7 @@ public class CameraTransparent : MonoBehaviour
                 if (isOpaque[i])
                 {
                     isOpaque[i] = false;
-                    targetAlpha[i] = 0f;
+                    targetAlpha[i] = 0.2f;
                     lerpTime[i] = 0f;
                 }
             }
@@ -72,7 +72,7 @@ public class CameraTransparent : MonoBehaviour
 
             if (lerpTime[i] < fadeDuration)
             {
-                lerpTime[i] += Time.deltaTime;
+                lerpTime[i] += Time.deltaTime * 5f;
                 currentAlpha[i] = Mathf.Lerp(currentAlpha[i], targetAlpha[i], lerpTime[i] / fadeDuration);
             }
 
@@ -88,9 +88,9 @@ public class CameraTransparent : MonoBehaviour
             if (isOpaque[i])
             {
                 isOpaque[i] = false;
-                targetAlpha[i] = 0f;
+                targetAlpha[i] = 0.2f;
                 lerpTime[i] = 0f;
-                SetWallTransparency(i, 0f);
+                SetWallTransparency(i, 1f);
             }
         }
     }
@@ -103,8 +103,8 @@ public class CameraTransparent : MonoBehaviour
             Color color = material.color;
             color.a = alpha;
             material.color = color;
-
-            if (alpha < 1f)
+    
+            if (alpha < 0.99f)
             {
                 StandardShaderUtils.ChangeRenderMode(material, StandardShaderUtils.BlendMode.Transparent);
             }
@@ -114,5 +114,4 @@ public class CameraTransparent : MonoBehaviour
             }
         }
     }
-
 }

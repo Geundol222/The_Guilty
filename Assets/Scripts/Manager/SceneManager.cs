@@ -63,17 +63,15 @@ public class SceneManager : MonoBehaviour
         GameManager.UI.InitUI();
         GameManager.Sound.InitSound();
 
-        // 추가적인 씬에서 준비할 로딩을 진행하고 넘어가야함
         CurScene.LoadAsync();
         while (CurScene.progress < 1f)
         {
             loadingUI.SetProgress(Mathf.Lerp(0.5f, 1.0f, CurScene.progress));
             yield return null;
         }
-
+        GameManager.Sound.FadeInAudio();
         Time.timeScale = 1f;
         loadingUI.FadeIn();
-        GameManager.Sound.FadeInAudio();
         yield return new WaitWhile(() => { return GameManager.Sound.IsMuted(); });
     }
 }
