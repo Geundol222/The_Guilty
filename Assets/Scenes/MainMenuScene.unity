@@ -667,10 +667,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 942578440150660627, guid: 48e5f47af3c6e1849a1dfec5eb94b753, type: 3}
-      propertyPath: m_UpdateMode
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5818451023887513299, guid: 48e5f47af3c6e1849a1dfec5eb94b753, type: 3}
       propertyPath: m_Name
       value: Murderer
@@ -874,10 +870,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Victim
       objectReference: {fileID: 0}
-    - target: {fileID: 6316865790313743534, guid: be8223978b9513f48a476c4cfd3258a8, type: 3}
-      propertyPath: m_UpdateMode
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be8223978b9513f48a476c4cfd3258a8, type: 3}
 --- !u!1001 &1979420502
@@ -1027,10 +1019,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1880390927, guid: c959eb3dc2387fe4999cf83c1d65516e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4283768998539010745, guid: c959eb3dc2387fe4999cf83c1d65516e, type: 3}
       propertyPath: m_Name
       value: RainParticle
@@ -1080,15 +1068,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4283768998539010751, guid: c959eb3dc2387fe4999cf83c1d65516e, type: 3}
-      propertyPath: SubModule.subEmitters.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4283768998539010751, guid: c959eb3dc2387fe4999cf83c1d65516e, type: 3}
       propertyPath: CollisionModule.m_Planes.Array.data[0]
       value: 
       objectReference: {fileID: 1836071341}
-    m_RemovedComponents:
-    - {fileID: 1880390927, guid: c959eb3dc2387fe4999cf83c1d65516e, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c959eb3dc2387fe4999cf83c1d65516e, type: 3}
 --- !u!4 &4996983842000131032
 Transform:
@@ -1580,30 +1563,6 @@ PrefabInstance:
     - target: {fileID: 6240636886028627336, guid: 50e9f533d51c54745a3c749439f74b0b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6928785434710020642, guid: 50e9f533d51c54745a3c749439f74b0b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6928785434710020642, guid: 50e9f533d51c54745a3c749439f74b0b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 227697827}
-    - target: {fileID: 6928785434710020642, guid: 50e9f533d51c54745a3c749439f74b0b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 6928785434710020642, guid: 50e9f533d51c54745a3c749439f74b0b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MainMenuScene, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6928785434710020642, guid: 50e9f533d51c54745a3c749439f74b0b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6928785434710020642, guid: 50e9f533d51c54745a3c749439f74b0b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50e9f533d51c54745a3c749439f74b0b, type: 3}

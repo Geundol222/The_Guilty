@@ -100,6 +100,9 @@ public class PlayerInfiltrationInteractor : MonoBehaviour
     {
         if (Time.timeScale > 0f)
         {
+            agent.destination = transform.position;
+            anim.SetFloat("MoveSpeed", 0f);
+
             if (isHidable)
             {
                 isInteract = !isInteract;
