@@ -61,9 +61,9 @@ public class SoundController : MonoBehaviour
         while (lerpTime < duration)
         {
             lerpTime += Time.deltaTime * 0.01f;
-            endingSource.volume = Mathf.Lerp(endingSource.volume, 0.5f, lerpTime / duration);
+            endingSource.volume = Mathf.Lerp(endingSource.volume, 0.4f, lerpTime / duration);
 
-            if (endingSource.volume >= 0.5f)
+            if (endingSource.volume >= 0.4f)
                 break;
 
             yield return null;

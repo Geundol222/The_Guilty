@@ -62,6 +62,7 @@ public class SceneManager : MonoBehaviour
         GameManager.Pool.InitPool();
         GameManager.UI.InitUI();
         GameManager.Sound.InitSound();
+        GameManager.Sound.FadeInAudio();
 
         CurScene.LoadAsync();
         while (CurScene.progress < 1f)
@@ -69,7 +70,6 @@ public class SceneManager : MonoBehaviour
             loadingUI.SetProgress(Mathf.Lerp(0.5f, 1.0f, CurScene.progress));
             yield return null;
         }
-        GameManager.Sound.FadeInAudio();
 
         Time.timeScale = 1f;
         loadingUI.FadeIn();
