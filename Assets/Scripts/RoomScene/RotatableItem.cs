@@ -4,9 +4,9 @@ using UnityEngine.EventSystems;
 
 public class RotatableItem : MonoBehaviour, IDragHandler, IScrollHandler
 {
-    [SerializeField] Transform StartPosition;
+    [SerializeField] Transform startPosition;
     [SerializeField] GameObject realItem;
-    [SerializeField] TMP_Text RotateText;
+    [SerializeField] TMP_Text rotateText;
 
     float maxZoom = 3f;
     Vector3 objectScale;
@@ -15,7 +15,7 @@ public class RotatableItem : MonoBehaviour, IDragHandler, IScrollHandler
     private void Awake()
     {
         objectScale = realItem.transform.localScale;
-        RotateText.text = "Rotate";
+        rotateText.text = "Rotate";
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -48,14 +48,14 @@ public class RotatableItem : MonoBehaviour, IDragHandler, IScrollHandler
         if (Scale.magnitude > objectScale.magnitude)
         {
             isZoomed = true;
-            RotateText.text = "Move";
+            rotateText.text = "Move";
         }
         else
         {
             isZoomed = false;
-            RotateText.text = "Rotate";
-            realItem.transform.position = StartPosition.position;
-            realItem.transform.rotation = StartPosition.rotation;
+            rotateText.text = "Rotate";
+            realItem.transform.position = startPosition.position;
+            realItem.transform.rotation = startPosition.rotation;
         }
     }
 
