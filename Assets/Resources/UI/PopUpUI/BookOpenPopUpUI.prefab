@@ -342,6 +342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2659496818629917804}
   - component: {fileID: 1597291981081852876}
+  - component: {fileID: 292566732}
   m_Layer: 5
   m_Name: BookOpenPopUpUI
   m_TagString: Untagged
@@ -389,6 +390,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   book: {fileID: 2326151406405134880}
   movePoint: {fileID: 8681954779834217290}
+--- !u!95 &292566732
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7128352259610146244}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cf9cb038dfb83a847a0fb4a721c8e14b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7978278466893217488
 GameObject:
   m_ObjectHideFlags: 0
