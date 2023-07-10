@@ -19,11 +19,15 @@ public class BookOpenPopUpUI : PopUpUI, IPointerClickHandler
     protected override void Awake()
     {
         base.Awake();
+
+        buttons["ExitButton"].onClick.AddListener(CloseUI);        
+    }
+
+    private void Start()
+    {
         originBookPoint = book.transform.position;
         sceneUI = FindObjectOfType<InfiltrationSceneUI>();
         dialogue = GameManager.Resource.Load<DialogueData>("Data/InfiltrationDialogueData");
-
-        buttons["ExitButton"].onClick.AddListener(CloseUI);
         DialogueRender("NoteBook");
     }
 

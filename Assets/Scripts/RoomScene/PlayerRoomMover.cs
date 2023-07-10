@@ -35,7 +35,7 @@ public class PlayerRoomMover : MonoBehaviour
 
     private void OnMove(InputValue value)
     {
-        if (Time.timeScale > 0f)
+        if (Time.timeScale > 0f && agent.isStopped == false)
         {
             Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 
