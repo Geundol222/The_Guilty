@@ -7,15 +7,26 @@ public class RotatableItem : MonoBehaviour, IDragHandler, IScrollHandler
     [SerializeField] Transform startPosition;
     [SerializeField] GameObject realItem;
     [SerializeField] TMP_Text rotateText;
+    [SerializeField] Transform itemPosition;
 
     float maxZoom = 3f;
+    float itemXScale;
     Vector3 objectScale;
     bool isZoomed = false;
 
     private void Awake()
     {
+        itemXScale = 1920f / (float)Screen.width;
+        realItem.transform.localScale *= itemXScale;
         objectScale = realItem.transform.localScale;
+
         rotateText.text = "Rotate";
+    }
+
+    private void Start()
+    {
+        realItem.transform.position = itemPosition.position;
+        startPosition.position = realItem.transform.position;
     }
 
     public void OnDrag(PointerEventData eventData)
