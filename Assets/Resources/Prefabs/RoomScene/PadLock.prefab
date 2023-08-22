@@ -5397,8 +5397,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paper: {fileID: 0}
-  unLockObject: {fileID: 6533388374845700978, guid: 5a3bd52ceec5ee6478c9ecf99b34cf48, type: 3}
-  investigateObject: {fileID: 775931681379835143, guid: 08c3c231ad0dd8d48a7d5f3eed60a7e2, type: 3}
+  unLockObject: {fileID: 4204789914902423639, guid: 5a3bd52ceec5ee6478c9ecf99b34cf48, type: 3}
+  investigateObject: {fileID: 5985804508345593120, guid: 08c3c231ad0dd8d48a7d5f3eed60a7e2, type: 3}
 --- !u!114 &4679433455225048696
 MonoBehaviour:
   m_ObjectHideFlags: 0

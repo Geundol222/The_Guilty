@@ -14,6 +14,7 @@ public class UnLockToLock : MonoBehaviour
     [SerializeField] int[] answerArr;
     [SerializeField] Image selectArrow;
     [SerializeField] Image anwerArrow;
+    [SerializeField] Transform itemPosition;
 
     Animator drawerAnim;
     Animator anim;
@@ -24,6 +25,7 @@ public class UnLockToLock : MonoBehaviour
     int[] numberArr = { 0, 0, 0, 0 };
     int numberRuller = 0;
 
+    float itemXScale;
     float horizontal;
     float vertical;
     Vector3 awakeRot;
@@ -31,6 +33,9 @@ public class UnLockToLock : MonoBehaviour
     private void Awake()
     {
         drawerAnim = GameObject.FindGameObjectWithTag("Drawer").GetComponent<Animator>();
+
+        itemXScale = 1920f / (float)Screen.width;
+        transform.localScale *= itemXScale;
 
         originSelectArrow = selectArrow.rectTransform.anchoredPosition;
         arrowPosition = selectArrow.rectTransform.anchoredPosition;
@@ -42,6 +47,7 @@ public class UnLockToLock : MonoBehaviour
     private void Start()
     {
         itemUI = GetComponentInParent<ItemPopUpUI>();
+        transform.position = itemPosition.position;
     }
 
     private void OnEnable()
