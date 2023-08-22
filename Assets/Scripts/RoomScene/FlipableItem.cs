@@ -7,15 +7,27 @@ using UnityEngine.EventSystems;
 public class FlipableItem : MonoBehaviour, IPointerClickHandler
 {
     ItemPopUpUI itemUI;
+    [SerializeField] GameObject realItem;
+    [SerializeField] Transform itemPosition;
     [SerializeField] RectTransform flipPoint;
     [SerializeField] RectTransform stopPoint;
     [SerializeField] RectTransform startPoint;
 
+    float itemXScale;
+    Vector3 objectScale;
     bool isClicked = false;
     bool isMove = false;
 
+    private void Awake()
+    {
+        itemXScale = 1920f / (float)Screen.width;
+        realItem.transform.localScale *= itemXScale;
+        objectScale = realItem.transform.localScale;
+    }
+
     private void Start()
     {
+        realItem.transform.position = itemPosition.position;
         itemUI = GetComponentInParent<ItemPopUpUI>();
     }
 

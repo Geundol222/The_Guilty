@@ -131,10 +131,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef5849e5a87b7274d8de4eb47befb242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPosition: {fileID: 8675323163004091475}
-  realItem: {fileID: 9110023903608061706}
   rotateText: {fileID: 1118087170296077470}
-  itemPosition: {fileID: 6864068864219452522, guid: 0731cba0b898ba148a96a8b3ef82dd9e, type: 3}
+  realItem: {fileID: 9110023903608061706}
+  itemTransform: {fileID: 6864068864219452522, guid: 0731cba0b898ba148a96a8b3ef82dd9e, type: 3}
 --- !u!222 &4964953092005088118
 CanvasRenderer:
   m_ObjectHideFlags: 0
