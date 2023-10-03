@@ -246,7 +246,7 @@ MonoBehaviour:
     m_Bits: 8
   obstacleMask:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 4353
   headTransform: {fileID: 7037354075845856904}
 --- !u!1 &1154276421550071550
 GameObject:
@@ -1096,6 +1096,7 @@ MonoBehaviour:
   fov: {fileID: 0}
   player: {fileID: 7499872188280131904, guid: d8ddd32275248af4b938b67b2d601bc7, type: 3}
   isFind: 0
+  playerController: {fileID: 0}
   rayPoint: {fileID: 8115761650255058142}
   obstacleMask:
     serializedVersion: 2

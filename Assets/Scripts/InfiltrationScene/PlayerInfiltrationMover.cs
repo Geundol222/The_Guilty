@@ -93,15 +93,18 @@ public class PlayerInfiltrationMover : MonoBehaviour
             }
             else
             {
-                Collider[] colliders = Physics.OverlapSphere(transform.position, isWalk ? walkStepRange : runStepRange, enemyMask);
-
-                foreach (Collider collider in colliders)
+                if (!interactor.IsHide)
                 {
-                    isDiscovered = true;
-                    IListenable listenable = collider.GetComponent<IListenable>();
-                    listenable?.Listen(transform.position);
-                    walkStepRange *= 0.5f;
-                    runStepRange *= 0.5f;
+                    Collider[] colliders = Physics.OverlapSphere(transform.position, isWalk ? walkStepRange : runStepRange, enemyMask);
+
+                    foreach (Collider collider in colliders)
+                    {
+                        isDiscovered = true;
+                        IListenable listenable = collider.GetComponent<IListenable>();
+                        listenable?.Listen(transform.position);
+                        walkStepRange *= 0.5f;
+                        runStepRange *= 0.5f;
+                    }
                 }
             }
 
@@ -111,13 +114,13 @@ public class PlayerInfiltrationMover : MonoBehaviour
 
     private void Crouch()
     {
-        if (isCrouching)
+        if (isCrouching && !interactor.IsHide)
         {
             isWalk = true;
             anim.SetBool("IsCrouch", true);
             agent.speed = 5f;
         }
-        else
+        else if(!isCrouching && !interactor.IsHide)
         {
             isWalk = false;
             anim.SetBool("IsCrouch", false);

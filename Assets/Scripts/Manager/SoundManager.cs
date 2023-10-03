@@ -146,8 +146,9 @@ public class SoundManager : MonoBehaviour
 
     IEnumerator SFXPlayRoutine(GameObject addObj, AudioClip audioClip)
     {
-        addSource.PlayOneShot(audioClip);
-        yield return new WaitWhile(() => { return addSource.isPlaying; });
+        AudioSource audioSource = addObj.GetComponent<AudioSource>();
+        audioSource.PlayOneShot(audioClip);
+        yield return new WaitWhile(() => { return audioSource.isPlaying; });
         if (addObj != null)
             GameManager.Resource.Destroy(addObj);
         yield break;
