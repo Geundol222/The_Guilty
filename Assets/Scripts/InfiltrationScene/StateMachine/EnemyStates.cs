@@ -34,7 +34,6 @@ namespace EnemyStates
         protected EnemyWeaponHolder weaponHolder { get { return owner.weaponHolder; } }
         protected PlayerController playerController { get { return owner.playerController; } }
         protected FieldOfView fov { get { return owner.fov; } }
-        protected NavMeshAgent agent { get { return owner.agent; } }
         protected Transform transform { get { return owner.transform; } }
         protected GameObject player { get { return owner.player; } }
         protected Rig aimRig { get { return owner.aimRig; } }

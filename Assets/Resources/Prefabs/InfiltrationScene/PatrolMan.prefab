@@ -235,10 +235,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InfiltrationScene: {fileID: 5405845349277543356, guid: 8f13374cdcff02646b3b6c0d842cb556, type: 3}
-  edgeResolveIterations: 0
-  edgeDstThreshold: 0
+  edgeResolveIterations: 4
+  edgeDstThreshold: 0.5
   viewMeshFilter: {fileID: 8115761651095731174}
-  meshResolution: 0.1
+  meshResolution: 1
   range: 30
   angle: 90
   targetMask:
